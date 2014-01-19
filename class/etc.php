@@ -233,8 +233,17 @@ function admin_page()
 }
 
 
+/**
+ *  @brief 패치 파일의 경로를 리턴한다.
+ *  
+ *  @param [in] $file Parameter_Description
+ *  @return Return_Description
+ *  
+ *  @details 패치 파일은 "patch.xxxxxxx.php" 와 같은 형식을 가지며 html 폴더에 저장된다.
+ *  
+ */
 function patch( $file )
 {
-	return x::dir() . ds . 'patch' . ds . $file . '.php';
+	return x::dir() . ds . 'html' . ds . "patch.$file.php";
 }
 

@@ -13,11 +13,10 @@ include 'etc/language/default.php';
 
 
 
-$x_dir = g::dir() . DIRECTORY_SEPARATOR . 'dare-gnuboard';
-$x_url = G5_URL . '/dare-gnuboard';
-
-ob_start();
+$x_dir = g::dir() . ds . 'x';
+$x_url = g::url() . ds . 'x';
 
 
-debug::log("dare-gnuboard begins\t------------------------------");
+
+debug::log("x begins\t------------------------------");
 
