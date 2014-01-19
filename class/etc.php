@@ -155,8 +155,10 @@ class etc {
 	static function lang( $code )
 	{
 		global $language;
+		$code_back = $code;
+		$code = strtolower($code);
 		if ( isset($language[$code]) ) return $language[$code];
-		else return $code;
+		else return $code_back;
 	}
 	
 	
@@ -181,7 +183,34 @@ class etc {
 		list ( $last, $rest ) = explode('.', $domain, 2);
 		return $last;
 	}
-}
+	
+	
+	
+	/** @short returns webbrowsers language
+		이 함수는 오직 두 글자만 리턴한다.
+		
+		이 메소드는 오직 2 글자 짜리 코드를 리턴한다.
+		
+		예) ko, en, jp
+		
+		
+	 *  @details 문서에서 언어 설정 부분을 참고한다.
+	*/
+	static function browser_language()
+	{
+		return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	}
+	
+	
+	
+	static function patch_language($html, $assoc)
+	{
+		foreach ( $assoc as $word => $rep ) {
+			$html = str_replace($word, $rep, $html);
+		}
+		return $html;
+	}
+} // eo etc class
 
 
 
@@ -249,5 +278,12 @@ function admin_page()
 function patch( $file )
 {
 	return x::dir() . ds . 'html' . ds . "patch.$file.php";
+}
+
+
+
+function ln($code)
+{
+	return etc::lang($code);
 }
 

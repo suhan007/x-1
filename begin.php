@@ -1,8 +1,15 @@
 <?php
+include 'class/gnuboard.php';
+include 'class/x.php';
+$x_dir = g::dir() . '/x';
+$x_url = g::url() . '/x';
+
+
+
 include 'class/debug.php';
 include 'class/etc.php';
-include 'class/x.php';
-include 'class/gnuboard.php';
+
+
 include 'class/file.php';
 include 'class/data.php';
 include 'class/html.php';
@@ -12,13 +19,12 @@ include 'class/database.php';
 include 'etc/language/default.php';
 
 
+ob_start();
 
 
 
-// ini_set("session.cookie_domain", ".domain.co.kr");
 
-$x_dir = g::dir() . ds . 'x';
-$x_url = g::url() . ds . 'x';
+
 
 
 
