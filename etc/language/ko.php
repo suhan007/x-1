@@ -14,4 +14,8 @@ $language['point'] = '포인트';
 $language['scrap'] = '스크랩';
 $language['more'] = '더보기';
 $language['search'] = '검색';
+$language['create site'] = '카페 생성';
+$language['my sites'] = '나의 카페';
+
+
 

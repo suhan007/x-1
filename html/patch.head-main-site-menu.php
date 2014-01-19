@@ -32,11 +32,11 @@
 	</li>
 	<?php } ?>
 	<li class="gnb_1dli">
-		<a href="<?=ms::url_create()?>" class="gnb_1da">카페 생성</a>
+		<a href="<?=ms::url_create()?>" class="gnb_1da"><?=ln('Create Site')?></a>
 	</li>
 	<? if ( login() ) { ?>
 	<li class="gnb_1dli">
-		<a href="#" class="gnb_1da">나의 카페</a>
+		<a href="#" class="gnb_1da"><?=ln('My Sites')?></a>
 		<ul class="gnb_2dul">
 			<?php
 				foreach ( ms::my_site() as $site ) {

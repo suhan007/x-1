@@ -65,6 +65,10 @@ $html = etc::patch_language(
 		'>복사'		=> ln('>Copy'),
 		'>이동'		=> ln('>Move'),
 		'>공지'		=> ln('>Reminder'),
+		'"선택삭제'		=> ln('"Delete Selected'),
+		'"선택복사'		=> ln('"Copy Selected'),
+		'"선택이동'		=> ln('"Move Selected'),
+		' 페이지'		=> ln(' Page'),
 		
 	)
 );
