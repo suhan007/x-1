@@ -13,6 +13,8 @@ include 'etc/language/default.php';
 
 
 
+// ini_set("session.cookie_domain", ".domain.co.kr");
+
 $x_dir = g::dir() . ds . 'x';
 $x_url = g::url() . ds . 'x';
 

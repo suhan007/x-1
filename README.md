@@ -37,6 +37,15 @@ common.php 의 파일을 열어서
 > <?include 'dare-gnuboard/end.php'?>
 
 
+## 설정 ##
+
+### 멀티사이트 설정 ###
+
+메인 사이트와 서브사이트 간의 로그인 공유를 위해서 아래에 적당한 값을 기록합니다.
+
+> define('G5_COOKIE_DOMAIN',  '**.domain.com**');
+
+만약 여러분의 도메인이 abc.com 이라면 맨 앞에 점을 붙여서 **.abc.com** 과 같이 입력을 하시면 됩니다.
 
 
 

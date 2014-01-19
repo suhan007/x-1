@@ -7,7 +7,7 @@ debug::log("x end\t------------------------------");
 
 //debug::log( etc::included_files() );
 
+di("G5_COOKIE_DOMAIN");
+di( G5_COOKIE_DOMAIN );
 di( etc::included_files() );
-
-
 
