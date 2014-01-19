@@ -49,11 +49,48 @@ class multisite {
 		else return false;
 	}
 	
+	/**
+	 *  @brief 사이트 record 를 리턴한다.
+	 *  
+	 *  @param [in] $domain 도메인
+	 *  @return array 사이트 레코드를 가지는 연관 배열
+	 *  
+	 *  @details 입력된 도메인에 맞는 사이트 정보를 리턴한다.
+	 */
 	static function get( $domain )
 	{
 		$sql = "SELECT * FROM multisite_config WHERE domain='$domain'";
 		return db::row( $sql );
 	}
+	
+	
+	/**
+	 *  @brief 입력한 도메인이 현재 로그인한 사용자의 것인지 확인한다.
+	 *  
+	 *  @param [in] $domain 도메인
+	 *  @return boolean 현재 로그인한 사용자의 도메인(사이트)라면 참을 리턴
+	 *  
+	 *  @details 현재 사이트가 로그인한 사용자의 것인지 확인 할 때 사용한다. 주로 관리자 메뉴를 출력하거나 관리자 기능을 사용 할 때 이용하면 된다.
+	 */
+	static function my( $domain )
+	{
+		if ( ! login() ) return false;
+		$info = self::get($domain);
+		return $info['mb_id'] == $member['mb_id'];
+	}
+	
+	/**
+	 *  @brief 로그인한 사용자가 현재 접속한 사이트(도메인)의 관리자(주인)인지 아닌지를 판단한다.
+	 *  
+	 *  @return boolean
+	 *  
+	 *  @details 현재 사이트가 로그인한 사용자의 것이라면 참을 리턴한다.
+	 */
+	static function admin()
+	{
+		return self::my( etc::domain() );
+	}
+	
 
 	/**
 	 *  @brief returns my sites
@@ -103,9 +140,19 @@ class multisite {
 	static function url_site($domain)
 	{
 		$pi = pathinfo($_SERVER['PHP_SELF']);
-		return 'http://' . $domain . $pi['dirname'];
+		$path = $pi['dirname'];
+		$path = str_replace('/bbs', '', $path);
+		return 'http://' . $domain . $path;
 	}
 	
+	
+	static function url_main_site()
+	{
+		$pi = pathinfo($_SERVER['PHP_SELF']);
+		$path = $pi['dirname'];
+		$path = str_replace('/bbs', '', $path);
+		return 'http://' . etc::base_domain() . $path;
+	}
 	
 	
 	/**
@@ -121,5 +168,16 @@ class multisite {
 		return 'ms_' . etc::last_domain($domain);
 	}
 	
-
+	/**
+	 *  @brief 사용자가 접속한 현재 사이트가 메인 사이트(도메인)인지 확인한다.
+	 *  
+	 *  @return boolean 메인 사이트이면 참을 리턴. 아니면 거짓을 리턴.
+	 *  
+	 *  @details 현재 사이트가 메인 사이트인지 아닌지를 구분 할 때 사용한다.
+	 */
+	static function main_site()
+	{
+		return etc::domain() == etc::base_domain();
+	}
+	
 }

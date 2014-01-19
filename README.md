@@ -20,21 +20,8 @@
  
 ## 설치 ##
 
-x 폴더를 다운로드 하여 gnuboard5 설치 디렉토리에 복사합니다.
-
-
-common.php 의 파일을 열어서
-
-> include_once($g5_path['path'].'/config.php');
-
-부분을 찾아서 그 다음 라인에 아래의 구문을 추가합니다.
-
-> include 'x/begin.php';
-
-
-그리고 tail.sub.php 의 맨 아래에 아래의 라인을 추가합니다.
-
-> <?include 'dare-gnuboard/end.php'?>
+1. x 폴더를 다운로드 하여 gnuboard5 설치 디렉토리에 복사합니다. 
+2. x/x.php 파일을 gnuboard5 설치 디렉토리의 extend 디렉토리 안에 집어 넣습니다.
 
 
 ## 설정 ##

@@ -61,6 +61,10 @@ class etc {
 	}
 	
 
+	static function domain()
+	{
+		return $_SERVER['HTTP_HOST'];
+	}
 	
 	// ################################################################## helper functions
 	// get base domain (domain.tld)
