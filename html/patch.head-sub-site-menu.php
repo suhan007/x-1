@@ -13,7 +13,7 @@
 <ul id="gnb_1dul">
 	
 	<li class="gnb_1dli">
-		<a href="<?=ms::url_main_site()?>" class="gnb_1da">메인 홈</a>
+		<a href="<?=ms::url_main_site()?>" class="gnb_1da"><?=ln('Main Site')?></a>
 	</li>
 	
 	<?php
@@ -40,7 +40,7 @@
 	
 	
 	<li class="gnb_1dli">
-		<a href="<?=ms::url_config()?>" class="gnb_1da">관리자 설정</a>
+		<a href="<?=ms::url_config()?>" class="gnb_1da"><?=ln('Admin Page')?></a>
 	</li>
 	
 	
