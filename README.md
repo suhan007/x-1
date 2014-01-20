@@ -1,61 +1,29 @@
 # GnuBoard Extended #
+
+----------
+
+
+Powered By JaeHo Song
+
+Email: thruthesky@gmail.com
+
+Website : [http://gnuboardx.com](http://gnuboardx.com)
+
+This is an extended script of GNUBoard5 for the use of other functions like Multisite.
+
+Please refer [this document - GNUBoard5 Extended Manual](https://docs.google.com/document/d/1hLnjVW9iXdVtZLZUm3RIWFUim9DFX8XhV5STo6wPkBs/pub) for further information.
+
+
+----------
+
+
 작성자 : 송재호
 
-연락처 : thruthesky@gmail.com
+이메일 : thruthesky@gmail.com
 
-처음 개발 시작 날짜 : 2014년 1월 18일
-
-본 소프트웨어는 그누보드5 를 수정(또는 개조)하여 특정한 목적에 맞게 재 작성 한 것입니다.   
-
- 
-## 기능 ##
-
-### 멀티사이트 ###
-
-멀티사이트는 카페 기능의 일종으로서 회원이 사이트를 분양하여 자신만의 사이트를 운영 할 수 있도록 하는 기능입니다.
-
-서브 도메인을 선택하여 사이트를 오픈하며 로고, 메인 메뉴, 메인 페이지 레이아웃 등의 설정을 할 수 있습니다.
+사이트 : [http://gnuboardx.com](http://gnuboardx.com)
 
 
- 
-## 설치 ##
+본 소프트웨어는 그누보드5 를 수정(또는 개조)하여 특정한 목적에 맞게 재 작성 한 것입니다.
 
-1. x 폴더를 다운로드 하여 gnuboard5 설치 디렉토리에 복사합니다. 
-2. x/x.php 파일을 gnuboard5 설치 디렉토리의 extend 디렉토리 안에 집어 넣습니다.
-
-
-## 설정 ##
-
-### 멀티사이트 설정 ###
-
-메인 사이트와 서브사이트 간의 로그인 공유를 위해서 아래에 적당한 값을 기록합니다.
-
-> define('G5_COOKIE_DOMAIN',  '**.domain.com**');
-
-만약 여러분의 도메인이 abc.com 이라면 맨 앞에 점을 붙여서 **.abc.com** 과 같이 입력을 하시면 됩니다.
-
-
-
-## 폴더 구조 ##
-
-### class ###
-각종 클래스를 저장하는 장소입니다.
-
-### etc ###
-기타 스크립트를 저장하는 장소입니다.
-
-### html ###
-화면에 출력되는 HTML 파일(또는 HTML 부분)을 저장하는 장소입니다.
-
-### module ###
-모듈 스크립트를 저장하는 장소입니다.
-
-
-
-
-## Class ##
-### g ###
-g 클래스는 그누보드 관련 라이브러리를 묶어 놓은 것입니다.
-### x ###
-x 클래스는 gnuboard extended 관련 라이브러리를 묶어 놓은 것입니다.
-
+자세한 내용은 [GNUBoard5 Extended](https://docs.google.com/document/d/1hLnjVW9iXdVtZLZUm3RIWFUim9DFX8XhV5STo6wPkBs/pub) 매뉴얼을 참고하십시오.
