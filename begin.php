@@ -26,11 +26,4 @@ include 'etc/language/default.php';
 
 ob_start();
 
-
-
-
-
-
-
-
-debug::log("x begins\t------------------------------");
+dlog("x begins\t------------------------------");

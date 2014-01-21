@@ -31,10 +31,20 @@
 		
 	</li>
 	<?php } ?>
+	
+	
+	<li class="gnb_1dli">
+		<a href="<?=ms::url_create()?>" class="gnb_1da"><?=ln('Site List')?></a>
+	</li>
+	
+	
+	<? if ( login() ) { ?>
+	
 	<li class="gnb_1dli">
 		<a href="<?=ms::url_create()?>" class="gnb_1da"><?=ln('Create Site')?></a>
 	</li>
-	<? if ( login() ) { ?>
+	
+	
 	<li class="gnb_1dli">
 		<a href="#" class="gnb_1da"><?=ln('My Sites')?></a>
 		<ul class="gnb_2dul">
@@ -50,9 +60,12 @@
 	</li>
 	<? } ?>
 	
+	<? if ( admin() ) { ?>
 	<li class="gnb_1dli">
 		<a href="<?=x::url_admin()?>" class="gnb_1da"><?=ln('X-Admin')?></a>
 	</li>
+	<? } ?>
+	
 	
 </ul>
     

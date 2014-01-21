@@ -25,12 +25,13 @@ class debug {
  *  @param [in] $msg 파일에 저장 할 문자열
  *  @return NaN
  *  
- *  @details 소문자 D 와 소문자 L 이다. di() 는 웹으로 출력을 한다.
+ *  @details 소문자 D 와 소문자 log 이다. di() 는 웹으로 출력을 한다.
  */
-function dl( $msg )
+function dlog( $msg )
 {
 	debug::log($msg);
 }
+
 function di( $v )
 {
 	echo "<pre>";

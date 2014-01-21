@@ -7,10 +7,20 @@ $dir_root = '..';
 include "class/file.php";
 	message("jQuery");
 	result( patch_jQuery() );
-	message("Hooks");
-	result(0);
-	message("Language");
-	result(0);
+	
+	message("begin.php & end.php");
+	result( patch_begin_end() );
+	
+	
+	message("menu");
+	result( patch_menu() );
+	
+	
+	//message("Hooks");
+	//result(0);
+	
+	//message("Language");
+	//result(0);
 	
 	
 function message($msg)
@@ -60,8 +70,8 @@ function patch_jQuery()
 	<!--<![endif]-->
 EOP;
 
-	if ( ! patch_exist($data, $src) ) {
-		if ( patch_exist($data, $dst) ) {
+	if ( ! pattern_exist($data, $src) ) {
+		if ( pattern_exist($data, $dst) ) {
 			message('jQuery Already Patched');
 		}
 		else {
@@ -83,8 +93,8 @@ EOP;
 	if ( $data == file::FILE_NOT_FOUND ) return $data;
 	$src = '$("textarea#wr_content[maxlength]").live("keyup change", function() {';
 	$dst = '$( document ).on( "keyup change", "textarea#wr_content[maxlength]", function() {';
-	if ( ! patch_exist($data, $src) ) {
-		if ( patch_exist($data, $dst) ) {
+	if ( ! pattern_exist($data, $src) ) {
+		if ( pattern_exist($data, $dst) ) {
 			message('common.js already patched');
 		}
 		else {
@@ -101,10 +111,77 @@ EOP;
 	return 0;
 }
 
-function patch_exist( $data, $src )
+function pattern_exist( $data, $src )
 {
 	return strpos($data, $src);
 }
+
+
+
+function patch_begin_end()
+{
+	global $dir_root;
+	if ( copy('etc/x.php', "$dir_root/extend/x.php") ) {
+		message("x.php for begin.php OK");
+	}
+	else return -1;
+	
+	$path = $dir_root . '/tail.sub.php';
+	$data = file::read( $path );
+	
+	$src = "<?include G5_PATH . '/x/end.php'?>";
+	if ( pattern_exist($data, $src) ) {
+		message("end.php already patched");
+	}
+	else {
+		$data = "$data\n$src\n";
+		file::write( $path, $data );
+		message("end.php patched");
+	}
+	
+}
+
+
+
+
+/**
+ *  @brief patches jQuery for new version
+ *  
+ *  @return 0 if success
+ *  
+ *  @details carefully observe any error on console for the jQuery version change.
+ *    
+ */
+function patch_menu()
+{
+	global $dir_root;
+	
+	// patch jquery
+	$path = $dir_root . '/head.php';
+	$data = file::read($path);
+	if ( $data == file::FILE_NOT_FOUND ) return $data;
+	$dst = "<?include G5_PATH . '/x/html/patch.head-main-menu.php'?>";
+	
+	
+	if ( pattern_exist($data, $dst) ) {
+			message('menu already patched');
+			return 0;
+	}
+	else {
+		$src = '<nav id="gnb">';
+		if ( pattern_exist($data, $src) ) {
+			list ( $a, $b ) = explode( $src, $data );
+			list ( $c, $d ) = explode( "</nav>", $b );
+			$data = $a . $dst . $d;
+			file::write( $path,  $data );
+			message('menu patched');	
+		}
+		else return -1;
+		
+		
+	}
+}
+
 
 
 
