@@ -27,7 +27,7 @@ class multisite {
 		if ( self::exist($o['domain']) ) return MS_EXIST;
 		$time = time();
 		$q = "
-			INSERT INTO multisite_config ( domain, mb_id, stamp_create, title, extra )
+			INSERT INTO x_multisite_config ( domain, mb_id, stamp_create, title, extra )
 			VALUES ( '$o[domain]', '$member[mb_id]', $time, '$o[title]', '' )
 		";
 		db::query($q);
@@ -59,8 +59,23 @@ class multisite {
 	 */
 	static function get( $domain )
 	{
-		$sql = "SELECT * FROM multisite_config WHERE domain='$domain'";
+		$sql = "SELECT * FROM x_multisite_config WHERE domain='$domain'";
 		return db::row( $sql );
+	}
+	
+	
+	/**
+	 *  @brief gets configuration of all sites.
+	 *  
+	 *  @return array()
+	 *  
+	 *  @details use this function to get the information of all sites.
+	 *  The returned records are in sort of priority asc
+	 */
+	static function gets()
+	{
+		$sql = "SELECT * FROM x_multisite_config";
+		return db::rows( $sql );
 	}
 	
 	
@@ -102,7 +117,7 @@ class multisite {
 	static function my_site()
 	{
 		global $member;
-		return self::pre_site(db::rows("SELECT * FROM multisite_config WHERE mb_id='$member[mb_id]'"));
+		return self::pre_site(db::rows("SELECT * FROM x_multisite_config WHERE mb_id='$member[mb_id]'"));
 	}
 	
 	static function pre_site($sites)

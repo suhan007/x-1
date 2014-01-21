@@ -3,7 +3,30 @@
 
 
 class file {
+	const FILE_NOT_FOUND	= -403216;
 
+	/**
+	 *  @brief returns the content of the file.
+	 *  
+	 *  @param [in] $filename file path
+	 *  @return string file content
+	 *  FILE_NOT_FOUND if there is not file by $filename
+	 *  
+	 *  @details The code of this function is from PHP doc.
+	 *  
+	 *  @code
+	 *  	$data = file::read($dir_root . '/head.sub2.php');
+	 *  	if ( $data == file::FILE_NOT_FOUND ) return $data;
+	 *  @endcode
+	 */
+	static function read($filename)
+	{
+		@$handle = fopen($filename, "r");
+		if ( ! $handle ) return self::FILE_NOT_FOUND;
+		$contents = fread($handle, filesize($filename));
+		fclose($handle);
+		return $contents;
+	}
 	/**
 	 *  @brief append some content into file
 	 *  
@@ -32,4 +55,87 @@ class file {
 			fclose($handle);
 			return 0;
 	}
+	
+	/**
+	 *  @brief Overwrite to a file.
+	 *  
+	 *  @param [in] $filename file path
+	 *  @param [in] $somecontent file data to save
+	 *  @return 0 if success
+	 *  
+	 *  @details This code is coming from PHP Doc
+	 */
+	static function write($filename, $somecontent)
+	{
+		// Let's make sure the file exists and is writable first.
+		if (is_writable($filename)) {
+			if (!$handle = fopen($filename, 'w')) {
+				return -1;
+			}
+			// Write $somecontent to our opened file.
+			if (fwrite($handle, $somecontent) === FALSE) {
+				return -2;
+			}
+			fclose($handle);
+			return 0;
+		}
+		else {
+			return -3;
+		}
+	}
+	
+	
+	/** @short returns file list in an array.
+	 *
+	 * @param [in] $recursive if set true, then it searches recursively.
+	 * @param [in] $dir directory path
+	 @code
+	 
+		di( getFiles($dir, false) );
+
+	@endcode
+
+		@code how to use pattern
+			$files = file::getFiles(DIR_MODULE, true, "/.php/");
+		@endcode
+		
+		@code
+			$files = file::getFiles(DIR_MODULE, true, "/admin\.menu\.php/");
+		@endcode
+		
+
+	 */
+ 
+	static function getFiles($dir, $re=true, $pattern=null)
+	{
+		
+		$tmp = array();
+		if ($handle = opendir($dir)) {
+			while (false !== ($file = readdir($handle))) {
+				if ($file != "." && $file != "..") {
+					$file_path = $dir . DIRECTORY_SEPARATOR . $file;
+					if ( is_dir($file_path) ) {
+						if ( $re ) {
+							$tmp2 = self::getFiles($file_path, $re, $pattern);
+							if ( $tmp2 ) $tmp = array_merge($tmp, $tmp2);
+						}
+					}
+					else {
+						if ( $pattern ) {
+							if ( preg_match($pattern, $file) ) {
+							}
+							else continue;
+						}
+						array_push($tmp, $dir . DIRECTORY_SEPARATOR . $file);
+					}
+				}
+			}
+			closedir($handle);
+			return $tmp;
+		}
+	}
+
+	
+	
+	
 }

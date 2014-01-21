@@ -1,4 +1,5 @@
 <?php
+define('X_DIR_ETC', x::dir(). '/etc');
 /**
  *  @file class/x.php
  *  
@@ -32,5 +33,23 @@ class x {
 	{
 		global $x_url;
 		return $x_url;
+	}
+	
+	/**
+	 *  @brief return the url of admin page
+	 *  
+	 *  @return string url
+	 *  
+	 *  @details Use this function to get the address of admin page.
+	 */
+	static function url_admin()
+	{
+		global $x_url;
+		return "$x_url/?module=admin&action=index";
+	}
+	
+	static function admin_menu()
+	{
+		return X_DIR_ETC . './admin_menu.php';
 	}
 }

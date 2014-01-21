@@ -49,6 +49,11 @@
 		</ul>
 	</li>
 	<? } ?>
+	
+	<li class="gnb_1dli">
+		<a href="<?=x::url_admin()?>" class="gnb_1da"><?=ln('X-Admin')?></a>
+	</li>
+	
 </ul>
     
     </nav>

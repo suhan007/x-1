@@ -1,6 +1,9 @@
 
-본 페이지는 로그인을 하셔야 이용 할 수 있습니다.<br>
-로그인을 먼저 하십시오.<br>
+<div>
+<?=ln('login first')?>
+</div>
+
+
 
 
 <a href='<?=G5_BBS_URL?>/login.php'>로그인 페이지로 이동하기</a><br>

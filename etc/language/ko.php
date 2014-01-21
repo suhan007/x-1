@@ -18,4 +18,7 @@ $language['create site'] = '카페 생성';
 $language['my sites'] = '나의 카페';
 
 
+$language['login first'] = "본 페이지를 이용하기 위해서는 먼저 로그인을 해 주셔야 합니다.";
+
+
 

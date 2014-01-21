@@ -1,5 +1,5 @@
 
-<h1>카페 만들기</h1>
+<h1>Create Your Site</h1>
 <?
 	if ( ! login() ) return include login_first();
 ?>
@@ -11,12 +11,12 @@
 <input type='hidden' name='action' value='create_submit'>
 
 
-	도메인 : http://<input type='text' name='sub_domain'>.<?=etc::base_domain()?><br>
-	홈페이지 제목 : <input type='text' name='title'><br>
+	Domain : http://<input type='text' name='sub_domain'>.<?=etc::base_domain()?><br>
+	Site Title : <input type='text' name='title'><br>
 
 
 <br>
 
-<input type='submit' value='카페 만들기'>
+<input type='submit' value='Create Site'>
 </form>
 
