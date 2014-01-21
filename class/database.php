@@ -41,8 +41,12 @@ class database {
 	static function result( $q )
 	{
 		$result = self::row( $q );
-		list ( $k, $v ) = each ( $result );
-		return $v;
+		if ( empty($result) ) return null;
+		else {
+			foreach ( $result as $k => $v ) {
+				return $v;
+			}
+		}
 	}
 	
 	/**
@@ -61,4 +65,93 @@ class database {
 		}
 		return $rows;
 	}
+	
+	
+	
+	
+	
+	/* @short Inserts a record into a table.
+	 * 
+	 * @note
+			Do not use 'REPLACE INTO'
+			
+	 *
+	 * @param string $table_name
+			table name
+	 * @param associative-array $values
+			fields and its values.
+	 * @return
+			true on success,
+			false on fail.
+			
+			This is the same as PDO_STATEMENT::execute
+		@code
+			$db->insert('config', array('code'=>'insert_test', 'data'=>'abc def', 'stamp'=>time()));
+		@endcode
+		
+		
+	 *
+	 */
+	static function insert($table_name, $kvs) {
+		foreach($kvs as $key => $val) {
+			$key_list[] = $key;
+			$val_list[] = self::addquotes($val);
+		}
+		$keys = "`".implode("`,`",$key_list)."`";
+		$vals = "'".implode("','",$val_list)."'";
+		$q = "INSERT INTO `{$table_name}` ({$keys}) VALUES ({$vals})";
+		return self::query( $q );
+	}
+	
+	
+
+	
+	/**
+	 *  @brief updates
+	 *  
+	 *  @param [in] $table the name of the table to be updated.
+	 *  @param [in] $kvs the array of field & value
+	 *  @param [in] $conds array of condition for WHERE statement.
+	 *  @return result set
+	 *  
+	 *  @details Details
+	 *  @code
+	 *  db::update('test', array('id'=>'id1-updated', 'name'=>'name2'), array('id'=>'id1'));
+	 *  @endcode
+	 */
+	static function update($table, $kvs, $conds)
+	{
+		foreach($kvs as $k => $v) {
+			$v = self::addquotes($v);
+			$sets[] = "`$k`='$v'";
+		}
+		$set = implode(", ", $sets);
+		foreach($conds as $k => $v )
+		{
+			$arc[] = "`$k`='$v'";
+		}
+		$cond = implode(" AND ", $arc);
+		$q = "UPDATE $table SET $set WHERE $cond";
+		debug::log( $q );
+		return self::query($q);
+	}
+	
+	static function insert_id()
+	{
+		return mysql_insert_id();
+	}
+	
+	/**
+	 *  @brief adds quotes into the SQL statement.
+	 *  
+	 *  @param [in] $data data
+	 *  @return string
+	 *  
+	 *  @details adds quotes into the SQL statement.
+	 */
+	static function addquotes($data) {
+		return addslashes($data);
+	}
+	
+	
 }

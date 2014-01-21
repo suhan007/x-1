@@ -137,5 +137,48 @@ class file {
 
 	
 	
+
+/** return directories of in a directory.
+ * @param $directory is a directory to search inside of it.
+ *
+	
+ *
+ */
+/**
+ *  @brief returns directories (of a directory)
+ *  
+ *  @param [in] $directory is a path(folder) to get directory list inside of it.
+ *  @return Return_Description
+ *  
+ *  @details returns directoris.
+ *  @code
+ *  	$dirs = file::getDirs(DIR_THEME);
+ *  @endcode
+ */
+static function getDirs($directory) {
+
+	// Create an array for all files found
+	$tmp = Array();
+
+	// Try to open the directory
+	if($dir = opendir($directory)) {
+		
+		// read the files
+		while($file = readdir($dir)) {
+			// Make sure the file exists
+			if($file != "." && $file != ".." && $file[0] != '.') {
+				// If it's a directiry, 
+				if(is_dir($directory . "/" . $file))
+				{
+					$tmp[] = $file;
+				}
+			}
+		}
+		
+		// Finish off the function
+		closedir($dir);
+		return $tmp;
+	}
+}
 	
 }

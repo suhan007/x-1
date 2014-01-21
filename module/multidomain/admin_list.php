@@ -1,5 +1,6 @@
 <?php
 	$domains = md::config();
+	
 ?>
 
 <h1>Multi Domain Setting</h1>

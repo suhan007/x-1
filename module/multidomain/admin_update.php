@@ -12,147 +12,69 @@
 	@section ms_priority 도메인 비교 순서
 	@note priority 는 HTTP 입력에 지정된 도메인을 비교 할 때 우선 순위를 결정하는 값이다.
 		<ul>
-			<li>기본적으로 우선순위 값은 10 이다.
+			<li>기본적으로 우선순위 값은 9 이다.
 		</ul>
 		
 		@ref ms_domain "도메인 지정 방법"
 */
-module_css();
-if ( empty($in['idx']) ) {
+
+if ( empty($idx) ) {
 }
 else {
-	$cfg = multisite_config($in['idx']);
+	$cfg = md::config($idx);
 }
-if ( empty($cfg['priority']) ) $cfg['priority'] = 10;
-module_css();
+if ( empty($cfg['priority']) ) $cfg['priority'] = 9;
+
 ?>
-<?=form::begin( array('name'=>'config') )?>
+<form action='?'>
+<input type='hidden' name='module' value="<?=$module?>">
+<input type='hidden' name='action' value="<?=$action?>_submit">
 <input type='hidden' name='idx' value="<?=$cfg['idx']?>">
 <table>
 	<tr>
 		<td>Domain</td>
 		<td>
-			<?=form::text('domain', $cfg['domain'])?>
-			<?
-				echo form::select_number( array(
-							'name' => 'priority',
-							'title' => 'Matching Priority',
-							'select' => $cfg['priority'],
-							'from' => 0,
-							'to' => 10,
-							'order'=>'desc'
-							)
-						);
-			?>
+			<input type='text' name='domain' value="<?=$cfg['domain']?>">
+			<input type='text' name='priority' value="<?=$cfg['priority']?>">
+			
 		</td>
 	</tr>
 	<tr>
 		<td>Theme</td>
 		<td>
-			<?
-				$dirs = file::getDirs(DIR_THEME);
+			<?php
+				$dirs = file::getDirs(X_DIR_THEME);
+			?>
+			<select name='theme'>
+			<?php
+				
 				$option = array();
 				foreach ( $dirs as $dir ) {
-					if ( $dir == 'CVS' ) continue;
-					$path = DIR_THEME . "/$dir/config.php";
+					$path = X_DIR_THEME . "/$dir/config.php";
 					if ( file_exists($path) ) {
 						$theme_config = array();
 						include $path;
-						$option[$dir] = "$theme_config[name] ($dir) $theme_config[desc]";
+						
+						echo "<option value='$dir'";
+						if ( $cfg['theme'] == $dir ) echo " selected='1'";
+						echo ">$theme_config[name]</value>";
 					}
 					else {
-						echo "<div class='error'>ERROR: $dir has no theme configuration file(config.php)</div>";
+						// echo "<div class='error'>ERROR: $dir has no theme configuration file(config.php)</div>";
 					}
-					 
 				}
-				echo form::select(
-					array(
-						'name'=>'domain_theme',
-						'title'=>'Select Theme ...',
-						'select'=>$cfg['theme'],
-						'option'=>$option
-					)
-				);
 			?>
+			</select>
 		</td>
 	</tr>
-	<tr>
-		<td></td>
-		<td><input type='submit' value='UPDATE'><a href="<?=url_module('', 'admin_multisite')?>">LIST</a></td>
-	</tr>
-	
-	<tr>
-		<td>Site Title</td>
-		<td>
-			<input type='text' name="site_title" value="<?=$cfg['site_title']?>">
-		</td>
-	</tr>
-	
-	<tr>
-		<td>Site Description</td>
-		<td>
-			<textarea name="site_description"><?=$cfg['site_description']?></textarea>
-		</td>
-	</tr>
-	
-	
-	<tr>
-		<td>Test Value</td>
-		<td>
-			<input type='text' name="test_value" value="<?=$cfg['test_value']?>">
-		</td>
-	</tr>
-	
-	
-	
-	<tr>
-		<td>Register Widget</td>
-		<td><?=widget_select(array(
-											'type'=>'member_register',
-											'name'=>'widget_member_register',
-											'select'=>$cfg['widget_member_register'],
-						)					
-					)
-				?>
-		</td>
-	</tr>
-	
-	<tr>
-		<td>Resign Widget</td>
-		<td>
-				<?=widget_select(array(
-											'type'=>'member_resign',
-											'name'=>'widget_member_resign',
-											'select'=>$cfg['widget_member_resign'],
-						)					
-					)
-				?>
-		</td>
-	</tr>
-	
-
-	<tr>
-		<td>ID and Password Find Widget</td>
-		<td>
-				<?=widget_select(array(
-											'type'=>'member_find_id_password',
-											'name'=>'member_find_id_password',
-											'select'=>$cfg['member_find_id_password'],
-						)					
-					)
-				?>
-		</td>
-	</tr>
-
-	
 	<tr>
 		<td></td>
 		<td>
 			<input type='submit' value='UPDATE'>
-			<a href="<?=url_module('', 'admin_multisite')?>">LIST</a>
+			<a href="<?=md::url_list()?>">LIST</a>
 		</td>
 	</tr>
 		
 		
 </table>
-<?=form::end()?>
+</form>

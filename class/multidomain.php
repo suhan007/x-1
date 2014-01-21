@@ -21,28 +21,16 @@ class multidomain {
 	 */
 	function config($idx=null)
 	{
-		global $sys, $in;
 		if ( empty($idx) ) {
-			$rows = db::rows("SELECT * FROM ".MD_CONFIG." ORDER BY priority DESC");
-			$ret = array();
-			foreach ( $rows as $row ) {
-				$arr = string::unscalar($row['value']);
-				if ( $arr ) {
-					$ret[] = array('idx'=>$row['idx']) + $arr;
-				}
-				else {
-					$ret[] = array('idx'=>$row['idx']);
-				}
-			}
-			return $ret;
+			$row = db::rows("SELECT * FROM ".MD_CONFIG." ORDER BY priority DESC");
 		}
 		else {
 			if ( is_numeric($idx) ) {
-				$row = $sys->db->row("SELECT * FROM ".MD_CONFIG." WHERE idx=$idx");
+				$row = db::row("SELECT * FROM ".MD_CONFIG." WHERE idx=$idx");
 			}
 			else {
 				/** @short 현재 도메인의 설정을 찾는다. */
-				$rows = $sys->db->rows("SELECT * FROM ".MD_CONFIG." ORDER BY priority DESC");
+				$rows = db::rows("SELECT * FROM ".MD_CONFIG." ORDER BY priority DESC");
 				
 				/** @note theme 을 찾아서 $theme 에 저장한다. */
 				$theme = null;
@@ -56,18 +44,48 @@ class multidomain {
 			}
 		}
 		if ( empty($row) ) return array('theme'=>'default');
-		return array('idx'=>$row['idx']) + string::unscalar($row['value']);
+		return $row;
 	}
 	
-	
-	static function url_config()
+	/**
+	 *  @brief updates domain configuration
+	 *  
+	 *  @return empty
+	 *  
+	 *  @details use this function when super user updates the domain setting
+	 */
+	function config_update()
 	{
+		global $idx, $domain, $priority, $theme;
+		
+		$up = array();
+		$up['domain'] = $domain;
+		$up['theme'] = $theme;
+		$up['priority'] = $priority;
+		if ( empty($idx) ) {
+			db::insert(MD_CONFIG, $up);
+			return db::insert_id();
+		}
+		else {
+			db::update(MD_CONFIG, $up, array('idx'=>$idx));
+			return $idx;
+		}
+	}
+	
+	static function url_list()
+	{
+		return "?module=multidomain&action=admin_list";
+	}
+	static function url_config($idx)
+	{
+		return "?module=multidomain&action=admin_update&idx=$idx";
 	}
 	static function url_delete()
 	{
 	}
 	static function url_add()
 	{
+		return "?module=multidomain&action=admin_update";
 	}
 	
 	

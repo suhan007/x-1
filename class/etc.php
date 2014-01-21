@@ -210,6 +210,70 @@ class etc {
 		}
 		return $html;
 	}
+	
+	
+	
+// 자바 스크립트의 alert 에서 출력이 가능한 메세지를 만든다.
+// 라인피드, 쌍따옴표 등을 ESCAPE 한다.
+	static function jsmessage($msg)
+	{
+
+  /*
+  $msg_en = "PhilGO.COM";
+  $msg_ko = "필고";
+  
+  $h = ln($msg_ko, $msg_en);
+  
+  $msg = "$h\r\n\r\n$msg";
+  */
+  
+
+	$msg = str_replace("\\", "\\\\", $msg);
+	$msg = str_replace("\n", "\\n", $msg);
+	$msg = str_replace("\r", "\\r", $msg);
+	$msg = str_replace("\"", "'", $msg);
+
+
+	return $msg;
+}
+
+	static function jsGo($url, $message=NULL, $target=NULL) {
+		if ( $message ) $message = self::jsmessage($message);
+		$out = "<script>";
+		if ( $message ) $out.= "alert(\"$message\");";
+		if ( $target ) $target = "$target.";
+		$out.= "
+			{$target}location.href='$url';
+			</script>
+		";
+		//debug_log($out);
+		echo $out;
+	}
+	
+	
+	
+	static function jsAlert($message)
+	{
+		if ( $message ) $message = self::jsmessage($message);
+		if ( $message ) {
+			echo "<script>";
+			echo "alert(\"$message\");";
+			echo "</script>";
+		}
+		
+	}
+	
+	static function jsBack($message)
+	{
+		if ( $message ) $message = self::jsmessage($message);
+		echo "<script>";
+		if ( $message ) echo "alert(\"$message\");";
+		echo "
+			history.go(-1);
+			</script>
+		";
+	}
+	
 } // eo etc class
 
 
@@ -285,5 +349,27 @@ function patch( $file )
 function ln($code)
 {
 	return etc::lang($code);
+}
+
+
+
+
+
+/** 
+ */
+function jsGo($url, $message=null, $target=null)
+{
+	return etc::jsGo($url, $message, $target);
+}
+
+/** 
+ */
+function jsBack($message=null)
+{	return etc::jsBack($message);
+}
+
+function jsAlert($message=null)
+{
+	return etc::jsAlert($message);
 }
 

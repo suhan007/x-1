@@ -1,5 +1,6 @@
 <?php
-define('X_DIR_ETC', x::dir(). '/etc');
+define('X_DIR_ETC', x::dir() . '/etc');
+define('X_DIR_THEME', x::dir() . '/theme');
 /**
  *  @file class/x.php
  *  
