@@ -11,6 +11,12 @@ $html = ob_get_clean();
 $html = etc::patch_language(
 	$html,
 	array(
+		'게시판관리<'		=> ln('Forum<'),
+		'게시판그룹관리<'		=> ln('Forum Group<'),
+		'게시판그룹 추가<'		=> ln('Add Forum Group<'),
+		'게시판 추가<'		=> ln('Add Forum<'),
+		'메뉴<br>보임'		=> ln('Show<br>Menu'),
+		//'선택수정'		=> ln('Update Selected'),
 		'회원가입<'		=> ln('Register<'),
 		'자동로그인<'		=> ln('Remember<'),
 		'로그인<'		=> ln('Sign-in<'),
