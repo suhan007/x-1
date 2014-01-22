@@ -1,10 +1,16 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
-$dir_root = '..';
-/**
- *  @refer 
- */
-include "class/file.php";
+define('_INDEX_', true);
+include_once('../common.php');
+
+$dir_root = G5_PATH;
+
+
+
+
+	message("Database");
+	result( patch_database() );
+	
 	message("jQuery");
 	result( patch_jQuery() );
 	
@@ -181,6 +187,24 @@ function patch_menu()
 		
 	}
 }
+
+
+function patch_database()
+{
+	global $dir_root;
+	$path = $dir_root . '/x/etc/database/schema.sql';
+	$all_lines = file($path, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
+	foreach ($all_lines as $line) {
+		if (substr($line, 0, 2) == '--' || $line == '') continue;
+		$templine .= $line;
+		if (substr(trim($line), -1, 1) == ';') {
+		db::query($templine);
+		$templine = '';
+		}
+	}
+	message('db patched');
+}
+
 
 
 
