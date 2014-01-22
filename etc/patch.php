@@ -11,7 +11,9 @@ $dir_root = G5_PATH;
 
 include_once ($dir_root.'/x/begin.php');
 
-
+/**
+ *  @todo patch base on version
+ */
 
 
 	include x::dir() . "/etc/patch/database.php";
