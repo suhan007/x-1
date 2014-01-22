@@ -5,6 +5,7 @@ if ( ! admin() ) {
 }
 ?>
 <link rel="stylesheet" href="module/admin/menu.css">
+<script type='text/javascript' src="module/admin/admin_menu.js"></script>
 <div class='admin-menu'>
 <?
 $files = file::getFiles( x::dir() . '/module', true, "/admin_menu\.php/");

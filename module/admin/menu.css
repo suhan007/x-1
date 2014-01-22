@@ -1,13 +1,13 @@
 .admin-menu {
 	padding: 0.5em;
 	background-color: #f0f0f0;
+	min-height: 500px;
 }
 .admin-menu a {
 	padding: 0.6em;
 }
 .admin-menu a:hover {
-	background-color: black;
-	color:white;
+
 }
 
 .admin-menu ul {
@@ -17,7 +17,15 @@
 }
 .admin-menu > ul > li {
 	float: left;
-	border: 1px solid blue;
+	margin: 0.5em;
+	font-size: 12pt;
+}
+
+.admin-menu > ul > li > ul {
+	font-size: 10pt;
+	display: none;
+	position: absolute;
+	
 }
 
 
