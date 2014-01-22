@@ -19,6 +19,10 @@ $language['my sites'] = '나의 카페';
 
 
 $language['login first'] = "본 페이지를 이용하기 위해서는 먼저 로그인을 해 주셔야 합니다.";
+$language['user login information'] = "회원 로그인 안내";
+$language['use password lost menu if you lost id or password'] = "회원아이디 및 비밀번호가 기억 안나실 때는 아이디/비밀번호 찾기를 이용하십시오.";
+$language['register first to use this page'] = "아직 회원이 아니시라면 회원으로 가입 후 이용해 주십시오.";
+
 
 
 

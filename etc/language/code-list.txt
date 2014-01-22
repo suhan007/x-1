@@ -5,3 +5,8 @@ password confirm input password again for leave
 user id
 go back to first page
 submit
+user login information
+use password lost menu if you lost id or password
+register first to use this page
+go back to first page
+connected user

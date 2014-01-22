@@ -1,4 +1,14 @@
 <?php
+/**
+ *  @note
+ *  <ol>
+ *  	<li> Search string to patch.</li>
+ *  	<li> Write patch code in this script.</li>
+ *  	<li> Patch language</li>
+ *  	<li> Edit language-pack file</li>
+ *  	<li> Check in web browser</li>
+ *  </ol>
+ */
 	$language_code = null;
 
 	patch_language( g::dir() . '/bbs/member_confirm.php',
@@ -18,6 +28,30 @@
 			"확인"	=> "<?php echo _L('SUBMIT');?>",
 		)
 	);
+	
+	patch_language( g::dir() . '/skin/member/basic/login.skin.php',
+		array(
+			"회원로그인 안내"		=> "<?php echo _L('User Login Information');?>",
+			"회원아이디 및 비밀번호가 기억 안나실 때는 아이디/비밀번호 찾기를 이용하십시오." => "<?php echo _L('Use Password Lost Menu If You Lost ID Or Password');?>",
+			"아직 회원이 아니시라면 회원으로 가입 후 이용해 주십시오." => "<?php echo _L('Register First To Use This Page');?>",
+			"메인으로 돌아가기"	=> "<?php echo _L('GO BACK TO FIRST PAGE');?>",
+		)
+	);
+	
+	
+	patch_language( g::dir() . '/bbs/current_connect.php',
+		array(
+			"'현재접속자'"		=> "_L('Connected User')",
+		)
+	);
+	
+	
+	
+	
+	
+	
+	
+	
 
 	$path = x::dir() . '/etc/language/code-list.txt';
 	$re = file::write( $path, $language_code );
@@ -25,6 +59,7 @@
 function patch_language( $file, $kvs )
 {
 	global $language_code;
+	
 	$data = file::read($file);
 	foreach ( $kvs as $p => $r ) {
 		
