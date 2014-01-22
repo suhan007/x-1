@@ -13,6 +13,7 @@
 			"비밀번호를 한번 더 입력해주세요."		=> "<?php echo _L('Password Confirm Input Password Again');?>",
 			"회원님의 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인합니다."		=> "<?php echo _L('Password Confirm Input Password Again Desc');?>",
 			"비밀번호를 입력하시면 회원탈퇴가 완료됩니다."	=> "<?php echo _L('Password Confirm Input Password Again For Leave');?>",
+			"회원아이디"	=> "<?php echo _L('User ID');?>",
 		)
 	);
 	
