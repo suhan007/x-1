@@ -41,7 +41,6 @@
 		message("patched");
 	}
 	
-	/*
 	
 	message("install.inc.php");
 	$path = '../install/install.inc.php';
@@ -55,8 +54,6 @@
 		file::write( $path, $data );
 		message("patched");
 	}
-	*/
-	
 	
 	
 	/**
@@ -93,10 +90,19 @@
 	$data = patch_data( $data, $patch, $replace );
 	
 	
+	
+	$patch = "DB설정 완료";
+	$replace = "Database configuration is OK";
+	$data = patch_data( $data, $patch, $replace );
+	
+	
 	//
 	$patch = "데이터 디렉토리 생성 완료";
 	$replace = "Data repository creation finished";
 	$data = patch_data( $data, $patch, $replace );
+	
+	
+	
 	
 	//
 	$patch = "DB설정 파일 생성 완료";
@@ -151,6 +157,8 @@
 		file::write( $path, $data );
 		message("patched");
 	}
+	
+	message("OK");
 	
 	
 	
