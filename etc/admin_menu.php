@@ -3,7 +3,10 @@ if ( ! admin() ) {
 	echo "You are not admin";
 	return;
 }
-
+?>
+<link rel="stylesheet" href="module/admin/menu.css">
+<div class='admin-menu'>
+<?
 $files = file::getFiles( x::dir() . '/module', true, "/admin_menu\.php/");
 foreach ( $files as $file ) {
 	$menu = array();
@@ -15,7 +18,7 @@ admin_menu_display();
 function admin_menu_display()
 {
 	global $admin_menu, $in;
-	echo "<ul class='admin_menu'>";
+	echo "<ul class='admin-menu'>";
 	foreach( $admin_menu as $menu ) {
 		$name = $menu['name'];
 		$name = preg_replace("/^[0-9] /", '', $name);
@@ -33,7 +36,8 @@ function admin_menu_display()
 	}
 	echo "</ul>";
 }
-	
-	
-	
+?>
+<div style='clear:left;'></div>
+</div>
+
 	
