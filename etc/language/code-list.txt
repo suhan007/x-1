@@ -1,2 +1,7 @@
 password confirm
-password confirm desc1
+password confirm input password again
+password confirm input password again desc
+password confirm input password again for leave
+user id
+go back to first page
+submit

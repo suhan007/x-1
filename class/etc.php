@@ -152,9 +152,20 @@ class etc {
 	}
 
 	
+	
+	/**
+	 *  @brief returns language string based on the language code
+	 *  
+	 *  @param [in] $code language code
+	 *  @return string
+	 *  
+	 *  @details language code can be case sensitive and case insensitive.
+	 */
 	static function lang( $code )
 	{
 		global $language;
+		if ( isset($language[$code]) ) return $language[$code];
+		
 		$code_back = $code;
 		$code = strtolower($code);
 		if ( isset($language[$code]) ) return $language[$code];
