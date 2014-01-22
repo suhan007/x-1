@@ -14,6 +14,19 @@ class x {
 	
 
 	
+	
+	/**
+	 *  @brief return true if 'x' is already installed.
+	 *  
+	 *  @return boolean
+	 *  
+	 *  @details use this function to see if 'x' is already installed.
+	 */
+	static function installed()
+	{
+		return file_exists( g::dir() . '/extend/x.php' );
+	}
+	
 	/**
 	 *  @brief 그누보드 확장 팩 설치 경로. 파일을 액세스 할 수 있는 HDD 경로.
 	 *  

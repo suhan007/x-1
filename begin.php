@@ -18,24 +18,11 @@ include_once 'class/x.php';
 include_once 'etc/language/default.php';
 /* eo */
 
-$x_ready = 1;
 
-
-x::$config['site'] = md::config( etc::domain_name() );
-
-include_once x::theme('init');
-
-
-
-
-
-
-
-
-
-
-
-
-ob_start();
+if ( x::installed() ) {
+	x::$config['site'] = md::config( etc::domain_name() );
+	include_once x::theme('init');
+	ob_start();
+}
 
 dlog("x begins\t------------------------------");

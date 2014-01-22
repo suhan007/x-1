@@ -11,6 +11,15 @@ $html = ob_get_clean();
 $html = etc::patch_language(
 	$html,
 	array(
+		'회원가입<'		=> ln('Register<'),
+		'자동로그인<'		=> ln('Remember<'),
+		'로그인<'		=> ln('Sign-in<'),
+		'"로그인"'		=> ln('"Sign-in"'),
+		
+		'>회원아이디<'	=> ln('>User ID<'),
+		'>비밀번호<'	=> ln('>Password<'),
+		'>정보찾기<'	=> ln('>lost password<'),
+		
 		'관리자'		=> ln('ADMIN'),
 		'관리자 모드'	=> ln('ADMIN PAGE'),
 		'최고관리자님'	=> ln('Super User'),
@@ -77,6 +86,7 @@ $html = etc::patch_language(
 
 
 echo $html;
+
 
 
 
