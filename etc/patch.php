@@ -11,6 +11,7 @@ if ( $argv[1] == 'install' ) {
 }
 
 
+
 define('_INDEX_', true);
 include_once('../common.php');
 
@@ -18,6 +19,11 @@ $dir_root = G5_PATH;
 
 
 include_once ($dir_root.'/x/begin.php');
+
+if ( $argv[1] == 'language' ) {
+	include "etc/patch/language.php";
+	exit;
+}
 
 
 /**

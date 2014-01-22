@@ -1,16 +1,19 @@
 <?php
-$language['admin'] = 'ADMIN';
-$language['no subject'] = "no subject";
 
-
-$language['login first'] = "Please login first to access this page.";
-
-
-
-
-
+/**
+ *  @brief load default language pack.
+ *  
+ *  @return empty
+ *  
+ *  @details if user language is not en, then load user language pack.
+ */
+include x::dir() . '/etc/language/en.php';
 $ln = etc::browser_language();
-$path = x::dir() . "/etc/language/$ln.php";
-if ( file_exists( $path ) ) include $path;
+if ( $ln != 'en' ) {
+	$path = x::dir() . "/etc/language/$ln.php";
+	if ( file_exists( $path ) ) include $path;
+}
+
+
 
 

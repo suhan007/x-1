@@ -68,7 +68,7 @@ class file {
 	static function write($filename, $somecontent)
 	{
 		// Let's make sure the file exists and is writable first.
-		if (is_writable($filename)) {
+		
 			if (!$handle = fopen($filename, 'w')) {
 				return -1;
 			}
@@ -78,10 +78,7 @@ class file {
 			}
 			fclose($handle);
 			return 0;
-		}
-		else {
-			return -3;
-		}
+			
 	}
 	
 	

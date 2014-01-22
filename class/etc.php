@@ -373,6 +373,10 @@ function ln($code)
 {
 	return etc::lang($code);
 }
+function _L($code)
+{
+	return etc::lang($code);
+}
 
 
 
@@ -395,4 +399,5 @@ function jsAlert($message=null)
 {
 	return etc::jsAlert($message);
 }
+
 
