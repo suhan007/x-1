@@ -24,8 +24,11 @@
 .admin-menu > ul > li > ul {
 	font-size: 10pt;
 	display: none;
-	position: absolute;
-	
+	position: absolute;	
+}
+
+.admin-menu > ul > li > ul > li {
+	margin-top: 0.5em;
 }
 
 
