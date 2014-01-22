@@ -53,8 +53,30 @@ class multidomain {
 	 *  @return empty
 	 *  
 	 *  @details use this function when super user updates the domain setting
+	 *  It can be used to add a domain programtically.
+	 *  @code
+	 *  	global $idx, $domain, $priority, $theme;
+	
+			$domain		= '.com';
+			$priority	= 0;
+			$theme		= 'default';
+			$idx		= 0;
+			md::config_update();
+			
+			$domain		= '.net';
+			$idx		= 0;
+			md::config_update();
+			
+			$domain		= '.org';
+			$idx		= 0;
+			md::config_update();
+			
+			$domain		= '.kr';
+			$idx		= 0;
+			md::config_update();
+	 *  @endcode
 	 */
-	function config_update()
+	function config_update( )
 	{
 		global $idx, $domain, $priority, $theme;
 		
@@ -62,16 +84,49 @@ class multidomain {
 		$up['domain'] = $domain;
 		$up['theme'] = $theme;
 		$up['priority'] = $priority;
+		
+		
+		/** if $idx is not set, it checks if the domain exists.
+			 *  if exists, then it updates based on domain.
+			 *  or insert.
+			 */
 		if ( empty($idx) ) {
-			db::insert(MD_CONFIG, $up);
-			return db::insert_id();
+			$idx = db::result("SELECT idx FROM ".MD_CONFIG." WHERE domain='$domain'");
+			if ( $idx ) {
+				dlog( $idx );
+				db::update(MD_CONFIG, $up, array('idx'=>$idx));
+				return $idx;
+			}
+			else {
+				db::insert(MD_CONFIG, $up);
+				return db::insert_id();
+			}
 		}
+		/** If $idx is set, then it can update domain itself */
 		else {
 			db::update(MD_CONFIG, $up, array('idx'=>$idx));
 			return $idx;
 		}
 	}
 	
+	/**
+	 *  @brief returns a record of a domain
+	 *  
+	 *  @param [in] $domain domain
+	 *  @return array a record.
+	 *  
+	 *  @details use this function to check if a domain configuraiton is already exist or not.
+	 */
+	static function get( $domain )
+	{
+		return db::row( 'SELECT * FROM ' . MD_CONFIG . " WHERE domain='$domain'" );
+	}
+	
+	
+	static function config_delete( $idx )
+	{
+		db::query("DELETE FROM ".MD_CONFIG." WHERE idx=$idx");
+	}
 	static function url_list()
 	{
 		return "?module=multidomain&action=admin_list";
@@ -80,8 +135,9 @@ class multidomain {
 	{
 		return "?module=multidomain&action=admin_update&idx=$idx";
 	}
-	static function url_delete()
+	static function url_delete($idx)
 	{
+		return "?module=multidomain&action=admin_delete_submit&idx=$idx";
 	}
 	static function url_add()
 	{

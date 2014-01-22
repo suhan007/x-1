@@ -9,12 +9,14 @@
 
 <table>
 	<tr>
+		<td>No.</td>
 		<td>DOMAIN</td>
 		<td>Priority</td>
 		<td>THEME</td>
 	</tr>
 	<? foreach ( $domains as $domain ) { ?>
 	<tr>
+		<td><b><?=$domain['idx']?></b></td>
 		<td><b><?=$domain['domain']?></b></td>
 		<td><?=$domain['priority']?></td>
 		<td><?=$domain['theme']?></td>

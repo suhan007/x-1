@@ -5,6 +5,8 @@ include_once('../common.php');
 
 $dir_root = G5_PATH;
 
+include_once ($dir_root.'/x/begin.php');
+
 
 
 
@@ -78,17 +80,16 @@ EOP;
 
 	if ( ! pattern_exist($data, $src) ) {
 		if ( pattern_exist($data, $dst) ) {
-			message('jQuery Already Patched');
+			message('already patched');
 		}
 		else {
-			message('jQuery did not patched');
 			return -1;
 		}
 	}
 	else {
 		$data = str_replace( $src, $dst, $data );
 		file::write( $path,  $data );
-		message('jQuery patched');
+		message(' patched');
 	}
 	
 	// patch common.js
@@ -132,17 +133,66 @@ function patch_begin_end()
 	}
 	else return -1;
 	
+	
+	
+	message("begin.php for hook");
+	$path = $dir_root . '/head.php';
+	$data = file::read($path);
+	$find = "<!-- 상단 시작 { -->";
+	$patch = "<? x::hook( 'head_begin' ); if ( file_exists( x::hook(__FILE__) ) ) { include x::hook(__FILE__); return; } ?>";
+	
+	if ( pattern_exist( $data, $patch ) ) {
+		message(" already patched");
+	}
+	else {
+		if ( pattern_exist( $data, $find ) ) {
+			$data = str_replace( $find, "\n$patch\n$find", $data );
+			file::write( $path, $data );
+			message(" patched");
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	
+	message('end.php for hook');
+	$path = $dir_root . '/tail.php';
+	$data = file::read($path);
+	$find = "/G5_IS_MOBILE[^>]*>/s";
+	$patch = "<?x::hook( 'tail_begin' ); if ( file_exists( x::hook(__FILE__) ) ) { include x::hook(__FILE__); return; } ?>";
+	if ( pattern_exist( $data, $patch ) ) {
+		message(' already patched');
+	}
+	else {
+		if ( preg_match($find, $data, $ms) ) {
+			//di($ms[0]);
+			$data = str_replace($ms[0], "$ms[0]\n$patch\n", $data);
+			file::write( $path, $data );
+			message(" patched");
+		}
+		else return -1;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	message("tail.sub.php for adding x/end.php");
 	$path = $dir_root . '/tail.sub.php';
 	$data = file::read( $path );
-	
 	$src = "<?include G5_PATH . '/x/end.php'?>";
 	if ( pattern_exist($data, $src) ) {
-		message("end.php already patched");
+		message(" already patched");
 	}
 	else {
 		$data = "$data\n$src\n";
 		file::write( $path, $data );
-		message("end.php patched");
+		message(" patched");
 	}
 	
 }
@@ -202,7 +252,29 @@ function patch_database()
 		$templine = '';
 		}
 	}
-	message('db patched');
+	
+	global $idx, $domain, $priority, $theme;
+	
+	
+	$priority	= 0;
+	$theme		= 'default';
+	$idx		= 0;
+	$domain		= '.com';
+	if ( ! md::get( $domain ) ) md::config_update();
+	
+	$domain		= '.net';
+	$idx		= 0;
+	if ( ! md::get( $domain ) ) md::config_update();
+	
+	$domain		= '.org';
+	$idx		= 0;
+	if ( ! md::get( $domain ) ) md::config_update();
+	
+	$domain		= '.kr';
+	$idx		= 0;
+	if ( ! md::get( $domain ) ) md::config_update();
+	
+	message(' patched');
 }
 
 

@@ -12,6 +12,7 @@ class database {
 	 */
 	static function query( $q )
 	{
+		dlog("QUERY: $q");
 		return sql_query( $q );
 	}
 	
@@ -40,13 +41,9 @@ class database {
 	 */
 	static function result( $q )
 	{
-		$result = self::row( $q );
-		if ( empty($result) ) return null;
-		else {
-			foreach ( $result as $k => $v ) {
-				return $v;
-			}
-		}
+		$res = self::query( $q );
+		$row = mysql_fetch_array( $res );
+		return $row[0];
 	}
 	
 	/**
@@ -59,7 +56,7 @@ class database {
 	 */
 	static function rows( $q ) {
 		$rows = array();
-		$result = sql_query( $q );
+		$result = self::query( $q );
 		while ( $row = sql_fetch_array($result) ) {
 			$rows[] = $row;
 		}
@@ -132,7 +129,6 @@ class database {
 		}
 		$cond = implode(" AND ", $arc);
 		$q = "UPDATE $table SET $set WHERE $cond";
-		debug::log( $q );
 		return self::query($q);
 	}
 	

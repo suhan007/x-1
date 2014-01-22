@@ -274,6 +274,29 @@ class etc {
 		";
 	}
 	
+	
+	/**
+	 * @short 도메인을 소문자로 리턴한다.
+	 *
+	 * 2차, 3차, 4차 도메인을 인정한다.
+	 리턴 값 예:
+		abc.123.456.com
+		www.abc.com
+		abc.com
+		
+	 */
+
+	static function domain_name()
+	{
+		if ( isset( $_SERVER['HTTP_HOST'] ) ) {
+			$domain = $_SERVER['HTTP_HOST'];
+			$domain = strtolower($domain);
+			return $domain;
+		}
+		else return NULL;
+	}
+
+	
 } // eo etc class
 
 

@@ -9,6 +9,10 @@ define('X_DIR_THEME', x::dir() . '/theme');
  */
 class x {
 
+	static $config;
+	static $hook_list;
+	
+
 	
 	/**
 	 *  @brief 그누보드 확장 팩 설치 경로. 파일을 액세스 할 수 있는 HDD 경로.
@@ -53,4 +57,94 @@ class x {
 	{
 		return X_DIR_ETC . './admin_menu.php';
 	}
+	
+	
+	/**
+	 *  @brief hooks upon life cycle
+	 *  
+	 *  @param [in] $name function name, file name or full path
+	 *  @return 
+	 *  if it is loading a script, then the return value is a path of hook script
+	 *  if is is calling a callback of the hook, then the return value would be HOOK_EXIST or HOOK_NOT_EXIST and if needed, the hook can return values on global variable.
+	 *  
+	 *  @details 
+	 *  if the input $name ends with '.php' extension, then it assumes as a hook script loading.
+	 *  or else it assumes it calls a hook.
+	 *  @code
+	 *  	di( x::hook(__FILE__) );
+	 *  	// returns path like "D:/work/www/g5-5.0b18/x/theme/default/head.php"
+	 *  @endcode
+	 *  @code calling a hook script
+	 *  	if ( file_exists( x::hook(__FILE__) ) ) { include x::hook(__FILE__); return; }
+	 *  @endcode
+	 */
+	static function hook( $name )
+	{
+		if ( strpos($name, '.php') ) {
+			$pi = pathinfo($name);
+			$name = $pi['basename'];
+			return x::dir() . '/theme/' . self::$config['site']['theme'] . '/' . $name;
+		}
+		else {
+			dlog("HOOK: $name");
+			if ( self::$hook_list[ $name ] ) {
+				foreach ( self::$hook_list[ $name ] as $hook ) {
+					$hook();
+				}
+				return HOOK_EXIST;
+			}
+			return HOOK_NOT_EXIST;
+		}
+	}
+	
+	/**
+	 *  @brief register hooks
+	 *  
+	 *  @param [in] $name hook name
+	 *  @param [in] $func hook funciton in Anonymous function as closure
+	 *  @return empty
+	 *  
+	 *  @details Details
+	 *  @code example of hook registeration
+	 *  x::hook_register('head_begin', function() {
+			di("this is first head_begin");
+		});
+		x::hook_register('head_begin', function() {
+			di("this is second head_begin");
+		});
+	 *	@endcode
+	 *	@code
+			x::hook_register('tail_begin', function() {
+				dlog("first hook for tail_begin on theme/basic/init.php");
+			} );
+			x::hook_register('tail_begin', function() {
+				jsAlert("second hook for tail_begin on theme/basic/init.php");
+			} );
+	 *	@endcode
+	 
+
+	 	
+	 */
+	static function hook_register( $name, $func )
+	{
+		self::$hook_list[$name][] = $func;
+	}
+	
+	
+	
+	/**
+	 *  @brief returns the path of the theme file.
+	 *  
+	 *  @param [in] $file file name to include under the theme folder.
+	 *  @return string file path
+	 *  
+	 *  @details if the theme file does not exist, it returns etc/null.php to avoid error.
+	 */
+	static function theme( $file )
+	{
+		$path = x::dir() . '/theme/' . self::$config['site']['theme'] . '/' . $file . '.php';
+		if ( file_exists( $path ) ) return $path;
+		else return x::dir() . '/etc/null.php';
+	}
+	
 }
