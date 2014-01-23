@@ -1,11 +1,11 @@
 $(function(){
 	$('li.name').mouseover(function(){
 		$(this).addClass('selected').siblings().removeClass('selected');
-		$('li.selected > ul.submenu').css('display','block');
+		setTimeout(function(){$('li.selected > ul.submenu').css('display','block');},300);
 	
 	});
 	$('li.name').mouseout(function(){
 		$(this).removeClass('selected')
-		$('li > ul.submenu').css('display','none');
+		setTimeout(function(){$('li > ul.submenu').css('display','none');},300);
 	});
 });
