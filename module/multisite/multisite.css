@@ -1,3 +1,61 @@
+.create-site h1 {
+	font-size: 1.5em;
+	margin: 1em;
+}
+
 .create-site input[type='text'] {
-	border: solid 1px #c3c3c3;
+	border: solid 1px #e3e3e3;
+}
+
+.create-site div {
+	margin: 0.5em;
+}
+
+.create-site > div {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.create-site div input[name='title'] {
+	width: 19.5em;
+}
+
+.create-site input[type='submit'] {
+	border: none;
+	padding: 0.5em;
+	background: #333333;
+	color: #ffffff;
+}
+
+.create-site h2 {
+	font-size: 1.2em;
+	margin: 1em;
+}
+
+.create-site ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+
+}
+
+.create-site ul li { 
+	border-bottom: solid 1px #c2c2c2;
+	padding: 0.5em;
+}
+
+.create-site ul li:last-child {
+	border-bottom: 0;
+} 
+
+.create-site ul li:hover {
+		background: #333333;
+}
+
+.create-site ul li a {
+	text-decoration: none;
+}
+
+.create-site ul li a:hover {
+
 }
