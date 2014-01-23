@@ -17,7 +17,7 @@
 }
 .admin-menu > ul > li {
 	float: left;
-	padding: 0.5em;
+	padding: 0.5em 0.75em 0.5em 0.75em;
 	font-size: 11pt;
 	cursor: pointer;
 	-webkit-transition: all 0.2s;
