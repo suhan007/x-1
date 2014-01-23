@@ -13,6 +13,9 @@
 	margin:0;
 	padding:0;
 	list-style:none;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 .admin-menu > ul > li {
 	float: left;
@@ -21,6 +24,12 @@
 	z-index: 999;
 	text-transform: uppercase;
 	position: relative;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
 }
 
 .admin-menu > ul > li:hover {
@@ -55,7 +64,7 @@
 }
 
 .admin-menu > ul > li > ul > li:hover {
-	background: #ffffff;
+	background: #939393;
 
 }
 .admin-menu > ul > li > ul > li:hover a{
