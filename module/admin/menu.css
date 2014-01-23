@@ -1,9 +1,9 @@
 .admin-menu {
-	padding: 0.5em;
+
 	background-color: #f0f0f0;
 }
 .admin-menu a {
-	padding: 0.6em;
+
 }
 .admin-menu a:hover {
 
@@ -16,18 +16,49 @@
 }
 .admin-menu > ul > li {
 	float: left;
-	margin: 0.5em;
-	font-size: 12pt;
+	padding: 0.5em;
+	font-size: 11pt;
+	z-index: 999;
+	text-transform: uppercase;
+	position: relative;
 }
 
+.admin-menu > ul > li:hover {
+	background: #333333;
+	color: #ffffff;
+}
+
+
+
 .admin-menu > ul > li > ul {
+	margin: 0;
 	font-size: 10pt;
 	display: none;
 	position: absolute;	
+	left: 0;
+	width: 100%;
+	padding-top: 0.5em;
+	z-index: 998;
+
 }
 
 .admin-menu > ul > li > ul > li {
-	margin-top: 0.5em;
+	text-transform: none;
+	width: 100%;
+	background: #333333;
+	padding: 0.5em 1em 0.5em 1em;
 }
 
+.admin-menu > ul > li > ul > li a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.admin-menu > ul > li > ul > li:hover {
+	background: #ffffff;
+
+}
+.admin-menu > ul > li > ul > li:hover a{
+	color: #000000;
+}
 
