@@ -49,13 +49,13 @@
 } 
 
 .create-site ul li:hover {
-		background: #333333;
+	background: #333333;
+}
+
+.create-site ul li:hover a {
+	color: #ffffff;
 }
 
 .create-site ul li a {
 	text-decoration: none;
-}
-
-.create-site ul li a:hover {
-
 }
