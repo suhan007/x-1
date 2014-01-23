@@ -18,7 +18,7 @@ ksort($admin_menu);
 admin_menu_display();
 function admin_menu_display()
 {
-	global $admin_menu, $in;
+	global $admin_menu, $in, $current_page;
 	echo "<ul class='admin-menu'>";
 	foreach( $admin_menu as $menu ) {
 		$name = $menu['name'];
@@ -29,16 +29,17 @@ function admin_menu_display()
 		foreach ( $menu as $name => $url ) {
 			$tmp = str_replace('?', '', $url);
 			parse_str($tmp, $str);
-			if ( $str['module'] == $in['module'] && $str['action'] == $in['action'] ) $sel = "selected";
-			else $sel = '';
+			/*if ( $str['module'] == $in['module'] && $str['action'] == $in['action'] ) $sel = "selected";*/
+			$current_page = substr($_SERVER['REQUEST_URI'],3);
+			if ($current_page == $url) $sel = "active-page";
+			else $sel = 'not-active-page';
 			echo "<li class='$sel'><a href='$url'>$name</a></li>";
 		}
 		echo "</ul></li>";
 	}
-	echo "</ul>";
+	echo "</ul>			";
 }
 ?>
 <div style='clear:left;'></div>
 </div>
-
 	
