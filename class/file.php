@@ -22,7 +22,10 @@ class file {
 	static function read($filename)
 	{
 		@$handle = fopen($filename, "r");
-		if ( ! $handle ) return self::FILE_NOT_FOUND;
+		if ( ! $handle ) {
+			$global_file_error_code = self::FILE_NOT_FOUND;
+			return null;
+		}
 		$contents = fread($handle, filesize($filename));
 		fclose($handle);
 		return $contents;
