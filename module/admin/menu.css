@@ -35,6 +35,7 @@
 
 
 .admin-menu > ul > li > ul {
+	display: none;
 	margin: 0;
 	font-size: 10pt;
 	position: absolute;	
