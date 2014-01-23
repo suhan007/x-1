@@ -88,3 +88,37 @@ function patch_data( $data, $patch, $replace )
 	}
 	return $data;
 }
+
+
+
+/**
+ *  @brief patches a file
+ *  
+ *  @param [in] $file file path
+ *  @param [in] $kvs patch list
+ *  @return empty
+ *  
+ *  @details patches a file with assoc array
+ */
+function patch_file( $file, $kvs )
+{
+	if ( empty($file) ) patch_failed();
+	
+	$data = file::read($file);
+	foreach ( $kvs as $patch => $replace ) {
+		
+		if ( pattern_exist( $data, $patch ) ) $data = str_replace($patch, $replace, $data);
+		else {
+			if ( pattern_exist( $data, $replace ) ) {
+				// alredy patched
+			}
+			else {
+				echo "patch string $patch and code $replace does not eixst";
+				patch_failed();
+			}
+		}
+		
+	}
+	file::write( $file, $data );
+	echo "$file patched\n";
+}

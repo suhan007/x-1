@@ -41,11 +41,13 @@ EOP;
 	// patch common.js
 	// for adjustment of jQuery version difference
 	
+	/*
 	$path = $dir_root . '/js/common.js';
 	$data = file::read($path);
 	if ( $data == file::FILE_NOT_FOUND ) return $data;
 	$src = '$("textarea#wr_content[maxlength]").live("keyup change", function() {';
 	$dst = '$( document ).on( "keyup change", "textarea#wr_content[maxlength]", function() {';
+	
 	if ( ! pattern_exist($data, $src) ) {
 		if ( pattern_exist($data, $dst) ) {
 			message('common.js already patched');
@@ -60,6 +62,42 @@ EOP;
 		file::write( $path,  $data );
 		message('common.js patched');
 	}
+	*/
+	
+	patch_file ( $dir_root . '/js/common.js',
+		array(
+			'$("textarea#wr_content[maxlength]").live("keyup change", function() {' => '$( document ).on( "keyup change", "textarea#wr_content[maxlength]", function() {'
+		)
+	);
+	
+	
+	patch_file ( $dir_root . '/js/autosave.js',
+		array(
+			'$(".autosave_load").live("click", function(){' => '$( document ).on( "click", ".autosave_load", function(){',
+			'$(".autosave_del").live("click", function(){' =>  '$( document ).on( "click", ".autosave_del", function(){',
+		)
+	);
+	
+	patch_file ( $dir_root . '/plugin/editor/ckeditor4/editor.lib.php',
+		array(
+			'$(".btn_cke_sc_close").live("click",function(){' => '$( document ).on("click", ".btn_cke_sc_close", function(){',
+		)
+	);
+	
+	patch_file ( $dir_root . '/plugin/kcaptcha/kcaptcha.js',
+		array(
+			'$("#captcha_reload").live("click", function(){'	=>'$( document ).on("click", "#captcha_reload", function(){',
+			'}).trigger("click");'	=> '}); $("#captcha_reload").trigger("click");',
+			'$("#captcha_mp3").live("click", function(){'	=> '$( document ).on("click", "#captcha_mp3", function(){',
+		)
+	);
+	
+	
+	
+	
+	
+	
+	
 	
 	return 0;
 
