@@ -54,6 +54,10 @@
 	display: inline;
 }
 
+.admin-menu > ul > li > ul > li:first-child {
+	margin-left: 0.1em;
+}
+
 .admin-menu > ul > li > ul > li a {
 	text-decoration: none;
 	color: #ffffff;
