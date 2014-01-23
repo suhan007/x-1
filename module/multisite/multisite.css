@@ -42,6 +42,7 @@
 .create-site ul li { 
 	border-bottom: solid 1px #c2c2c2;
 	padding: 0.5em;
+	border-left: solid 0.5em #c3c3c3;
 }
 
 .create-site ul li:last-child {
@@ -50,6 +51,7 @@
 
 .create-site ul li:hover {
 	background: #333333;
+	border-left: solid 0.5em #811717;
 }
 
 .create-site ul li:hover a {
