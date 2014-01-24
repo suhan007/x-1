@@ -1,8 +1,6 @@
 <?php
-	include x::admin_menu();
-	
 	echo "
-		<h2><a href='?module=multisite&action=admin_update'>Add New Site</a></h2>
+		<h2><a href='?module=multisite&action=create'>Add New Site</a></h2>
 	";
 	
 	
