@@ -38,6 +38,15 @@ function admin_menu_display()
 		echo "</ul></li>";
 	}
 	echo "</ul>			";
+	
+	if($current_page!='?module=admin&action=index') {
+	?>	<style>
+			.admin-menu {
+				margin-bottom: 4em;
+			}
+		</style>
+	<?
+	}
 }
 ?>
 <div style='clear:left;'></div>

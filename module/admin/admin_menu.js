@@ -1,7 +1,8 @@
 $(function(){
-
+	
 	$('li.active-page').parent().css('display','block');
 	$('li.active-page').parent().parent('li').css('color','#ffffff').css('background','#333333');
+
 
 	$('li.name').mouseenter(function(){
 		$(this).addClass('selected');
