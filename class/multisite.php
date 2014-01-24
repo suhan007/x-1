@@ -63,6 +63,12 @@ class multisite {
 		return db::row( $sql );
 	}
 	
+	static function update_domain( $idx )
+	{
+		$sql = "SELECT * FROM x_multisite_config WHERE idx='$idx'";
+		return db::row( $sql );
+	}
+	
 	
 	/**
 	 *  @brief gets configuration of all sites.
