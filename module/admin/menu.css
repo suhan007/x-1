@@ -72,12 +72,13 @@
 
 .admin-menu > ul > li > ul > li.active-page {
 	background: #939393;
-	color #000000;
 }
 .admin-menu > ul > li > ul > li:hover a{
 	color: #000000;
 }
 
-.admin-menu > ul > li > ul > li.active-page {
-
+.admin-menu li.current{
+	background: #333333;
+	color: #ffffff;
 }
+
