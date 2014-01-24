@@ -12,7 +12,7 @@ $(function(){
 	});
 	$('li.name').mouseleave(function(){
 		$(this).removeClass('selected');
-		$('li.not-active-page').parent().css('display','none');
+		$('ul.submenu li').parent().css('display','none');
 		$('li.active-page').parent().css('display','block');
 	}); 
 

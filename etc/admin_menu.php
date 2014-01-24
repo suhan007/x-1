@@ -32,7 +32,7 @@ function admin_menu_display()
 			/*if ( $str['module'] == $in['module'] && $str['action'] == $in['action'] ) $sel = "selected";*/
 			$current_page = substr($_SERVER['REQUEST_URI'],3);
 			if ($current_page == $url) $sel = "active-page";
-			else $sel = 'not-active-page';
+			else $sel = '';
 			echo "<li class='$sel'><a href='$url'>$name</a></li>";
 		}
 		echo "</ul></li>";
