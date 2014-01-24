@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="<?=x::url()?>/theme/default/css/theme.css">
 <!-- 상단 시작 { -->
+
 <div id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
 
@@ -70,7 +71,6 @@
     </div>
 
     <hr>
-
     <?include G5_PATH . '/x/html/patch.head-main-menu.php'?>
 </div>
 <!-- } 상단 끝 -->
