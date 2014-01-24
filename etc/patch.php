@@ -105,6 +105,11 @@ function patch_file( $file, $kvs )
 	if ( empty($file) ) patch_failed();
 	
 	$data = file::read($file);
+	
+	if ( empty($data)  ) {
+		message("file empty");
+		patch_failed();
+	}
 	foreach ( $kvs as $patch => $replace ) {
 		
 		if ( pattern_exist( $data, $patch ) ) $data = str_replace($patch, $replace, $data);
@@ -113,7 +118,7 @@ function patch_file( $file, $kvs )
 				// alredy patched
 			}
 			else {
-				echo "patch string $patch and code $replace does not eixst";
+				echo "patch string $patch and code $replace does not eixst in $file";
 				patch_failed();
 			}
 		}

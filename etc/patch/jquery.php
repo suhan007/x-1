@@ -93,7 +93,17 @@ EOP;
 	);
 	
 	
+	patch_file( $dir_root . '/skin/board/basic/view_comment.skin.php',
+		array(
+			'$("textarea#wr_content[maxlength]").live("keyup change", function() {' => '$( document ).on("keyup change", "textarea#wr_content[maxlength]", function() {',
+		)
+	);
 	
+	patch_file( $dir_root . '/skin/board/gallery/view_comment.skin.php',
+		array(
+			'$("textarea#wr_content[maxlength]").live("keyup change", function() {' => '$( document ).on("keyup change", "textarea#wr_content[maxlength]", function() {',
+		)
+	);
 	
 	
 	
