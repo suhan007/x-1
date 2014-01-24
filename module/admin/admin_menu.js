@@ -5,8 +5,9 @@ $(function(){
 
 	$('li.name').mouseenter(function(){
 		$(this).addClass('selected');
-		$('li.selected > ul.submenu').css('display','block');
 		$('li.active-page').parent().css('display','none');
+		$('li.selected > ul.submenu').css('display','block');
+
 	});
 	$('li.name').mouseleave(function(){
 		$(this).removeClass('selected');
