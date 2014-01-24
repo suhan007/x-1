@@ -23,5 +23,5 @@
 		<td><a href='<?=md::url_config($domain['idx'])?>'>SETTING</a></td>
 		<td><a href="<?=md::url_delete($domain['idx'])?>" onclick="return confirm('Do you want to delete - <?=$domain[domain]?>?');">DELETE</a></td>
 	</tr>
-	<? } ?>
+	<? }?>
 </table>
