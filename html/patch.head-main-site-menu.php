@@ -33,6 +33,9 @@
 	</li>
 	<?php } ?>
 	
+	<li class="gnb_1dli">
+		<a href="./" class="gnb_1da"><?=ln('Home')?></a>
+	</li>	
 	
 	<li class="gnb_1dli">
 		<a href="<?=ms::url_create()?>" class="gnb_1da"><?=ln('Site List')?></a>
