@@ -15,17 +15,24 @@ class etc {
 	}
 	
 	/**
-	 *  @brief 모듈의 스크립트를 로드한다.
+	 *  @brief return the path of module script.
 	 *  
-	 *  @param [in] $file 모듈 폴더 내의 파일 이름. 확장자 ".php" 는 제외하고 입력을 한다.
-	 *  @return string 파일 경로
+	 *  @param [in] $file script file name under a module folder. it should not include '.php' extension.
+	 *  @return string file path
 	 *  
-	 *  @details 리턴되는 값은 스크립트의 경로를 지정하는 문자열이다. 이 함수 밖에서 따로 인클루드를 해야한다.
+	 *  @details global variable $module which is from HTTP INPUT will be used to determin which module folder to use.
+	 *  @note to include module/init.php just use "include module( 'init' );"
+	 *  especially for init.php script, it will return 'null.php' if the init.php does not exists under the module.
 	 */
 	static function module($file)
 	{
 		global $module;
-		return "module/$module/$file.php";
+		$path = x::dir() . "/module/$module/$file.php";
+		if ( $file == 'init' ) {
+			if ( file_exists( $path ) ) return $path;
+			else return x::path_null();
+		}
+		else return $path;
 	}
 	/**
 	 *  @brief html 폴더에 있는 스크립트 파일을 리턴하낟.

@@ -7,7 +7,7 @@
 
    <nav id="gnb">
 
-<link rel="stylesheet" href="module/multisite/multisite.css">
+
 <script>$('#gnb').addClass('gnb_js');</script>
 <h2>메인메뉴</h2>
 <ul id="gnb_1dul">

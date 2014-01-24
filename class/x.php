@@ -155,9 +155,15 @@ class x {
 	 */
 	static function theme( $file )
 	{
-		$path = x::dir() . '/theme/' . self::$config['site']['theme'] . '/' . $file . '.php';
+		$path = self::dir() . '/theme/' . self::$config['site']['theme'] . '/' . $file . '.php';
 		if ( file_exists( $path ) ) return $path;
-		else return x::dir() . '/etc/null.php';
+		else return self::path_null();
 	}
+	
+	static function path_null()
+	{
+		return self::dir() . '/etc/null.php';
+	}
+	
 	
 }
