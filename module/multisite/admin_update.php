@@ -3,16 +3,17 @@
 ?>
 <div class='create-site'>
 <form action='?'>
-	<input type='hidden' name='module' action='multisite'>
-	<input type='hidden' name='action' action='admin_update_submit'>
-	<input type='hidden' name='idx' action='<?=$_GET[idx]?>'>
+	<input type='hidden' name='module' value='multisite'>
+	<input type='hidden' name='action' value='admin_update_submit'>
+	<input type='hidden' name='idx' value=<?=$idx?>>
 	<?php
-		$domain_update_value = ms::update_domain("$_GET[idx]");
+		$domain_update_value = ms::update_domain("$idx");
 		$domainexplode = explode(".",$domain_update_value['domain']);
 	?>
 	<div>Domain: http://<input type='text' name='sub_domain' value='<?=$domainexplode[0]?>'>.<?=etc::base_domain()?></div>
-	<div>Site Title: <input type='text' name='title'></div>
+	<div>Site Title: <input type='text' name='title' value='<?=$domain_update_value['title']?>'></div>
 	<input type='submit' value='Update Site'>
 </form>
+
 </div>
  
