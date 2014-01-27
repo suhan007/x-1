@@ -7,6 +7,7 @@
 
 <div>LIST | <a href='<?=md::url_add()?>'>Add new site.</a></div>
 
+
 <table>
 	<tr>
 		<td>No.</td>

@@ -209,4 +209,9 @@ class multisite {
 		return etc::domain() == etc::base_domain();
 	}
 	
+	static function site_title($site_title=null) {
+		
+		return $site_title;	
+	}
+	
 }

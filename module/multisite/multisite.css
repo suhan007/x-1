@@ -61,3 +61,17 @@
 .create-site ul li a {
 	text-decoration: none;
 }
+
+.config h1 {
+	font-size: 1.5em;
+	margin: 1em;
+}
+
+.config h2  {
+	font-size: 1.2em;
+	margin: 0.5em;
+}
+
+.config input[type='text']{
+	border: solid 1px #c3c3c3;
+}

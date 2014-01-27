@@ -74,8 +74,6 @@
     <?include G5_PATH . '/x/html/patch.head-main-menu.php'?>
 	
 	<div class='header-container'>
-	
-	
 	</div>
 </div>
 <!-- } 상단 끝 -->
