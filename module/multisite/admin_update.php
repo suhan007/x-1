@@ -10,7 +10,7 @@
 	<input type='hidden' name='idx' value=<?=$idx?>>
 	<div>Domain: http://<input type='text' name='sub_domain' value='<?=$domainexplode[0]?>'>.<?=etc::base_domain()?></div>
 	<div>Site Title: <input type='text' name='title' value='<?=$domain_update_value['title']?>'></div>
-	<input type='submit' value='Update Site'>
+	<input type='submit' value='Update Site' onclick="return confirm('Are you sure you want to update your Site?');">
 </form>
 
 </div>
