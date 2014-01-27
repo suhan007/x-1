@@ -12,6 +12,37 @@
 		</tr>
 		<tr>
 			<td>
+				<label>Theme:</title>
+			</td>
+					<td>
+			<?php
+				$dirs = file::getDirs(X_DIR_THEME);
+			?>
+			<select name='theme'>
+			<?php
+				
+				$option = array();
+				foreach ( $dirs as $dir ) {
+					$path = X_DIR_THEME . "/$dir/config.php";
+					if ( file_exists($path) ) {
+						$theme_config = array();
+						include $path;
+						
+						echo "<option value='$dir'";
+						if ( $cfg['theme'] == $dir ) echo " selected='1'";
+						echo ">$theme_config[name]</value>";
+					}
+					else {
+						// echo "<div class='error'>ERROR: $dir has no theme configuration file(config.php)</div>";
+					}
+				}
+			?>
+			</select>
+		</td>
+		</tr>
+		
+		<tr>
+			<td>
 				<label>Main Title: </title>
 			</td>
 			<td>
@@ -51,7 +82,7 @@
 				<?=lang("Menu ", '메뉴 ')?> <?=$i?>
 			</td>
 			<td>
-				<input data-mini='true'  type="text" name="category<?=$i?>">
+				<input data-mini='true'  type="text" name="menu<?=$i?>">
 			</td>
 		</tr>
 		<?}?>
