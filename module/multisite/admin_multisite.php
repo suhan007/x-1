@@ -6,17 +6,21 @@
 	
 	$sites = ms::gets();
 	
-	echo '<table>';
+	echo '<table cellspacing=3px>';
 	echo "
 		<tr>
-			<td>Domain</td><td>User ID</td><td>Title</td>
-			<td>Header</td>
-			<td>Footer</td>
-			<td>Priority</td>
+			<td></td>
+			<td><h2>DOMAIN</h2></td>
+			<td><h2>USER ID</h2></td>
+			<td><h2>TITLE</h2></td>
+			<td><h2>HEADER</h2></td>
+			<td><h2>FOOTER</h2></td>
+			<td><h2>PRIORITY</h2></td>
 		</tr>
 	";
 	foreach ( $sites as $site ) {
 		echo '<tr>';
+			echo "<td><a href='?module=multisite&action=admin_update&idx=$site[idx]'>Edit =></a></td>";
 			echo "<td>$site[domain]</td>";
 			echo "<td>$site[mb_id]</td>";
 			echo "<td>$site[title]</td>";
@@ -30,7 +34,7 @@
 			
 			echo "<td>$site[priority]</td>";
 			
-			echo "<td><a href='?module=multisite&action=admin_update&idx=$site[idx]'>Edit</a></td>";
+
 		echo '</tr>';
 	}
 	echo '</table>';
