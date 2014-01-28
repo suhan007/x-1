@@ -6,7 +6,7 @@
 
 	$site_info = ms::get(etc::domain());
 ?>
-<form action='?' method='post'>
+<form action='?' method='post' class='config_menu'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_submit'>
 <div class='config'>

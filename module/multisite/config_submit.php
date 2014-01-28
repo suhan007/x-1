@@ -1,3 +1,3 @@
 <?php
 /*update data, then return*/
-jsBack('');
+jsBack('these are all containers only at the moment, no functions yet');
