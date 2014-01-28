@@ -17,10 +17,10 @@
 		<? for ( $i = 1; $i <= 10; $i++ ) { ?>
 		<tr>
 			<td>
-				<?=lang("Menu ", '메뉴 ')?> <?=$i?>
+				<label><?=lang("Menu ", '메뉴 ')?> <?=$i?></label>
 			</td>
 			<td>
-				<input data-mini='true'  type="text" name="menu<?=$i?>">
+				<input type="text" name="menu<?=$i?>">
 			</td>
 		</tr>
 		<?}?>
