@@ -12,16 +12,26 @@
 <div class='config'>
 	<table width='100%' cellpadding='5px'>
 		<tr>
-			<td colspan=2><h2>Menu</h2></td>
+			<td colspan=4><h2>Menu</h2></td>
+		</tr>
+			<tr>
+			<td width='1em' align='center'><label>Menu<br>No.</label></td>
+			<td width='20em'><label>MENU NAME</label></td>
+			<td width='20em'><label>MENU URL</label></td>
+			<td><label>Open in a<br>New Tab</label></td>
 		</tr>
 		<? for ( $i = 1; $i <= 10; $i++ ) { ?>
 		<tr>
-			<td>
-				<label><?=lang("Menu ", '메뉴 ')?> <?=$i?></label>
+			<td align='center'>
+				<label><?=$i?></label>
 			</td>
 			<td>
 				<input type="text" name="menu<?=$i?>">
 			</td>
+			<td>
+				<input type="text" name="menu_url<?=$i?>">
+			</td>
+			<td><input type="checkbox" name="menu<?=$i?>_target" value="Y"></td>
 		</tr>
 		<?}?>
 		<tr>

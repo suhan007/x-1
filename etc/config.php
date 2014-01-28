@@ -12,7 +12,9 @@
 	<li>
 		<a href='?module=multisite&action=config_menu'>Menu</a>
 	</li>
-
+	<li>
+		<a href='?module=multisite&action=config_theme'>Theme</a>
+	</li>
 </ul>
 <link rel="stylesheet" href="module/multisite/multisite.css">
 

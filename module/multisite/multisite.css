@@ -98,6 +98,21 @@
 }
 
 
+.theme-thumb {
+	display: inline-block;
+	position: relative;
+	margin-top: 1em;
+	overflow: hidden;
+}
+
+.theme-thumb p {
+	position: absolute;
+	bottom: 0;
+	padding: 1em;
+	background: #333333;
+	width: 100%;
+	color: #ffffff;
+}
 
 .multisite-menu {
 	margin: 0;
