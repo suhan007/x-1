@@ -5,7 +5,7 @@
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_submit'>
 <div class='config'>
-	<table>
+	<table width='100%' cellpadding='5px'>
 		<tr>
 			<td colspan=2><h2>Menu</h2></td>
 		</tr>

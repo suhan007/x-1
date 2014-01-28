@@ -76,9 +76,42 @@
 	border: solid 1px #c3c3c3;
 }
 
+.config table {
+	border-collapse: collapse;
+
+}
+
+.config table tr td {
+	border-top: 1px solid #ececec;
+}
+
+.config table label {
+	font-weight: bold;
+}
+
+.config table input[type='text'], .config table select {
+	width: 20em;
+}
+
+.config label {
+
+}
+
+
+
 .multisite-menu {
 	margin: 0;
 	padding: 0;
+	background: #333333;
+}
+
+.multisite-menu a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.multisite-menu li:hover {
+	background: #444444;
 }
 
 .multisite-menu li {
