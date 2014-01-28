@@ -213,5 +213,8 @@ class multisite {
 		
 		return $site_title;	
 	}
-	
+
+	static function site_menu() {
+		return X_DIR_ETC.'/config.php';
+	}
 }

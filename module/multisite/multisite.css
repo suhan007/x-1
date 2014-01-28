@@ -75,3 +75,14 @@
 .config input[type='text']{
 	border: solid 1px #c3c3c3;
 }
+
+.multisite-menu {
+	margin: 0;
+	padding: 0;
+}
+
+.multisite-menu li {
+	list-style-type: none;
+	display: inline-block;
+	padding: 1em;
+}
