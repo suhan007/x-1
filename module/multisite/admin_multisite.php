@@ -21,7 +21,7 @@
 	foreach ( $sites as $site ) {
 		echo '<tr>';
 			echo "<td><a href='?module=multisite&action=admin_update&idx=$site[idx]'>Edit =></a></td>";
-			echo "<td>$site[domain]</td>";
+			echo "<td><a href='http://$site[domain]'>$site[domain]</a></td>";
 			echo "<td>$site[mb_id]</td>";
 			echo "<td>$site[title]</td>";
 			if ( !empty($site['header']) ) $header = 'O';
