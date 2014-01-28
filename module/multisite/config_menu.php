@@ -1,4 +1,9 @@
 <?
+	if ( ! admin() ) {
+		echo "You are not admin";
+		return;
+	}
+
 	$site_info = ms::get(etc::domain());
 ?>
 <form action='?' method='post'>

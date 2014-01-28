@@ -1,6 +1,12 @@
 <?
+	if ( ! admin() ) {
+		echo "You are not admin";
+		return;
+	}
 	$site_info = ms::get(etc::domain());
+	
 ?>
+
 <form action='?' method='post'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_submit'>
