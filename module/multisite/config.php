@@ -74,6 +74,14 @@
 			</td>
 		</tr>
 		<tr>
+			<td>
+				<label>Footer Text: </title>
+			</td>
+			<td>
+				<input type='text' name='logo_text'>
+			</td>		
+		</tr>
+		<tr>
 			<td colspan=2><h2>Menu</h2></td>
 		</tr>
 		<? for ( $i = 1; $i <= 10; $i++ ) { ?>

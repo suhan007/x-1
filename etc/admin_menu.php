@@ -29,9 +29,8 @@ function admin_menu_display()
 		foreach ( $menu as $name => $url ) {
 			$tmp = str_replace('?', '', $url);
 			parse_str($tmp, $str);
-			/*if ( $str['module'] == $in['module'] && $str['action'] == $in['action'] ) $sel = "active-page";*/
-			$current_page = '?'.$_SERVER['QUERY_STRING'];
-			if ($current_page == $url) $sel = "active-page";
+			$current_page = 'module='.$_GET['module'].'&action='.$_GET['action'];
+			if ($current_page == $tmp) $sel = "active-page";
 			else $sel = '';
 			echo "<li class='$sel'><a href='$url'>$name</a></li>";
 		}
@@ -39,7 +38,7 @@ function admin_menu_display()
 	}
 	echo "</ul>			";
 
-	if($current_page!='?module=admin&action=index') {
+	if($current_page!='module=admin&action=index') {
 	?>	<style>
 			.admin-menu {
 				margin-bottom: 4em;
