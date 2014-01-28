@@ -7,7 +7,7 @@
 	
 ?>
 
-<form action='?' method='post'>
+<form action='?' method='post' class='config_general'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_submit'>
 <div class='config'>
@@ -22,8 +22,9 @@
 					<td>
 			<?php
 				$dirs = file::getDirs(X_DIR_THEME);
+				
 			?>
-			<select name='theme'>
+			<select name='theme' class='theme'>
 			<?php
 				
 				$option = array();
@@ -42,6 +43,11 @@
 					}
 				}
 			?>
+				<script>
+					$('select.theme').change(function(){
+						$('form.config_general').submit();
+					});
+				</script>
 			</select>
 		</td>
 		</tr>
