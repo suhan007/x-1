@@ -3,6 +3,13 @@
 define('DS', DIRECTORY_SEPARATOR, true);
 
 
+
+
+$in = array_merge( $_GET, $_POST );
+
+
+
+
 class etc {
 	
 	static function dir()
@@ -68,6 +75,16 @@ class etc {
 	}
 	
 
+	
+	
+	/**
+	 *  @brief returns the domain of the accessed site.
+	 *  
+	 *  @return string domain.
+	 *  i.e) abc.def.your-domain.com
+	 *  
+	 *  @details it returns the whole domain including all the levels. ( 2nd, 3rd, 4th ... level domains... )
+	 */
 	static function domain()
 	{
 		return $_SERVER['HTTP_HOST'];
@@ -168,15 +185,33 @@ class etc {
 	 *  
 	 *  @details language code can be case sensitive and case insensitive.
 	 */
-	static function lang( $code )
+	static function lang( $code, $arg1=null, $arg2=null, $arg3=null )
 	{
 		global $language;
-		if ( isset($language[$code]) ) return $language[$code];
 		
-		$code_back = $code;
-		$code = strtolower($code);
-		if ( isset($language[$code]) ) return $language[$code];
-		else return $code_back;
+		
+		
+		if ( isset($language[$code]) ) {
+			$string = $language[$code];
+		}
+		else {
+			$code_back = $code;
+			$code = strtolower($code);
+			
+			if ( ! isset($language[$code]) ) {
+				return $code_back;
+			}
+			else $string = $language[$code];
+		}
+		
+		
+		
+		
+		if ( strpos($string, '#1') !== false ) $string = str_replace("#1", $arg1, $string);
+		if ( strpos($string, '#2') !== false ) $string = str_replace("#2", $arg2, $string);
+		if ( strpos($string, '#3') !== false ) $string = str_replace("#3", $arg3, $string);
+			
+		return $string;
 	}
 	
 	
@@ -387,13 +422,13 @@ function patch( $file )
 
 
 
-function ln($code)
+function ln($code, $a=null, $b=null, $c=null)
 {
-	return etc::lang($code);
+	return etc::lang($code, $a, $b, $c);
 }
-function _L($code)
+function _L($code, $a=null, $b=null, $c=null)
 {
-	return etc::lang($code);
+	return etc::lang($code, $a, $b, $c);
 }
 
 

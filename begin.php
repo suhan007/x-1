@@ -20,8 +20,12 @@ include_once 'etc/language/default.php';
 
 //multisite config/options
 ms::site_title();
-$site_info = ms::get(etc::domain());
-$theme_config = ms::get_theme_options(etc::domain());
+
+$site = ms::get(etc::domain());					// This is multisite configuration
+
+$extra = &$site['extra'];
+
+
 
 if ( x::installed() ) {
 	x::$config['site'] = md::config( etc::domain_name() );

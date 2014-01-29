@@ -1,5 +1,5 @@
 <?php
-	$domain_update_value = ms::update_domain("$idx");
+	$domain_update_value = ms::get("$idx");
 	$domainexplode = explode(".",$domain_update_value['domain']);
 ?>
 <div class='create-site'>

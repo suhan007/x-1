@@ -6,25 +6,28 @@ class multisite {
 
 
 	/**
-	 *  @brief 새로운 사이트를 생성한다.
+	 *  @brief create a new sub-site.
 	 *  
-	 *  @param [in] $o 사이트를 생성하기 위한 옵션 값
-	 *  @return int 성공이면 0, 아니면 참
+	 *  @param [in] $o contains optional values for creating a new site.
+	 *  @return int returns 0 on sucess. otherwise the return value will not be 0.
 	 *  
-	 *  @details 사이트를 생성하기 위해서는
+	 *  @details To create a sub-site
 	 *  <ol>
-	 *  	<li> multisite 게시판 그룹이 존재하지 않으면 생성해야 한다.
-	 *  	<li> 사이트 생성한다.
-	 *  	<li> 사이트 게시판을 생성하고 기본 설정을 한다.
+	 *  	<li> if 'multisite' board group does not exists, create it first ( It is done automatically when user creates the first sub-site )
+	 *  	<li> creates sub-site ( by inserting configuration value into a record to x_multisite_config table )
+	 *  	<li> creates 'board' (forum) for the site and sets default setting.
 	 *  </ol>
 	 *  
 	 */
 	static function create($o)
 	{
 		global $member;
-		if ( ! g::group_exist('multisite') ) g::group_create(array('id'=>'multisite', 'subject'=>'multisite'));
+		if ( ! g::group_exist('multisite') ) g::group_create(array('id'=>'multisite', 'subject'=>'multisite')); /* creating 'multisite' board group */
 
 		if ( self::exist($o['domain']) ) return MS_EXIST;
+		
+		
+		
 		$time = time();
 		$q = "
 			INSERT INTO x_multisite_config ( domain, mb_id, stamp_create, title, extra )
@@ -34,13 +37,13 @@ class multisite {
 		return  0;
 	}
 	/**
-	 *  @brief 사이트가 존재하는지 확인한다.
+	 *  @brief checks if a sub-site exists or not.
 	 *  
-	 *  @param [in] $domain 사이트 도메인
+	 *  @param [in] $domain sub-site domain. i.e) abc.your-domain.com
 	 *  @return boolean
-	 *  사이트가 이미 있으면 참, 없으면 거짓.
+	 *  true if the sub-site exists, otherwise false.
 	 *  
-	 *  @details 사이트가 다른 사람에 의해서 개설 되었는지 또는 사이트가 존재하는지 확인하려고 할 때 사용한다.
+	 *  @details Use this function to check if a sub-site exist or not. You can use it when a user creates a site.
 	 */
 	static function exist($domain)
 	{
@@ -50,24 +53,30 @@ class multisite {
 	}
 	
 	/**
-	 *  @brief 사이트 record 를 리턴한다.
+	 *  @brief returns the record of the sub-site.
 	 *  
-	 *  @param [in] $domain 도메인
-	 *  @return array 사이트 레코드를 가지는 연관 배열
+	 *  @param [in] $domain domain of the sub-site. i.e) abc.your-domain.com
 	 *  
-	 *  @details 입력된 도메인에 맞는 사이트 정보를 리턴한다.
+	 *  @return assoc-array a record.
+	 *  
+	 *  @details returns the whole record of the input sub-domain.
 	 */
 	static function get( $domain )
 	{
-		$sql = "SELECT * FROM x_multisite_config WHERE domain='$domain'";
-		return db::row( $sql );
+		if ( is_numeric( $domain ) ) $qf = "idx";
+		else $qf = "domain";
+		$sql = "SELECT * FROM x_multisite_config WHERE $qf='$domain'";
+		$opt =  db::row( $sql );
+		if ( empty($opt) ) return array();
+		$opt['extra'] = string::unscalar( $opt['extra'] );
+		return $opt;
 	}
 	
-	static function update_domain( $idx )
-	{
-		$sql = "SELECT * FROM x_multisite_config WHERE idx='$idx'";	
-		return db::row( $sql );
-	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -87,26 +96,34 @@ class multisite {
 	
 	
 	/**
-	 *  @brief 입력한 도메인이 현재 로그인한 사용자의 것인지 확인한다.
+	 *  @brief checks if the log-in user owns the site that he/she access.
 	 *  
-	 *  @param [in] $domain 도메인
-	 *  @return boolean 현재 로그인한 사용자의 도메인(사이트)라면 참을 리턴
+	 *  @param [in] $domain domain of a sub-site.
+	 *  @return boolean
+	 *  true if the sub-site that the user log-in belongs to the logged user.
+	 *  false otherwise.
 	 *  
-	 *  @details 현재 사이트가 로그인한 사용자의 것인지 확인 할 때 사용한다. 주로 관리자 메뉴를 출력하거나 관리자 기능을 사용 할 때 이용하면 된다.
+	 *  @details Use this function to check if the log-in user is the admin of the sub-site he accesses likewise to check when a user wants to access admin page.
 	 */
 	static function my( $domain )
 	{
 		if ( ! login() ) return false;
-		$info = self::get($domain);
-		return $info['mb_id'] == $member['mb_id'];
+		
+		$opt = self::get($domain);
+		
+		global $member;
+		
+		
+		
+		return $opt['mb_id'] == $member['mb_id'];
 	}
 	
 	/**
-	 *  @brief 로그인한 사용자가 현재 접속한 사이트(도메인)의 관리자(주인)인지 아닌지를 판단한다.
+	 *  @brief is an alias of my()
 	 *  
-	 *  @return boolean
+	 *  @return boolean same as my()
 	 *  
-	 *  @details 현재 사이트가 로그인한 사용자의 것이라면 참을 리턴한다.
+	 *  @details same as my()
 	 */
 	static function admin()
 	{
@@ -127,6 +144,16 @@ class multisite {
 		return self::pre_site(db::rows("SELECT * FROM x_multisite_config WHERE mb_id='$member[mb_id]'"));
 	}
 	
+	
+	
+	/**
+	 *  @brief gets the configuration of a site and returns the same data after pre-processing.
+	 *  
+	 *  @param [in] $sites sub-site configuration
+	 *  @return assoc-array pre-precessed sub-site configuratoin
+	 *  
+	 *  @details This does pre-processing for the easy-use. If there is no subject set in configuration, then this function sets default value for empty fields.
+	 */
 	static function pre_site($sites)
 	{
 		$rets = array();
@@ -185,12 +212,19 @@ class multisite {
 	
 	
 	/**
-	 *  @brief 사이트의 게시판 아이디를 리턴한다.
+	 *  @brief returns forum ID
+	 *  사이트의 게시판 아이디를 리턴한다.
 	 *  
-	 *  @param [in] $domain 사이트 도메인
-	 *  @return string 게시판 아이디
+	 *  @param [in] $domain
+	 *  sub-site domain
+	 *  사이트 도메인
+	 *  @return string
+	 *  forum ID
+	 *  게시판 아이디
 	 *  
-	 *  @details 게시판 아이디 형식은 "ms_[도메인]" 이다.
+	 *  @details
+	 *  	returns forum id like "ms_[domain]"
+	 *  	게시판 아이디 형식은 "ms_[도메인]" 이다.
 	 */
 	static function board_id( $domain )
 	{
@@ -198,47 +232,72 @@ class multisite {
 	}
 	
 	/**
-	 *  @brief 사용자가 접속한 현재 사이트가 메인 사이트(도메인)인지 확인한다.
+	 *  @brief 
+	 *  Checks if the domain of the site that the user accesses is the base domain(main site).
+	 *  사용자가 접속한 현재 사이트가 메인 사이트(도메인)인지 확인한다.
 	 *  
-	 *  @return boolean 메인 사이트이면 참을 리턴. 아니면 거짓을 리턴.
+	 *  @return boolean 
+	 *  true if the domain is base domain.
+	 *  false otherwise.
+	 *  메인 사이트이면 참을 리턴. 아니면 거짓을 리턴.
 	 *  
 	 *  @details 현재 사이트가 메인 사이트인지 아닌지를 구분 할 때 사용한다.
+	 *  Use this funtion to check if the site is main site or sub-site.
 	 */
 	static function main_site()
 	{
 		return etc::domain() == etc::base_domain();
 	}
 	
-	static function site_title($site_title=null) {
+	
+	
+	/**
+	 *  @brief sets the site title in browser title bar.
+	 *  
+	 *  @param [in] $site_title Parameter_Description
+	 *  @return Return_Description
+	 *  
+	 *  @details changes the site title by setting g5 variable.
+	 */
+	static function site_title( ) {
 		/**TEMPORARY, if 'title' has a value -Arvin*/
 		global $g5, $config;
-		$multisite_title = ms::get(etc::domain());
-		$g5['title'] = $multisite_title['title'];
-		$subtitle = self::get_theme_options(etc::domain());
-		$config['cf_title'] = $subtitle['secondary_title'];
-	}
-
-	static function site_menu() {
-		return X_DIR_ETC.'/config.php';
+		
+		$opt = ms::get( etc::domain() );
+		
+		$g5['title'] = $opt['title'];
+		$config['cf_title'] = $opt['extra']['secondary_title'];
 	}
 	
+	
+	static function site_menu() {
+		return x::dir() .'/module/multisite/subsite_config_menu.php';
+	}
+
+
+
+	/*
 	static function get_theme_options($domain){
 		$sql = "SELECT extra FROM x_multisite_config WHERE domain='$domain'";	
 		$results = db::result( $sql );
-		return unserialize( $results );
+		return string::unscalar( $results );
 	}
+	*/
 	
-	static function theme_options($to) {
 	
-		$theme_options_db = self::get_theme_options( etc::domain() ); 
-		di($theme_options_db);
-		
-		foreach ( $theme_options_db as $key => $value ) {
-			if( !$to[ $key ] == '' ) $theme_options[ $key ] = $to[ $key ];
-			else $theme_options[ $key ] = $theme_options_db[ $key ];
-		}
-
-		$serialized_theme_options = serialize( $theme_options );
-		db::update( 'x_multisite_config', array( 'extra' => $serialized_theme_options ) , array( 'domain' => etc::domain() ) );
+	
+	
+	
+	
+	/**
+	 *  @brief Updates options
+	 *  
+	 *  @param [in] $option Parameter_Description
+	 *  @return Return_Description
+	 *  
+	 *  @details Details
+	 */
+	static function update( $option ) {
+		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $option ) ) , array( 'domain' => etc::domain() ) );
 	}
 }

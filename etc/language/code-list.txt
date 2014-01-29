@@ -30,8 +30,8 @@ forum group
 popular keywords
 keywords rank
 support setting
-your current browser is not <strong>set to using javascript<strong>.
-if you set <strong>not using javascript</strong>, please remind that no alert message will shown when you delete or edit
+allow javascript
+allow javascript desc
 your domain
 go to top
 only super admin can acess this page
@@ -41,9 +41,9 @@ user account
 required
 search
 list
-all
+>all<
 nickname
-menu
+>menu<
 permission
 selected delete
 no of new members
@@ -68,9 +68,13 @@ more
 incident
 total
 view all history
-to prevent other user from using deleted previous id, user id and nickname will be saved permanently
+to delete user
 member management
-no of members
+no. of member
+no. of member after
+<!--차/단횜원수-->
+_block
+_block after
 search option
 member id
 nickname

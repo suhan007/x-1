@@ -1,9 +1,9 @@
 <?
-	if ( ! admin() ) {
+	if ( ! ms::admin() ) {
 		echo "You are not admin";
 		return;
 	}
-	$site_info = ms::get(etc::domain());
+	$site = ms::get(etc::domain());
 
 	$dirs = file::getDirs(X_DIR_THEME);
 	

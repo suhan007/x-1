@@ -82,8 +82,8 @@
 	
 	patch_language( g::dir() . '/adm/admin.tail.php',
 		array(
-			"귀하께서 사용하시는 브라우저는 현재 <strong>자바스크립트를 사용하지 않음</strong>으로 설정되어 있습니다."=> "<?php echo _L('Your Current Browser is not <strong>set to using javascript<strong>.');?>",
-			"<strong>자바스크립트를 사용하지 않음</strong>으로 설정하신 경우는 수정이나 삭제시 별도의 경고창이 나오지 않으므로 이점 주의하시기 바랍니다."=> "<?php echo _L('If you set <strong>not using javascript</strong>, Please remind that no alert message will shown when you delete or edit');?>",
+			"귀하께서 사용하시는 브라우저는 현재 <strong>자바스크립트를 사용하지 않음</strong>으로 설정되어 있습니다."=> "<?php echo _L('Allow Javascript');?>",
+			"<strong>자바스크립트를 사용하지 않음</strong>으로 설정하신 경우는 수정이나 삭제시 별도의 경고창이 나오지 않으므로 이점 주의하시기 바랍니다."=> "<?php echo _L('Allow Javascript Desc');?>",
 			"소유하신 도메인"=>"<?php echo _L('Your Domain');?>",
 			"상단으로"=>"<?php echo _L('Go to Top');?>",
 		)
@@ -98,9 +98,9 @@
 				"필수"		=> "<?php echo _L('Required');?>",
 				"검색"		=> "<?php echo _L('Search');?>",
 				"목록"		=> "<?php echo _L('List');?>",
-				"전체"		=> "<?php echo _L('All');?>",
+				">전체<"		=> "><?php echo _L('All');?><",
 				"닉네임"		=> "<?php echo _L('Nickname');?>",
-				"메뉴"		=> "<?php echo _L('Menu');?>",
+				">메뉴<"		=> "><?php echo _L('Menu');?><",
 				"권한"		=> "<?php echo _L('Permission');?>",
 				"선택삭제"    => "<?php echo _L('Selected delete');?>",
 		)
@@ -136,9 +136,29 @@
 	
 	patch_language( g::dir() . '/adm/member_list.php',
 		array(
-				"회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다." => "<?php echo _L('To prevent Other user from using deleted previous id, user id and nickname will be saved permanently');?>",
+				"회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다." => "<?php echo _L('To delete user');?>",
 				"'회원관리'"	=> "_L('Member Management')",
-				"총회원수"	=> "<?php echo _L('No of Members');?>",
+				
+				
+				
+				/*
+					"총회원수 <?php echo number_format(\$total_count) ?>명 중,"	=> "<?php echo _L('No of member', number_format(\$total_count))?>",
+				
+				"차단 <?php echo number_format(\$intercept_count) ?></a>명," => "<?php echo _L('Block', number_format(\$intercept_count) )?>",
+				"탈퇴 <?php echo number_format(\$leave_count) ?></a>명" => "<?php echo _L('Resign', number_format(\$leave_count) )?>",
+				*/
+				
+				"총회원수" => "<?php echo _L('No. of member');?>",
+				"명 중," => "<?php echo _L('No. of member after');?>",
+				
+				
+				">차단" => "><?php echo _L('_Block');?>",
+				"명," => "<?php echo _L('_Block After');?>",
+				
+				
+				
+				
+				
 				"검색대상"	=> "<?php echo _L('Search Option');?>",
 				"회원아이디"	=> "<?php echo _L('Member ID');?>",
 				"닉네임"	=> "<?php echo _L('Nickname');?>",
@@ -152,8 +172,6 @@
 				"검색어"	=> "<?php echo _L('Search Keyword');?>",
 				"필수"	=> "<?php echo _L('Required');?>",
 				"추천인"	=> "<?php echo _L('Referral');?>",
-				
-				
 		)
 	);
 	
@@ -165,10 +183,25 @@
 
 	$path = x::dir() . '/etc/language/code-list.txt';
 	$re = file::write( $path, $language_code );
+	
+	
+	$data = "<?php\n";
+	foreach ( $language_code_ko as $k => $v ) {
+		$v = str_replace('"', '\"', $v);
+		$data .= '$' . "language['$k'] = \"$v\";\n";
+	}
+	
+	$path = x::dir() . '/etc/language/ko.php';
+	$re = file::write( $path, $data );
+	
+	
+	
+	
+	
 
 function patch_language( $file, $kvs )
 {
-	global $language_code;
+	global $language_code, $language_code_ko;
 	
 	$data = file::read($file);
 	foreach ( $kvs as $p => $r ) {
@@ -185,13 +218,16 @@ function patch_language( $file, $kvs )
 		}
 		
 		$c = strtolower($r);
-		
 		$c = str_replace("<?php echo _l('", '', $c);
+		
 		$c = str_replace("');?>", '', $c);
 		
 		$c = str_replace("_l('", '', $c);
 		$c = str_replace("')", '', $c);
+		
 		$language_code .= "$c\n";
+		$language_code_ko["$c"] = $p;
+		
 	}
 	file::write( $file, $data );
 	echo "$file patched\n";

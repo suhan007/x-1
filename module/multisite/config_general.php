@@ -1,8 +1,10 @@
-<?
-	if ( ! admin() ) {
+<?php
+
+	if ( ! ms::admin() ) {
 		echo "You are not admin";
 		return;
 	}
+
 ?>
 <script>
 $(function() {
@@ -20,9 +22,9 @@ $(function() {
 
 
 
-<form action='?' class='config_general'>
+<form action='?' class='config_general' method='POST'>
 		<input type='hidden' name='module' value='multisite'>
-		<input type='hidden' name='action' value='config_submit'>
+		<input type='hidden' name='action' value='config_global_submit'>
 <div class='config'>
 	<table width='100%' cellpadding='5px'>
 		<tr>
@@ -32,17 +34,17 @@ $(function() {
 		<tr>
 			<td><label>Main Title</label></td>
 			<td>
-				<input type='text' name='main_title' value='<?=$site_info['title']?>'>
+				<input type='text' name='main_title' value='<?=$site['title']?>'>
 			</td>
 			<td><label>Secondary Title</label></td>
 			<td>
-				<input type='text' name='secondary_title' value='<?=$theme_config['secondary_title']?>'>
+				<input type='text' name='secondary_title' value='<?=$extra['secondary_title']?>'>
 			</td>
 		</tr>
 		<tr>
 			<td><label>Logo Text</label></td>
 			<td>
-				<input type='text' name='logo_text' value='<?=$theme_config['logo_text']?>'>
+				<input type='text' name='logo_text' value='<?=$extra['logo_text']?>'>
 			</td>
 			<td><label>Header Logo</label></td>
 			<td>
@@ -52,7 +54,7 @@ $(function() {
 		<tr>
 			<td><label>Footer Text</label></td>
 			<td colspan=3>
-				<input type='text' name='footer_text' value='<?=$theme_config['footer_text']?>'>
+				<input type='text' name='footer_text' value='<?=$extra['footer_text']?>'>
 			</td>		
 		</tr>
 		<tr>

@@ -1,12 +1,12 @@
 <?
-	if ( ! admin() ) {
+	if ( ! ms::admin() ) {
 		echo "You are not admin";
 		return;
 	}
 ?>
 <form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite'>
-		<input type='hidden' name='action' value='config_submit'>
+		<input type='hidden' name='action' value='config_menu_submit'>
 <div class='config'>
 	<table width='100%' cellpadding='5px'>
 		<tr>

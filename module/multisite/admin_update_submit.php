@@ -1,5 +1,5 @@
 <?php
-$dom_compare = ms::update_domain("$idx");
+$dom_compare = ms::get("$idx");
 if(($sub_domain==null && $title==null) || (($dom_compare['title'] == $title && $dom_compare['domain'] == $sub_domain.'.'.etc::base_domain()))) { jsBack('No Changes');}
 else {
 	$values = array('domain' => $sub_domain.'.'.etc::base_domain(), 'title'  => $title);
