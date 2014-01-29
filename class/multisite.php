@@ -232,13 +232,13 @@ class multisite {
 	
 		$theme_options_db = self::get_theme_options( etc::domain() ); 
 		di( $theme_options_db );
-		
+		di ($to);	
 		if ( !$to['secondary_title'] == '' ) $secondary_title =  $to['secondary_title'];
 		else $secondary_title = $theme_options_db['secondary_title'];
 		if ( !$to['logo_text'] == '' ) $logo_text = $to['logo_text'];
 		else $logo_text = $theme_options_db['logo_text'];
-		if ( !$to['logo_url'] == '' ) $logo_url = $to['logo_url'];
-		else $logo_url = $theme_options_db['logo_url'];
+		if ( !$to['header_logo'] == '' ) $header_logo = $to['header_logo'];
+		else $header_logo = $theme_options_db['header_logo'];
 		if ( !$to['footer_text'] == '' ) $footer_text = $to['footer_text'];
 		else $footer_text = $theme_options_db['footer_text'];
 		if ( !$to['theme'] == '' ) $theme = $to['theme'];
@@ -266,7 +266,7 @@ class multisite {
 		
 		$theme_options = array( 'secondary_title' => $secondary_title,
 							'logo_text' => $logo_text,
-							'logo_url' => $logo_url,
+							'header_logo' => $header_logo,
 							'footer_text' => $footer_text,
 							'theme' => $theme,
 							'menu_1' => $menu_1,
