@@ -18,7 +18,10 @@ include_once 'class/x.php';
 include_once 'etc/language/default.php';
 /* eo */
 
+//multisite config/options
 ms::site_title();
+$site_info = ms::get(etc::domain());
+$theme_config = ms::get_theme_options(etc::domain());
 
 if ( x::installed() ) {
 	x::$config['site'] = md::config( etc::domain_name() );

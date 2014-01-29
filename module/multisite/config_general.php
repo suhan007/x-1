@@ -3,8 +3,6 @@
 		echo "You are not admin";
 		return;
 	}
-	$site_info = ms::get(etc::domain());
-	$theme_config = ms::get_theme_options(etc::domain());
 ?>
 <script>
 $(function() {
