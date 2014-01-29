@@ -10,3 +10,76 @@ use password lost menu if you lost id or password
 register first to use this page
 go back to first page
 connected user
+setting
+basic
+admin permission
+mail test
+delete all sesion files
+delete all cache files
+delete all captcha files
+delete all thubnail
+naver syndication ping
+member
+email members
+vistor stat
+search visitors
+points management
+polls management
+forum
+forum group
+popular keywords
+keywords rank
+support setting
+your current browser is not <strong>set to using javascript<strong>.
+if you set <strong>not using javascript</strong>, please remind that no alert message will shown when you delete or edit
+your domain
+go to top
+only super admin can acess this page
+management permission
+acepted management permission
+user account
+required
+search
+list
+all
+nickname
+menu
+permission
+selected delete
+no of new members
+list
+no of members
+member account
+name
+nickname
+permission
+point
+mail
+public
+authorization
+yes
+no
+view all members
+recent posts
+forum
+subject
+date
+more
+incident
+total
+view all history
+to prevent other user from using deleted previous id, user id and nickname will be saved permanently
+member management
+no of members
+search option
+member id
+nickname
+name
+permission
+landline
+mobile
+point
+registered date
+referral
+search keyword
+required

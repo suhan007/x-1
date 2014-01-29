@@ -3,10 +3,10 @@
 		echo "You are not admin";
 		return;
 	}
-
 	$site_info = ms::get(etc::domain());
+	$theme_config = ms::get_theme_options(etc::domain());
 ?>
-<form action='?' method='post' class='config_menu'>
+<form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_submit'>
 <div class='config'>
@@ -26,7 +26,7 @@
 				<label><?=$i?></label>
 			</td>
 			<td>
-				<input type="text" name="menu<?=$i?>">
+				<input type="text" name="menu_<?=$i?>" value="<?=$theme_config['menu_'.$i]?>">
 			</td>
 			<td>
 				<input type="text" name="menu_url<?=$i?>">

@@ -4,10 +4,25 @@
 		return;
 	}
 	$site_info = ms::get(etc::domain());
-	
+	$theme_config = ms::get_theme_options(etc::domain());
 ?>
+<script>
+$(function() {
+	$(".config_general").submit(function() {
+		if ( $(this).find("[name='logo_text']").val() == '' ) {
+				$(this).find("[name='logo_text']").remove();
+		}
+		if ( $(this).find("[name='logo_text']").val() == '' ) {
+				$(this).find("[name='logo_text']").remove();
+		}
+		 
+	});
+});
+</script>
 
-<form action='?' method='post' class='config_general'>
+
+
+<form action='?' class='config_general'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_submit'>
 <div class='config'>
@@ -23,13 +38,13 @@
 			</td>
 			<td><label>Secondary Title</label></td>
 			<td>
-				<input type='text' name='secondary_title'>
+				<input type='text' name='secondary_title' value='<?=$theme_config['secondary_title']?>'>
 			</td>
 		</tr>
 		<tr>
 			<td><label>Logo Text</label></td>
 			<td>
-				<input type='text' name='logo_text'>
+				<input type='text' name='logo_text' value='<?=$theme_config['logo_text']?>'>
 			</td>
 			<td><label>Header Logo</label></td>
 			<td>
@@ -39,7 +54,7 @@
 		<tr>
 			<td><label>Footer Text</label></td>
 			<td colspan=3>
-				<input type='text' name='logo_text'>
+				<input type='text' name='footer_text' value='<?=$theme_config['footer_text']?>'>
 			</td>		
 		</tr>
 		<tr>
