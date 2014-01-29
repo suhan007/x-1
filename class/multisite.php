@@ -231,55 +231,13 @@ class multisite {
 	static function theme_options($to) {
 	
 		$theme_options_db = self::get_theme_options( etc::domain() ); 
-		di( $theme_options_db );
-		di ($to);	
-		if ( !$to['secondary_title'] == '' ) $secondary_title =  $to['secondary_title'];
-		else $secondary_title = $theme_options_db['secondary_title'];
-		if ( !$to['logo_text'] == '' ) $logo_text = $to['logo_text'];
-		else $logo_text = $theme_options_db['logo_text'];
-		if ( !$to['header_logo'] == '' ) $header_logo = $to['header_logo'];
-		else $header_logo = $theme_options_db['header_logo'];
-		if ( !$to['footer_text'] == '' ) $footer_text = $to['footer_text'];
-		else $footer_text = $theme_options_db['footer_text'];
-		if ( !$to['theme'] == '' ) $theme = $to['theme'];
-		else $theme = $theme_options_db['theme'];
-		if ( !$to['menu_1'] == '' ) $menu_1 = $to['menu_1'];
-		else $menu_1 = $theme_options_db['menu_1'];
-		if ( !$to['menu_2'] == '' ) $menu_2 = $to['menu_2'];
-		else $menu_2 = $theme_options_db['menu_2'];
-		if ( !$to['menu_3'] == '' ) $menu_3 = $to['menu_3'];
-		else $menu_3 = $theme_options_db['menu_3'];		
-		if ( !$to['menu_4'] == '' ) $menu_4 = $to['menu_4'];
-		else $menu_4 = $theme_options_db['menu_4'];		
-		if ( !$to['menu_5'] == '' ) $menu_5 = $to['menu_5'];
-		else $menu_5 = $theme_options_db['menu_5'];
-		if ( !$to['menu_6'] == '' ) $menu_6 = $to['menu_6'];
-		else $menu_6 = $theme_options_db['menu_6'];
-		if ( !$to['menu_7'] == '' ) $menu_7 = $to['menu_7'];
-		else $menu_7 = $theme_options_db['menu_7'];
-		if ( !$to['menu_8'] == '' ) $menu_8 = $to['menu_8'];
-		else $menu_8 = $theme_options_db['menu_8'];
-		if ( !$to['menu_9'] == '' ) $menu_9 = $to['menu_9'];
-		else $menu_9 = $theme_options_db['menu_9'];
-		if ( !$to['menu_10'] == '' ) $menu_10 = $to['menu_10'];
-		else $menu_10 = $theme_options_db['menu_10'];
+		di($theme_options_db);
 		
-		$theme_options = array( 'secondary_title' => $secondary_title,
-							'logo_text' => $logo_text,
-							'header_logo' => $header_logo,
-							'footer_text' => $footer_text,
-							'theme' => $theme,
-							'menu_1' => $menu_1,
-							'menu_2' => $menu_2,
-							'menu_3' => $menu_3,
-							'menu_4' => $menu_4,
-							'menu_5' => $menu_5,
-							'menu_6' => $menu_6,
-							'menu_7' => $menu_7,
-							'menu_8' => $menu_8,
-							'menu_9' => $menu_9,
-							'menu_10' => $menu_10 );
-							
+		foreach ( $theme_options_db as $key => $value ) {
+			if( !$to[ $key ] == '' ) $theme_options[ $key ] = $to[ $key ];
+			else $theme_options[ $key ] = $theme_options_db[ $key ];
+		}
+
 		$serialized_theme_options = serialize( $theme_options );
 		db::update( 'x_multisite_config', array( 'extra' => $serialized_theme_options ) , array( 'domain' => etc::domain() ) );
 	}
