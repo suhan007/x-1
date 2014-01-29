@@ -210,8 +210,12 @@ class multisite {
 	}
 	
 	static function site_title($site_title=null) {
-		
-		return $site_title;	
+		/**TEMPORARY, if 'title' has a value -Arvin*/
+		global $g5, $config;
+		$multisite_title = ms::get(etc::domain());
+		$g5['title'] = $multisite_title['title'];
+		$subtitle = self::get_theme_options(etc::domain());
+		$config['cf_title'] = $subtitle['secondary_title'];
 	}
 
 	static function site_menu() {

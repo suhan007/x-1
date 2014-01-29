@@ -18,10 +18,7 @@ include_once 'class/x.php';
 include_once 'etc/language/default.php';
 /* eo */
 
-/**TEMPORARY, if 'title' has a value -Arvin*/
-$multisite_title = ms::get(etc::domain());
-$g5['title'] = $multisite_title['title'];
-$config['cf_title'] = 'subtitle';
+ms::site_title();
 
 if ( x::installed() ) {
 	x::$config['site'] = md::config( etc::domain_name() );
