@@ -8,7 +8,7 @@
 	$dirs = file::getDirs(X_DIR_THEME);
 	
 ?>
-<form action='?' method='post' class='config_general'>
+<form action='?' class='config_theme'>
 	<input type='hidden' name='module' value='multisite'>
 	<input type='hidden' name='action' value='config_submit'>
 	<div class='config'>
@@ -54,7 +54,7 @@
 	</div>
 		<script>
 			$('select.theme').change(function(){
-				$('form.config_general').submit();
+				$('form.config_theme').submit();
 			});
 		</script>
 </form>
