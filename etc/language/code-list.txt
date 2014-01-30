@@ -41,9 +41,9 @@ user account
 required
 search
 list
->all<
+all
 nickname
->menu<
+menu
 permission
 selected delete
 no of new members
@@ -72,7 +72,6 @@ to delete user
 member management
 no. of member
 no. of member after
-<!--차/단횜원수-->
 _block
 _block after
 search option
@@ -87,3 +86,5 @@ registered date
 referral
 search keyword
 required
+admin mode
+name after

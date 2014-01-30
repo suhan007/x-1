@@ -175,6 +175,14 @@
 		)
 	);
 	
+	patch_language( g::dir() . '/skin/outlogin/basic/outlogin.skin.2.php',
+		array(
+			"관리자 모드"	=> "<?php echo _L('Admin Mode');?>",
+			"님<"	=> "<?php echo _L('name after');?><",
+		)
+	);
+	
+	
 	
 	
 	
@@ -188,7 +196,7 @@
 	$data = "<?php\n";
 	foreach ( $language_code_ko as $k => $v ) {
 		$v = str_replace('"', '\"', $v);
-		$data .= '$' . "language['$k'] = \"$v\";\n";
+		$data .= '$' . "language_code['$k'] = \"$v\";\n";
 	}
 	
 	$path = x::dir() . '/etc/language/ko.php';
@@ -217,16 +225,27 @@ function patch_language( $file, $kvs )
 			}
 		}
 		
-		$c = strtolower($r);
-		$c = str_replace("<?php echo _l('", '', $c);
+		$s = strtolower($r);
 		
-		$c = str_replace("');?>", '', $c);
 		
-		$c = str_replace("_l('", '', $c);
-		$c = str_replace("')", '', $c);
+		$delimitor = "<?php echo _l('";
+		if ( strpos( $s, $delimitor ) !== false ) {
+			list ( $a, $b ) = explode($delimitor, $s);
+			list ( $s, $d ) = explode("');?>", $b);
+		}
 		
-		$language_code .= "$c\n";
-		$language_code_ko["$c"] = $p;
+		
+		$delimitor = "_l('";
+		if ( strpos( $s, $delimitor ) !== false ) {
+			list ( $a, $b ) = explode("_l('", $s);
+			list ( $s, $d ) = explode("')", $b);
+		}
+		
+		
+		$p = trim($p, "\"'<>");
+		
+		$language_code .= "$s\n";
+		$language_code_ko["$s"] = $p;
 		
 	}
 	file::write( $file, $data );

@@ -71,6 +71,13 @@ class x {
 		return X_DIR_ETC . './admin_menu.php';
 	}
 	
+	static function url_setting()
+	{
+		return self::url() . "/?module=member&action=setting";
+	}
+	
+	
+	
 	
 	/**
 	 *  @brief hooks upon life cycle

@@ -82,6 +82,7 @@
 <div id="wrapper">
     <div id="aside">
         <?php echo outlogin('basic'); // 외부 로그인  ?>
+		<a href='<?=x::url_setting()?>'><?php echo _L('Member Setting');?></a>
         <?php echo poll('basic'); // 설문조사  ?>
     </div>
     <div id="container">

@@ -187,24 +187,15 @@ class etc {
 	 */
 	static function lang( $code, $arg1=null, $arg2=null, $arg3=null )
 	{
-		global $language;
+		global $language_code;
 		
-		
-		
-		if ( isset($language[$code]) ) {
-			$string = $language[$code];
+		$code_back = $code;
+		$code = strtolower($code);
+
+		if ( ! isset($language_code[$code]) ) {
+			return $code_back;
 		}
-		else {
-			$code_back = $code;
-			$code = strtolower($code);
-			
-			if ( ! isset($language[$code]) ) {
-				return $code_back;
-			}
-			else $string = $language[$code];
-		}
-		
-		
+		else $string = $language_code[$code];
 		
 		
 		if ( strpos($string, '#1') !== false ) $string = str_replace("#1", $arg1, $string);
@@ -252,6 +243,27 @@ class etc {
 	static function browser_language()
 	{
 		return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	}
+	
+	
+	
+
+	/**
+	 *  @brief returns user language
+	 *  
+	 *  @return language code like "en" or "ko"
+	 *  
+	 *  @details This function returns user language code.
+	 *  If a user visits the site for the first time, then
+	 *  x will check browser language and use the language pack if supported.
+	 *  If the language pack for the browser is not available, then it uses 'en.php' as default language pack.
+	 *  User can change the language on setting page.
+	 */
+	static function user_language()
+	{
+		$code = get_session( 'user_language' );
+		if ( $code ) return $code;
+		else return self::browser_language();
 	}
 	
 	

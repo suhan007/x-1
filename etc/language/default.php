@@ -5,23 +5,14 @@
  *  @return empty
  *  
  *  @details if user language is not en, then load user language pack.
+ *  @refer x buildguide#language
+ *  https://docs.google.com/a/withcenter.com/document/d/1hLnjVW9iXdVtZLZUm3RIWFUim9DFX8XhV5STo6wPkBs/edit#heading=h.ldxgqjhlusxc
  *  
- *  You have to be careful how the code flows.
- *  Let's say, if you have "$language['Code']" in en.php and you have "$language['code']" in ko.php
- *  'Code' will match to the one in en.php
- *  'code' will match to the one in ko.php
- *  'coDe' will match to the one in ko.php
- *  so, for this complication, we recommend to put the code in lower case letter insdie en.php
  */
 include x::dir() . '/etc/language/en.php';
-$ln = etc::browser_language();
+$ln = etc::user_language();
 if ( $ln != 'en' ) {
 	$path = x::dir() . "/etc/language/$ln.php";
 	if ( file_exists( $path ) ) include $path;
 }
-
-
-
-
-
 
