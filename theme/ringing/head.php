@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?x::theme_folder()?>/css/theme.css">
+<link rel="stylesheet" href="<?x::url_theme()?>/css/theme.css">
 <!-- 상단 시작 { -->
 
 <div id="hd">
@@ -9,7 +9,7 @@
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src='<?=x::theme_folder()?>/img/logo.png'></a>
+            <a href="<?php echo G5_URL ?>"><img src='<?=x::url_theme()?>/img/logo.png'></a>
         </div>
 
         <fieldset id="hd_sch">
@@ -71,8 +71,7 @@
     </div>
 
     <hr>
-    <?include G5_PATH . '/x/html/patch.head-main-menu.php'?>
-	
+    <?include x::theme('menu')?>
 </div>
 <!-- } 상단 끝 -->
 

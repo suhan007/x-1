@@ -54,6 +54,18 @@ class x {
 	}
 	
 	/**
+	 *	@brief returns the url of theme
+	 *	@code
+			<a href="<?php echo G5_URL ?>"><img src='<?=x::url_theme()?>/img/logo.png'></a>
+	 *	@endcode
+	 */
+	static function url_theme()
+	{
+		return self::url() . '/theme/' . self::$config['site']['theme'];
+	}
+	
+	
+	/**
 	 *  @brief return the url of admin page
 	 *  
 	 *  @return string url
@@ -158,14 +170,32 @@ class x {
 	 *  @param [in] $file file name to include under the theme folder.
 	 *  @return string file path
 	 *  
-	 *  @details if the theme file does not exist, it returns etc/null.php to avoid error.
+	 *  @details return the path of the file. if the file does not exists, then the caller function may print out error.
+	 * 	
+	 * 	@code
+			<?include x::theme('menu')?>
+	 * 	@endcod
 	 */
 	static function theme( $file )
 	{
 		$path = self::dir() . '/theme/' . self::$config['site']['theme'] . '/' . $file . '.php';
+		
+		return $path;
+		/*
 		if ( file_exists( $path ) ) return $path;
 		else return self::path_null();
+		*/
 	}
+	
+	/**
+	 * @brief returns the path for theme folder
+	 *
+	 */
+	static function theme_folder()
+	{
+		return self::dir() . '/theme/' . self::$config['site']['theme'];
+	}
+	
 	
 	static function path_null()
 	{
