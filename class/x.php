@@ -125,7 +125,7 @@ class x {
 	 *  @return empty
 	 *  
 	 *  @details Details
-	 *  @code example of hook registeration
+	 *  @code example of hook registeration. This kind of anonymous function is available after php version 5.3
 	 *  x::hook_register('head_begin', function() {
 			di("this is first head_begin");
 		});
