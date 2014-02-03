@@ -13,4 +13,3 @@
 		g::board_create($o);
 		include module( 'create_success' );
 	}
-	

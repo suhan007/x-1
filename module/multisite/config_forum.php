@@ -11,6 +11,6 @@
 		
 		Subject : ...<br>
 		List of posts in a page : ...<br>
-		
+		Edit Category :<br>
 		
 </form>
