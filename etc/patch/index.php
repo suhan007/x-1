@@ -7,6 +7,7 @@
 	$sp = "include_once('./_head.php');";
 	$add = "
 	include x::theme_folder() . '/index.php';
+	include_once('./_tail.php');
 	return;
 ";
 
