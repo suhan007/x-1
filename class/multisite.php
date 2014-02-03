@@ -260,12 +260,9 @@ class multisite {
 	 *  @details changes the site title by setting g5 variable.
 	 */
 	static function site_title( ) {
-		/**TEMPORARY, if 'title' has a value -Arvin*/
 		global $g5, $config;
-		
 		$opt = ms::get( etc::domain() );
-		
-		$g5['title'] = $opt['title'];
+		$g5['title'] = $opt['extra']['title'];
 		$config['cf_title'] = $opt['extra']['secondary_title'];
 	}
 	
@@ -298,6 +295,12 @@ class multisite {
 	 *  @details Details
 	 */
 	static function update( $option ) {
-		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $option ) ) , array( 'domain' => etc::domain() ) );
+		/* Added this array_merge to combine $_POST value from the different menu of multisite config,
+		   also added an if condition that if it is empty, just push the current $in array, that would serve as the initial
+		   value of 'extra' field.*/
+		global $extra;
+		if ($extra) $opt = array_merge( $extra , $option );
+		else $opt = $option;
+		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $opt ) ) , array( 'domain' => etc::domain() ) );
 	}
 }

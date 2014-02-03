@@ -105,14 +105,25 @@
 	overflow: hidden;
 }
 
-.theme-thumb p {
+.theme-thumb table {
 	position: absolute;
 	bottom: 0;
 	padding: 1em;
 	background: #333333;
 	width: 100%;
+}
+
+.theme-thumb table, .theme-thumb a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.theme-thumb table button[name='theme'] {
+	border: none;
+	background: transparent;
 	color: #ffffff;
 }
+
 
 .multisite-menu {
 	margin: 0;

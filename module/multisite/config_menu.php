@@ -3,6 +3,8 @@
 		echo "You are not admin";
 		return;
 	}
+	/* Testing Create Group for Forum */
+	di(g::group_create(array( 'id' => "ms01_boardid" , 'subject' => "Multisite 02" , 'device' => '')));
 ?>
 <form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite'>
@@ -24,12 +26,15 @@
 				<label><?=$i?></label>
 			</td>
 			<td>
-				<input type="text" name="menu_<?=$i?>" value="<?=$theme_config['menu_'.$i]?>">
+				<input type="text" name="menu_<?=$i?>" value="<?=$extra['menu_'.$i]?>">
 			</td>
 			<td>
-				<input type="text" name="menu_url<?=$i?>">
+				<input type="text" name="menu_url_<?=$i?>" value="<?=$extra['menu_url_'.$i]?>">
 			</td>
-			<td><input type="checkbox" name="menu<?=$i?>_target" value="Y"></td>
+			<td>
+				<input type="hidden" name="menu<?=$i?>_target" value="N">
+				<input type="checkbox" name="menu<?=$i?>_target" value="Y" <?php if ( $extra['menu'.$i.'_target']  == 'Y' ) echo 'checked'?>>
+			</td>
 		</tr>
 		<?}?>
 		<tr>

@@ -6,22 +6,6 @@
 	}
 	
 ?>
-<script>
-$(function() {
-	$(".config_general").submit(function() {
-		if ( $(this).find("[name='logo_text']").val() == '' ) {
-				$(this).find("[name='logo_text']").remove();
-		}
-		if ( $(this).find("[name='logo_text']").val() == '' ) {
-				$(this).find("[name='logo_text']").remove();
-		}
-		 
-	});
-});
-</script>
-
-
-
 <form action='?' class='config_general' method='POST'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_global_submit'>
@@ -34,7 +18,7 @@ $(function() {
 		<tr>
 			<td><label>Main Title</label></td>
 			<td>
-				<input type='text' name='title' value='<?=$site['title']?>'>
+				<input type='text' name='title' value='<?=$extra['title']?>'>
 			</td>
 			<td><label>Secondary Title</label></td>
 			<td>
