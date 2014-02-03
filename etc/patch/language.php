@@ -210,8 +210,8 @@
 	patch_language( g::dir() . '/adm/member_list_delete.php',
 		array(
 		
-		),
-	
+		)
+	);
 	
 	
 
