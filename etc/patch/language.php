@@ -136,55 +136,81 @@
 	
 	patch_language( g::dir() . '/adm/member_list.php',
 		array(
+				"탈퇴회원수" => "<!--탈퇴/회원수 -->",
+				"차단회원수" => "<!--차단/회원수 -->",
+				'>탈퇴함<' 	=> ">'._L('Resigned').'<",
+				'>차단됨<' 	=> ">'._L('Blocked').'<",
+				"'차단해제'"	=> "_L('Unblock')",
+				"'차단하기'"  => "_L('Block')",
+				"'휴대폰'"	=> "_L('Mobile')",
+				"'아이핀'"	=> "_L('I-PIN')",
+				"'관리자'"	=> "_L('Administrator')",
+				'"정상"'		=> "_L('Normal')",
+				"자료가 없습니다."	=> '"._L("No data")."',
 				"회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다." => "<?php echo _L('To delete user');?>",
 				"'회원관리'"	=> "_L('Member Management')",
-				
-				
-				
-				/*
-					"총회원수 <?php echo number_format(\$total_count) ?>명 중,"	=> "<?php echo _L('No of member', number_format(\$total_count))?>",
-				
-				"차단 <?php echo number_format(\$intercept_count) ?></a>명," => "<?php echo _L('Block', number_format(\$intercept_count) )?>",
-				"탈퇴 <?php echo number_format(\$leave_count) ?></a>명" => "<?php echo _L('Resign', number_format(\$leave_count) )?>",
-				*/
-				
-				"총회원수" => "<?php echo _L('No. of member');?>",
-				"명 중," => "<?php echo _L('No. of member after');?>",
-				
-				
-				">차단" => "><?php echo _L('_Block');?>",
-				"명," => "<?php echo _L('_Block After');?>",
-				
-				
-				
-				
-				
-				"검색대상"	=> "<?php echo _L('Search Option');?>",
-				"회원아이디"	=> "<?php echo _L('Member ID');?>",
-				"닉네임"	=> "<?php echo _L('Nickname');?>",
-				"이름"	=> "<?php echo _L('Name');?>",
-				"권한"	=> "<?php echo _L('Permission');?>",
-				"전화번호"	=> "<?php echo _L('Landline');?>",
-				"휴대폰번호"	=> "<?php echo _L('Mobile');?>",
-				"포인트"	=> "<?php echo _L('Point');?>",
-				"가입일시"	=> "<?php echo _L('Registered Date');?>",
-				"추천인"	=> "<?php echo _L('Referral');?>",
-				"검색어"	=> "<?php echo _L('Search Keyword');?>",
-				"필수"	=> "<?php echo _L('Required');?>",
-				"추천인"	=> "<?php echo _L('Referral');?>",
+				">전체목록</" => ">'._L('List All').'</",
+				"총회원수"=> "<?php echo _L('No of member')?>",
+				"?>명 중," =>  "?><?php echo _L('No of member after')?>",
+				">차단 <?" => "><?php echo _L('No of blocked')?><?",
+				"?></a>명," => "?></a><?php echo _L('No of blocked after')?>",
+				">탈퇴 <?" => "><?php echo _L('No of resign')?><?",
+				"?></a>명" => "?></a><?php echo _L('No of resign after')?>",
+				">검색대상<" => "><?php echo _L('Search Member')?><",
+				">회원아이디<" => "><?php echo _L('Member ID')?><",
+				">닉네임<" => "><?php echo _L('Nickname')?><",
+				">이름<" => "><?php echo _L('Name')?><",
+				">권한<" => "><?php echo _L('Permission')?><",
+				">전화번호<" => "><?php echo _L('Landline')?><",
+				">휴대폰번호<" => "><?php echo _L('Mobile')?><",
+				">포인트<" => "><?php echo _L('Point')?><",
+				">가입일시<" => "><?php echo _L('Registered Date')?><",
+				">추천인<" => "><?php echo _L('Referral')?><",
+				">검색어<" => "><?php echo _L('Search Keyword')?><",
+				"> 필수<" => "> <?php echo _L('Required')?><",
+				'"검색"' => '"<?php echo _L("Search")?>"',
+				">회원추가<" => "><?php echo _L('Add Member')?><",
+				"목록</" => "<?php echo _L('List')?></",
+				">회원 전체<" => "><?php echo _L('All Members')?><",
+				"?>아이디<" => "?><?php echo _L('ID')?><",
+				"본인확인<" => "<?php echo _L('Identity')?><",
+				"휴대폰<" => "<?php echo _L('Mobile')?><",
+				"상태/" => "<?php echo _L('Status')?>/",
+				"최종접속<" => "<?php echo _L('Recent visit')?><",
+				">접근<" => "><?php echo _L('Access')?><",
+				"r>그룹" => "r><?php echo _L('Group')?>",
+				">관리<" => "><?php echo _L('Management')?><",
+				"?>메일<" => "?><?php echo _L('Email')?><",
+				"r>수신" => "?><?php echo _L('Received')?>",
+				"?>성인<" => "?><?php echo _L('Adult')?><",
+				"r>인증" => "?><?php echo _L('Authorization')?>",
+				"?> 포인트" => "?><?php echo _L('Point')?>",
+				"?>가입일" => "?><?php echo _L('Registered Date')?>",
+				">아이핀<" => "><?php echo _L('I-PIN')?><",
+				"선택수정" => "<?php echo _L('Seleted Modification')?>",
+				"선택삭제" => "<?php echo _L('Seleted Deletion')?>",
+				" 하실 항목을 하나 이상 선택하세요." =>  "<?php echo _L('Please select at least two')?>",
+				"선택한 자료를 정말 삭제하시겠습니까?" => "<?php echo _L('Are you sure to delete this data you select?')?>",
+				">그룹</" => ">'._L('Group').'</",
+				"?>정보" =>  "?><?php echo _L('Information')?>", 
+				">공개<" => "><?php echo _L('in public')?><",
+				">차단<" => "><?php echo _L('Block')?><",
 		)
 	);
 	
-	patch_language( g::dir() . '/skin/outlogin/basic/outlogin.skin.2.php',
+	patch_language( g::dir() . '/adm/member_list_delete.php',
 		array(
-			"관리자 모드"	=> "<?php echo _L('Admin Mode');?>",
-			"님<"	=> "<?php echo _L('name after');?><",
+			"회원자료가 존재하지 않습니다." => '"._L("No Member Data")."',
+			"로그인 중인 관리자는 삭제 할 수 없습니다." => '"._L("You cannot delete the admin who logged in currently")."',
+			"최고 관리자는 삭제할 수 없습니다." => '"._L("Super admin cannot be deleted.")."',
+			"자신보다 권한이 높거나 같은 회원은 삭제할 수 없습니다." => '"._L("You cannot delete the member who have the same or higher level than yours.")."',
 		)
 	);
 	
-	
-	
-	
+	patch_language( g::dir() . '/adm/member_list_delete.php',
+		array(
+		
+		),
 	
 	
 	
