@@ -34,7 +34,7 @@
 	<?php } ?>
 	
 	<li class="gnb_1dli">
-		<a href="./" class="gnb_1da">홈</a>
+		<a href="<?=g::url()?>" class="gnb_1da">홈</a>
 	</li>	
 	
 	<li class="gnb_1dli">
@@ -46,14 +46,6 @@
 		<a href="<?=g::url_board('qna')?>" class="gnb_1da">질문답변</a>
 	</li>
 	
-	
-	<li class="gnb_1dli">
-		<a href="<?=ms::url_create()?>" class="gnb_1da">이명정보</a>
-	</li>
-	
-	<li class="gnb_1dli">
-		<a href="<?=ms::url_create()?>" class="gnb_1da">난청정보</a>
-	</li>
 	
 	
 	
