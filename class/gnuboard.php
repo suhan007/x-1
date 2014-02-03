@@ -25,6 +25,17 @@ class gnuboard {
 		return G5_URL;
 	}
 	
+	/**
+	 *	@brief returns the URL of a forum
+	 * @code
+			<?=g::url_board('qna')?>
+	 *	@endcode
+	 */
+	static function url_board($id)
+	{
+		return self::url() . "/bbs/board.php?bo_table=$id";
+	}
+	
 	
 	/**
 	 *  @brief 메뉴 정보 가져와서 리턴한다.

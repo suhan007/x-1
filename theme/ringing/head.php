@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?x::url_theme()?>/css/theme.css">
+<link rel="stylesheet" href="<?=x::url_theme()?>/css/theme.css">
 <!-- 상단 시작 { -->
 
 <div id="hd">

@@ -38,12 +38,12 @@
 	</li>	
 	
 	<li class="gnb_1dli">
-		<a href="<?=ms::url_create()?>" class="gnb_1da">자유토론</a>
+		<a href="<?=g::url_board('freetalk')?>" class="gnb_1da">자유토론</a>
 	</li>
 	
 	
 	<li class="gnb_1dli">
-		<a href="<?=ms::url_create()?>" class="gnb_1da">질문답변</a>
+		<a href="<?=g::url_board('qna')?>" class="gnb_1da">질문답변</a>
 	</li>
 	
 	
