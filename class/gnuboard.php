@@ -5,8 +5,7 @@
  *  @brief 그누보드 관련 라이브러리
  *  
  */
-class g extends gnuboard {
-}
+class g extends gnuboard {}
 class gnuboard {
 	/**
 	 *  @brief gets installation dir
@@ -67,7 +66,8 @@ class gnuboard {
 
 
 	/**
-	 *  @brief 게시판 그룹을 생성한다.
+	 *  @brief creates a group of forums.
+	 *  All the forum of GNUBoard must be in a group which means every forum belongs to a group.
 	 *  
 	 *  @param [in] $o 연관 배열로
 	 *  $o['id'] 그룹 아이디
@@ -111,7 +111,9 @@ class gnuboard {
 	
 	
 	/**
-	 *  @brief 게시판을 생성한다.
+	 *  @brief
+	 *  Creates a forum of a group.
+	 *  게시판을 생성한다.
 	 *  
 	 *  @param [in] $o 연관 배열. 게시판 생성을 위한 설정 값을 연관 배열로 입력 받는다.
 	 *  $o[id]			게시판 아이디. bo_table 레코드에 저장이 된다.
@@ -121,8 +123,22 @@ class gnuboard {
 	 *  @return 성공 시 거짓. 실패 시 참.
 	 *  
 	 *  
-	 *  @details 게시판 생성은 g5-5.0b17 의 board_form_update.php 에서 SQL Query 를 echo 하여 필요한 부분만 구성한 것이다.
+	 *  @details 
+	 *  To create a forum,
+	 *  <ol>
+	 *  	<li> it must insert forum data into g5_board </li>
+	 *  	<li> then, it must create board table </h1>
+	 *  </ol>
+	 *  게시판 생성은 g5-5.0b17 의 board_form_update.php 에서 SQL Query 를 echo 하여 필요한 부분만 구성한 것이다.
+	 *  
 	 *  @code
+	 *  
+		$o = array(
+			'id'	=> ms::board_id( $domain ),
+			'subject'	=> $title,
+			'group_id'	=> 'multisite',
+		);
+		g::board_create($o);
 	 *  
 	 *  @endcode
 	 */
@@ -228,6 +244,17 @@ class gnuboard {
 				bo_10 = '' 
 		";
 		db::query($q);
+		
+		
+		
+		/// create board table
+		$file = file( g::dir() . '/adm/sql_write.sql');
+		$sql = implode($file, "\n");
+		$create_table = $g5['write_prefix'] . $o['id'];
+		$source = array('/__TABLE_NAME__/', '/;/');
+		$target = array($create_table, '');
+		$sql = preg_replace($source, $target, $sql);
+		db::query($sql, FALSE);
 	}
 	
 		

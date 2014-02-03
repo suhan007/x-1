@@ -25,7 +25,7 @@ $site = ms::get(etc::domain());					// This is multisite configuration
 
 $extra = &$site['extra'];
 
-if ( x::installed() ) {
+if ( x::installed() && ! etc::cli() ) {
 	x::$config['site'] = md::config( etc::domain_name() );
 	include_once x::theme('init');
 	ob_start();

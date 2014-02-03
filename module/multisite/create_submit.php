@@ -4,5 +4,13 @@
 	
 	
 	if ( $error_code = ms::create( array('domain'=>$domain, 'title'=>$title) ) ) include module( 'create_fail' );
-	else include module( 'create_success' );
+	else {
+		$o = array(
+			'id'	=> ms::board_id( $domain ),
+			'subject'	=> $title,
+			'group_id'	=> 'multisite',
+		);
+		g::board_create($o);
+		include module( 'create_success' );
+	}
 	

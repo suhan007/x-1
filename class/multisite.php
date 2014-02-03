@@ -28,6 +28,14 @@ class multisite {
 		
 		
 		
+		
+		// create forum
+		
+		// cofnig forum
+		
+		
+		
+		
 		$time = time();
 		$q = "
 			INSERT INTO x_multisite_config ( domain, mb_id, stamp_create, title, extra )
@@ -225,11 +233,15 @@ class multisite {
 	 *  @details
 	 *  	returns forum id like "ms_[domain]"
 	 *  	게시판 아이디 형식은 "ms_[도메인]" 이다.
+	 *  @code
+	 *  <?=g::url_board(ms::board_id(etc::domain()))?>
+	 *  @endcode
 	 */
 	static function board_id( $domain )
 	{
 		return 'ms_' . etc::last_domain($domain);
 	}
+	
 	
 	/**
 	 *  @brief 

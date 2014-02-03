@@ -3,8 +3,7 @@
 		echo "You are not admin";
 		return;
 	}
-	/* Testing Create Group for Forum */
-	di(g::group_create(array( 'id' => "ms01_boardid" , 'subject' => "Multisite 02" , 'device' => '')));
+	
 ?>
 <form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite'>
@@ -19,6 +18,7 @@
 			<td width='20em'><label>MENU NAME</label></td>
 			<td width='20em'><label>MENU URL</label></td>
 			<td><label>Open in a<br>New Tab</label></td>
+			<td><label>SKIN</label></td>
 		</tr>
 		<? for ( $i = 1; $i <= 10; $i++ ) { ?>
 		<tr>
@@ -27,6 +27,13 @@
 			</td>
 			<td>
 				<input type="text" name="menu_<?=$i?>" value="<?=$extra['menu_'.$i]?>">
+			</td>
+			<td>
+				<select name='choose_type'>
+					<option value=''>Choose Menu Type</option>
+					<option value='category'>Forum Category</option>
+					<option value='url'>Input URL</option>
+				</select>
 			</td>
 			<td>
 				<input type="text" name="menu_url_<?=$i?>" value="<?=$extra['menu_url_'.$i]?>">

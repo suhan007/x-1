@@ -31,10 +31,12 @@ if ( $argv[1] == 'language' ) {
  */
 
 
+	include x::dir() . "/etc/patch/index.php";
 	include x::dir() . "/etc/patch/database.php";
 	include x::dir() . "/etc/patch/jquery.php";
 	include x::dir() . "/etc/patch/begin_end.php";
 	include x::dir() . "/etc/patch/menu.php";
+	
 	
 	// include x::dir() . "/etc/patch/hook.php";
 	

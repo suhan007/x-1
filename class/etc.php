@@ -209,6 +209,19 @@ class etc {
 	
 	
 	/**
+	 *  @brief return true if the script is running on CLI
+	 *  
+	 *  @return Return_Description
+	 *  
+	 *  @details Details
+	 */
+	static function cli()
+	{
+		return php_sapi_name() == 'cli';
+	}
+	
+	
+	/**
 	 *  @brief 입력받은 도메인에서 첫 부분을 리턴한다.
 	 *  
 	 *  @param [in] $domain Parameter_Description
