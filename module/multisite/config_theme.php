@@ -10,7 +10,7 @@
 	<input type='hidden' name='action' value='config_theme_submit'>
 
 	<div class='config'>
-		<h1>Themes, click thumbnail to change</h1>
+		<h1>Themes, click on the small thumbnails to change</h1>
 		<? if ( $extra['theme'] != '' ) { ?>
 		<div class='theme-thumb'>
 			<img src="theme/<?=$extra['theme']?>/preview.jpg" width='720' height='480'>

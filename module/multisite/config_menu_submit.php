@@ -1,3 +1,4 @@
 <?php
 ms::update( $in );
-//jsGo("?module=$module&action=config_global");
+di($in);
+//jsGo("?module=$module&action=config_menu");
