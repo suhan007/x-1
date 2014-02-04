@@ -156,3 +156,19 @@
 	padding: 1em;
 
 }
+
+fieldset {
+	border: 1px solid #d5d5d5;
+	border-radius: 3px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+fieldset legend {
+	color: #555555;
+	font-size: 10pt;
+	text-indent: 0;
+	position: relative;
+	line-height: 100%;
+	padding: 0 10px;
+	font-weight: bold;
+}

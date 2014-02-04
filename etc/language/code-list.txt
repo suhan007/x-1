@@ -28,7 +28,6 @@ polls management
 forum
 forum group
 popular keywords
-keywords rank
 support setting
 allow javascript
 allow javascript desc
@@ -46,8 +45,6 @@ nickname
 menu
 permission
 selected delete
-admin main
-no of new members
 list
 no of members
 member account
@@ -58,6 +55,7 @@ point
 mail
 public
 authorization
+admin main
 yes
 no
 view all members
@@ -83,104 +81,101 @@ normal
 to delete user
 member management
 list all
-no of member')?>
-no of member after')?>
-no of blocked')?><?
-no of blocked after')?>
-no of resign')?><?
-no of resign after')?>
-search member')?><
-member id')?><
-nickname')?><
-name')?><
-permission')?><
-landline')?><
-mobile')?><
-point')?><
-registered date')?><
-referral')?><
-search keyword')?><
-required')?><
-"<?php echo _l("search")?>"
-add member')?><
-list')?></
-all members')?><
-id')?><
-identity')?><
-mobile')?><
-status')?>/
-recent visit')?><
-access')?><
-group')?>
-management')?><
-email')?><
-received')?>
-adult')?><
-authorization')?>
-point')?>
-registered date')?>
-i-pin')?><
-seleted modification')?>
-seleted deletion')?>
-please select at least two')?>
-are you sure to delete this data you select?')?>
+no of member
+no of member after
+no of blocked
+no of blocked after
+no of resign
+no of resign after
+search member
+member id
+nickname
+name
+permission
+landline
+mobile
+point
+registered date
+referral
+search keyword
+required
+"<?php echo _l("search");?>"
+add member
+list
+all members
+id
+identity
+mobile
+status
+recent visit
+access
 group
-information')?>
-in public')?><
-block')?><
+management
+email
+received
+adult
+authorization
+point
+registered date
+i-pin
+seleted modification
+seleted deletion
+please select at least two
+are you sure to delete this data you select?
+group
+information
+in public
+block
 "._l("no member data")."
 "._l("you cannot delete the admin who logged in currently")."
 "._l("super admin cannot be deleted.")."
 "._l("you cannot delete the member who have the same or higher level than yours.")."
-go to post')?>
-admin info')?>
-basic setting')?>
-community')?>
-logout')?>
+go to post
+admin info
+basic setting
+community
+logout
 <!--외부로//그인-->
-<!-- 현재 접속//자수-->
-go to post')?>
-search all in site')?>
-search keyword')?><
-required')?>
-"<?php echo _l("search")?>"
-admin')?>
-edit info')?>
-logout')?>
-register')?>
-login')?>
-1:1 support')?>
-current users')?>
-new post')?>
-main menu')?>
-no created menu')?>
-member login')?>
-member id')?>
-required')?>
-password')?>
-register')?>
-find password')?>
-remember me')?>
-"<?php echo _l("login")?>"
-my profile')?>
-admin mode')?>
-unreaded')?>
-message')?>
-point')?>
-scrap')?>
-edit info')?>
-logout')?>
-<!-- 인기//검색어 시작
-<!-- 인기//검색어 끝
-popular keyword')?>
-접속자//집계 시작
-접속자//집계 끝
-visitor stat')?>
-today')?>
-yesterday')?>
-maximun of visitors')?>
-total of visitors')?>
-more')?>
-your domain')?>
-go to top')?>
-view mobile version')?>
+<!-- 현재 접//속//자수-->
+go to post
+search all in site
+search keyword
+required
+admin
+edit info
+logout
+register
+login
+1:1 support
+current users
+new post
+member login
+member id
+required
+password
+register
+find password
+remember me
+"<?php echo _l("login");?>"
+my profile
+admin mode
+unreaded
+message
+point
+scrap
+edit info
+logout
+<!-- 인//기검//색어 시작
+<!-- 인기검//색어 끝
+popular keyword
+접//속자//집계 시작
+접//속자//집계 끝
+visitor stat
+today
+yesterday
+maximun of visitors
+total of visitors
+more
+your domain
+go to top
+view mobile version

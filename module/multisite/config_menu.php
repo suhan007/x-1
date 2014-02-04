@@ -11,7 +11,6 @@
 	
 	$rows = db::rows( $q );
 	
-	
 ?>
 <form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite'>
