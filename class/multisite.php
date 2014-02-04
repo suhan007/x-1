@@ -317,14 +317,5 @@ class multisite {
 		foreach($remove_keys as $key) { unset($opt[$key]); }
 		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $opt ) ) , array( 'domain' => etc::domain() ) );
 	}
-	
-	static function update_forum ( $option ) {
-	/* Added to update $g5['board_table'], values are fetched from config_forum_submit.php */
-		global $g5;
-		$remove_keys = array('module', 'action');
-		foreach($remove_keys as $key) { unset($option[$key]); }
-		if ( $option['bo_page_rows'] == '' ) $option['bo_page_rows'] = 15;
-		$option['bo_mobile_page_rows'] = $option['bo_page_rows'];
-		db::update( $g5['board_table'] , $option , array( 'bo_table' => self::board_id(etc::domain())) );
-	}
+
 }
