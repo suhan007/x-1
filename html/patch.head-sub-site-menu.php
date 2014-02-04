@@ -46,8 +46,10 @@
 		<a href="<?=ms::url_config()?>" class="gnb_1da"><?=ln('Admin Page')?></a>
 	</li>
 	
-	
-	
+	<? for ( $i = 1; $i <= 10; $i++ ) { ?>
+	<? if ( $extra['menu_'.$i] != '' ) {?>
+		<li class="gnb_1dli"><a href='#' class="gnb_1da" <? if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$extra['menu_'.$i]?></a></li>
+	<?}}?>
 </ul>
     
     </nav>
