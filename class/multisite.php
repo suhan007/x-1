@@ -27,15 +27,6 @@ class multisite {
 		if ( self::exist($o['domain']) ) return MS_EXIST;
 		
 		
-		
-		
-		// create forum
-		
-		// cofnig forum
-		
-		
-		
-		
 		$time = time();
 		$q = "
 			INSERT INTO x_multisite_config ( domain, mb_id, stamp_create, title, extra )

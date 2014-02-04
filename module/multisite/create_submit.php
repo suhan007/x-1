@@ -6,7 +6,7 @@
 	if ( $error_code = ms::create( array('domain'=>$domain, 'title'=>$title) ) ) include module( 'create_fail' );
 	else {
 		$o = array(
-			'id'	=> ms::board_id( $domain ),
+			'id'	=> ms::board_id( $domain ) . '_1',
 			'subject'	=> $title,
 			'group_id'	=> 'multisite',
 		);
