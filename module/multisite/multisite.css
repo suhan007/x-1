@@ -93,10 +93,9 @@
 	width: 20em;
 }
 
-.config label {
-
+.config .config-menu-table input[type='text'], .config table select {
+	width: 11.5em;
 }
-
 
 .theme-thumb {
 	display: inline-block;
@@ -118,12 +117,23 @@
 	text-decoration: none;
 }
 
-.theme-thumb table button[name='theme'] {
+.config button[name='theme'] {
 	border: none;
 	background: transparent;
 	color: #ffffff;
 }
 
+.config button[name='theme']:focus {
+	outline: none;
+}
+
+.config button[name='theme']:active {
+	outline: none;
+}
+
+.config button[name='theme']:hover {
+	outline: none;
+}
 
 .multisite-menu {
 	margin: 0;
