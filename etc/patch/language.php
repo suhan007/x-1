@@ -108,6 +108,7 @@
 	
 	patch_language( g::dir() . '/adm/index.php',
 		array(
+			"'관리자메인'" => "_L('Admin main')",
 			"신규가입회원" => "<?php echo _L('No of New Members');?>",
 			"목록"		=> "<?php echo _L('List');?>",
 			"총회원수"	=> "<?php echo _L('No of Members');?>",
@@ -207,14 +208,72 @@
 		)
 	);
 	
-	patch_language( g::dir() . '/adm/member_list_delete.php',
+	patch_language( g::dir() . '/adm/admin.head.php',
 		array(
-		
+			"본문 바로가기" => "<?php echo _L('Go to Post')?>",
+			"관리자정보" => "<?php echo _L('Admin Info')?>",
+			"기본환경" => "<?php echo _L('Basic Setting')?>",
+			"커뮤니티" => "<?php echo _L('Community')?>",
+			"로그아웃" => "<?php echo _L('Logout')?>",
+		)
+	);
+	
+	patch_language( g::dir() . '/head.php',
+		array(
+			"외부 로그인" => "<!--외부로//그인-->",
+			"현재 접속자수" => "<!-- 현재 접속//자수-->",
+			"본문 바로가기" => "<?php echo _L('Go to Post')?>",
+			"사이트 내 전체검색" => "<?php echo _L('Search all in site')?>",
+			">검색어<" => "><?php echo _L('Search Keyword')?><",
+			"> 필수"=> "> <?php echo _L('Required')?>",
+			'"검색"' => '"<?php echo _L("Search")?>"',
+			"관리자" => "<?php echo _L('Admin')?>",
+			"정보수정" => "<?php echo _L('Edit Info')?>",
+			"로그아웃" => "<?php echo _L('Logout')?>",
+			"회원가입" => "<?php echo _L('Register')?>",
+			"로그인" => "<?php echo _L('Login')?>",
+			"1:1문의" => "<?php echo _L('1:1 Support')?>",
+			"접속자" => "<?php echo _L('Current Users')?>",
+			"새글"  => "<?php echo _L('New Post')?>",
+			"메인메뉴"  => "<?php echo _L('Main Menu')?>",
+			"생성된 메뉴가 없습니다."  => "<?php echo _L('No created menu')?>"
+		)
+	);
+	
+	patch_language( g::dir() . '/skin/outlogin/basic/outlogin.skin.1.php',
+		array(
+			"회원로그인" => "<?php echo _L('Member Login')?>",
+			">회원아이디" => "><?php echo _L('Member ID')?>",
+			">필수" => "><?php echo _L('Required')?>",
+			">비밀번호" => "><?php echo _L('Password')?>",
+			"회원가입" => "<?php echo _L('Register')?>",
+			"정보찾기" => "<?php echo _L('Find Password')?>",
+			">자동로그인" => "<?php echo _L('Remember me')?>"
+		)
+	);
+	
+	patch_language( g::dir() . '/skin/outlogin/basic/outlogin.skin.2.php',
+		array(
+			"나의 회원정보" => "><?php echo _L('My Profile')?>",
+			"관리자 모드" => "<?php echo _L('Admin mode')?>",
+			"안 읽은" => "<?php echo _L('Unreaded')?>",
+			"쪽지" => "<?php echo _L('Message')?>",
+			"포인트" => "<?php echo _L('Point')?>",
+			"스크랩" => "<?php echo _L('Scrap')?>",
+			"정보수정" => "<?php echo _L('Edit Info')?>",
+			"로그아웃" => "<?php echo _L('Logout')?>",
+		)
+	);
+	
+	patch_language( g::dir() . '/skin/popular/basic/popular.skin.php',
+		array(
+			"인기검색어 시작" => "<!-- 인기//검색어 시작",
+			"인기검색어 끝" => "<!-- 인기//검색어 끝",
+			"인기검색어" => "<?php echo _L('Popular keyword')?>",
 		)
 	);
 	
 	
-
 	$path = x::dir() . '/etc/language/code-list.txt';
 	$re = file::write( $path, $language_code );
 	
