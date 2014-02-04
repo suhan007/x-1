@@ -3,30 +3,39 @@
 		echo "You are not admin";
 		return;
 	}
-	$site = ms::get(etc::domain());
-
 	$dirs = file::getDirs(X_DIR_THEME);
-	
 ?>
 <form action='?' class='config_theme' method='post'>
 	<input type='hidden' name='module' value='multisite'>
 	<input type='hidden' name='action' value='config_theme_submit'>
+
 	<div class='config'>
-		<h1>Theme</h1>
+		<h1>Themes, click thumbnail to change</h1>
+		<? if ( $extra['theme'] != '' ) { ?>
+		<div class='theme-thumb'>
+			<img src="theme/<?=$extra['theme']?>/preview.jpg" width='720' height='480'>
+			<table cellpadding='10px'><tr><td align='center'>Active Theme: <?=$extra['theme']?></td></table>
+		</div>
 		<?php
+		}
 			$theme_ctr=0;
 			$theme_list = array();
 			foreach ( $dirs as $dir ) {
 				$name = $theme_list['name'][$theme_ctr] = $dir;
 				$url = $theme_list['url'][$theme_ctr] = 'theme/'.$dir.'/preview.jpg';
-				?><div class='theme-thumb'>
-					<img src='<?=$url?>' width=360 height=240>
-					<table cellpadding='10px'><tr><td><?=$name?></td><td align='right'><button type='submit' name='theme' value='<?=$name?>'>Activate</button></td></tr></table>
+				if($extra['theme']!=$name) {
+				?>
+				<button type='submit' name='theme' value='<?=$name?>' onclick="return confirm('Do you really want to change Theme?');">
+					<div class='theme-thumb'>
+					<img src='<?=$url?>' width='360' height='240'>
+					<table cellpadding='10px'><tr><td><?=$name?></td></table>
 					</div>
+				</button>
 				<?
+				}
 				$theme_ctr++;
 			}
 			?>
-
 	</div>
+
 </form>
