@@ -248,7 +248,9 @@
 			">비밀번호" => "><?php echo _L('Password')?>",
 			"회원가입" => "<?php echo _L('Register')?>",
 			"정보찾기" => "<?php echo _L('Find Password')?>",
-			">자동로그인" => "<?php echo _L('Remember me')?>"
+			">자동로그인" => "<?php echo _L('Remember me')?>",
+			'"로그인"'	=> '"<?php echo _L("Login")?>"',
+			
 		)
 	);
 	
@@ -270,6 +272,27 @@
 			"인기검색어 시작" => "<!-- 인기//검색어 시작",
 			"인기검색어 끝" => "<!-- 인기//검색어 끝",
 			"인기검색어" => "<?php echo _L('Popular keyword')?>",
+		)
+	);
+	
+	patch_language( g::dir() . '/skin/visit/basic/visit.skin.php',
+		array(
+			"접속자집계 시작" => "접속자//집계 시작",
+			"접속자집계 끝" => "접속자//집계 끝",
+			"접속자집계" => "<?php echo _L('Visitor Stat')?>",
+			"오늘" => "<?php echo _L('Today')?>",
+			"어제" => "<?php echo _L('Yesterday')?>",
+			"최대" => "<?php echo _L('Maximun of visitors')?>",
+			"전체" => "<?php echo _L('Total of visitors')?>",
+			"상세보기" => "<?php echo _L('More')?>"
+		)
+	);
+	
+	patch_language( g::dir() . '/tail.php',
+		array(
+			"소유하신 도메인" => "<?php echo _L('Your Domain')?>",
+			"상단으로" => "<?php echo _L('Go to Top')?>",
+			"모바일 버전으로 보기" => "<?php echo _L('View Mobile Version')?>"
 		)
 	);
 	

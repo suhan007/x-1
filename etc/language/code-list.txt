@@ -161,6 +161,7 @@ password')?>
 register')?>
 find password')?>
 remember me')?>
+"<?php echo _l("login")?>"
 my profile')?>
 admin mode')?>
 unreaded')?>
@@ -172,3 +173,14 @@ logout')?>
 <!-- 인기//검색어 시작
 <!-- 인기//검색어 끝
 popular keyword')?>
+접속자//집계 시작
+접속자//집계 끝
+visitor stat')?>
+today')?>
+yesterday')?>
+maximun of visitors')?>
+total of visitors')?>
+more')?>
+your domain')?>
+go to top')?>
+view mobile version')?>
