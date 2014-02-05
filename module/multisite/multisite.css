@@ -200,10 +200,65 @@ input[type='submit']:hover {
 
 .item {
 	display: inline-block;
-	background-color: blue;
+	background-color: #333333;
 	width: 100px;
-	padding: 3px 5px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 5px;
 	border-radius: 3px;
 	color: #ffffff;
-	margin-bottom: 4px;
+	margin: 0 20px 4px 0;
+}
+
+.no_of_board {
+	margin: 10px 0;
+	color: #555555;
+}
+input[type='text'] {
+	height: 25px;
+	line-height: 25px;
+	padding: 0 10px;
+	min-width: 200px;
+	color: #555555;
+}
+table {
+	margin: 10px 0;
+}
+
+table tr td {
+	padding: 3px 10px;
+	border-bottom: 1px solid #333333;
+	color: #555555;
+}
+
+table .header {
+	background-color: #333333;
+}
+
+table .header td {
+	border-left: 1px solid #ffffff;
+	color: #ffffff;
+	padding: 5px 10px;
+	font-size: 10pt;
+}
+table .header td:first-child {
+	border-left: 0;
+}
+
+.button {
+	background-color: #f9f9f9;
+	color: #333333;
+	border: 1px solid #333333;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 10px;
+	border-radius: 3px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.button:hover {
+	background-color: #333333;
+	color: #ffffff;
+	text-decoration: none;
 }

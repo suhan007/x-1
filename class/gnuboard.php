@@ -156,7 +156,7 @@ class gnuboard {
 				bo_subject = '$o[subject]',
 				bo_mobile_subject = '$o[subject]',
 				bo_device = 'both',
-				bo_admin = '',
+				bo_admin = '$o[bo_admin]',
 				bo_list_level = '1',
 				bo_read_level = '1',
 				bo_write_level = '1',

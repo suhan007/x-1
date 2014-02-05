@@ -15,8 +15,8 @@
 			$no_of_board = count($rows);
 		?>
 		
-		<div class='no_of_board'>No of board : <?=count($rows)?></div>
-		<form class='config_menu' target='hidden_iframe'>
+		<div class='no_of_board'>No of board : <b><?=count($rows)?></b></div>
+		<form class='config_menu' target='hidden_iframe' autocomplete='off'>
 			<input type='hidden' name='module' value='multisite' />
 			<input type='hidden' name='action' value='config_forum_submit' />
 			<input type='hidden' name='no_of_board' value=<?=$no_of_board?> />
@@ -24,11 +24,11 @@
 			<input type='submit' value='Create'/>
 		</form>
 
-		<table class='board_list' cellpadding=0 cellspacing=0 width='100%'>
-			<tr>
+		<table class='board_list' cellpadding=0 cellspacing=0>
+			<tr class='header'>
 				<td>Board ID</td>
 				<td>Subject</td>
-				<td>No_of_post</td>
+				<td>No Of Post</td>
 				<td></td>
 			</tr>
 		<?php
@@ -37,9 +37,9 @@
 				<tr>
 					<td>$row[bo_table]</td>
 					<td>$row[bo_subject]</td>
-					<td>".number_format($row['bo_count_write'])."</td>
+					<td align='center'>".number_format($row['bo_count_write'])."</td>
 					<td>
-						<a href='?module=multisite&action=config_forum&mode=forum_setting&bo_table=$row[bo_table]'>Setting</a>
+						<a  class='button' href='?module=multisite&action=config_forum&mode=forum_setting&bo_table=$row[bo_table]'>Setting</a>
 					</td>
 				</tr>
 			";
