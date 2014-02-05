@@ -97,43 +97,7 @@
 	width: 11.5em;
 }
 
-.theme-thumb {
-	display: inline-block;
-	position: relative;
-	margin-top: 1em;
-	overflow: hidden;
-}
 
-.theme-thumb table {
-	position: absolute;
-	bottom: 0;
-	padding: 1em;
-	background: #333333;
-	width: 100%;
-}
-
-.theme-thumb table, .theme-thumb a {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-.config button[name='theme'] {
-	border: none;
-	background: transparent;
-	color: #ffffff;
-}
-
-.config button[name='theme']:focus {
-	outline: none;
-}
-
-.config button[name='theme']:active {
-	outline: none;
-}
-
-.config button[name='theme']:hover {
-	outline: none;
-}
 
 .multisite-menu {
 	margin: 0;
@@ -261,4 +225,52 @@ table .header td:first-child {
 	background-color: #333333;
 	color: #ffffff;
 	text-decoration: none;
+}
+
+/* theme config */
+.config-theme table {
+	margin: 0;
+}
+
+.config-theme td {
+	color: #ffffff;
+	padding: 0.75em;
+}
+
+.config-theme .theme-thumb {
+	display: inline-block;
+	position: relative;
+	margin-top: 1em;
+	overflow: hidden;
+}
+
+.config-theme .theme-thumb table {
+	position: absolute;
+	bottom: 0;
+	padding: 1em;
+	background: #333333;
+	width: 100%;
+}
+
+.config-theme .theme-thumb table, .config-theme .theme-thumb a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.config-theme button[name='theme'] {
+	border: none;
+	background: transparent;
+	color: #ffffff;
+}
+
+.config-theme button[name='theme']:focus {
+	outline: none;
+}
+
+.config-theme button[name='theme']:active {
+	outline: none;
+}
+
+.config-theme button[name='theme']:hover {
+	outline: none;
 }

@@ -9,7 +9,7 @@
 	<input type='hidden' name='module' value='multisite'>
 	<input type='hidden' name='action' value='config_theme_submit'>
 
-	<div class='config'>
+	<div class='config config-theme'>
 		<h1>Themes, click on the small thumbnails to change</h1>
 		<? if ( $extra['theme'] != '' ) { ?>
 		<div class='theme-thumb'>
