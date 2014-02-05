@@ -93,6 +93,13 @@
 	</fieldset>
 	
 	<fieldset>
+		<legend>Category</legend>
+		<div><span class='item'>Use Category</span><?=checkbox('bo_use_category')?></div>
+		<div><span class='item'>Category</span><?=text('bo_category_list')?></div>
+		<input type='submit' />
+	</fieldset>
+	
+	<fieldset>
 		<legend>Level</legend>
 		<div><span class='item'>List</span><?=text('bo_list_level')?></div>
 		<div><span class='item'>Read</span><?=text('bo_read_level')?></div>
@@ -112,13 +119,6 @@
 		<div><span class='item'>Write</span><?=text('bo_write_point')?></div>
 		<div><span class='item'>Comment</span><?=text('bo_comment_point')?></div>
 		<div><span class='item'>Download</span><?=text('bo_download_point')?></div>
-		<input type='submit' />
-	</fieldset>
-	
-	<fieldset>
-		<legend>Category</legend>
-		<div><span class='item'>Use Category</span><?=checkbox('bo_use_category')?></div>
-		<div><span class='item'>Category</span><?=text('bo_category_list')?></div>
 		<input type='submit' />
 	</fieldset>
 

@@ -1,0 +1,25 @@
+/* site top */
+.site_top {
+	background-color: #ecf0f1;
+	width: 100%;
+	font-family: '맑은 고딕', AppleGothic;
+	height: 40px;
+	line-height: 40px;
+}
+.site_top .inner {
+	margin: 0 auto;
+	max-width: 960px;
+}
+.site_top .inner  a {
+	text-decoration: none;
+	color: #5e5e5e;
+}
+
+/* logo search */
+.logo_search {
+	width: 100%;
+}
+.logo_search .inner {
+	margin: 0 auto;
+	max-width: 960px;
+}

@@ -16,11 +16,9 @@
 					'group_id'	=> 'multisite'
 	);
 	g::board_create($option);
-	
+	jsAlert( $board_id . "(".$in['subject'].")has been created." );
 	echo "
 		<script>
-			$(function() {
-				parent.callback_create_board( '$board_id', '".$in['subject']."' );
-			});
+			parent.window.location.reload();
 		</script>
 	";	
