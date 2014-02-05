@@ -5,16 +5,23 @@
 	}
 	
 	
+	if ( $in['done'] ) {
+		ms::update( $in );
+		echo "<div class='message'>Updated</div>";
+	}
+
+	
 	$qb = "bo_table LIKE '" . ms::board_id( etc::domain() ) . "%'";
 	
-	$q = "SELECT * FROM $g5[board_table] WHERE $qb";
+	$q = "SELECT bo_table, bo_subject FROM $g5[board_table] WHERE $qb";
 	
 	$rows = db::rows( $q );
 	
 ?>
 <form action='?' class='config_menu'>
-		<input type='hidden' name='module' value='multisite'>
-		<input type='hidden' name='action' value='config_menu_submit'>
+		<input type='hidden' name='module' value='multisite' />
+		<input type='hidden' name='action' value='config_menu' />
+		<input type='hidden' name='done' value=1 />
 <div class='config'>
 	<table width='100%' cellpadding='5px' class='config-menu-table'>
 		<tr>
@@ -33,8 +40,11 @@
 				
 				<select name="menu_<?=$i?>">
 					<option value=''>Select Forum</option>
-					<? foreach ( $rows as $row ) { ?>
-						<option value="<?=$row['bo_table']?>"><?=$row['bo_subject']?></option>
+					<? foreach ( $rows as $row ) { 
+						if ( $extra['menu_'.$i] == $row['bo_table'] ) $selected = 'selected';
+						else $selected = null;
+					?>
+						<option value="<?=$row['bo_table']?>" <?=$selected?>><?=$row['bo_subject']?></option>
 					<? } ?>
 				</select>
 			</td>

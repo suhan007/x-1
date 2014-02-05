@@ -15,10 +15,11 @@
 	<li class="gnb_1dli">
 		<a href="<?=ms::url_main_site()?>" class="gnb_1da"><?=ln('Main Site')?></a>
 	</li>
+<? /*
 	<li class="gnb_1dli">
 		<a href="<?=g::url_board(ms::board_id(etc::domain()))?>" class="gnb_1da"><?=ln('Forum')?></a>
 	</li>
-	
+*/?>	
 	<?php
 		$i = 0;
 		foreach ( $main as $row ) {
