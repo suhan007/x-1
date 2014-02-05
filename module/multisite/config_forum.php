@@ -14,7 +14,7 @@
 			
 			$no_of_board = count($rows);
 		?>
-		<div class='message'></div>
+		
 		<div class='no_of_board'>No of board : <?=count($rows)?></div>
 		<form class='config_menu' target='hidden_iframe'>
 			<input type='hidden' name='module' value='multisite' />
@@ -24,7 +24,7 @@
 			<input type='submit' value='Create'/>
 		</form>
 
-		<table cellpadding=0 cellspacing=0 width='100%'>
+		<table class='board_list' cellpadding=0 cellspacing=0 width='100%'>
 			<tr>
 				<td>Board ID</td>
 				<td>Subject</td>
