@@ -6,6 +6,7 @@
 	
 	
 	if ( $in['done'] ) {
+		unset( $in['done'] );
 		ms::update( $in );
 		echo "<div class='message'>Updated</div>";
 	}
@@ -16,7 +17,6 @@
 	$q = "SELECT bo_table, bo_subject FROM $g5[board_table] WHERE $qb";
 	
 	$rows = db::rows( $q );
-	
 ?>
 <form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite' />

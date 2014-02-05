@@ -3,7 +3,6 @@
 		echo "You are not admin";
 		return;
 	}
-	
 	if ( $in['done'] ) {
 			$up = array();
 			$up = $in;
@@ -22,7 +21,16 @@
 			$up['bo_use_nogood'] = $in['bo_use_nogood']?$in['bo_use_nogood'] : 0;
 			$up['bo_use_name'] = $in['bo_use_name']?$in['bo_use_name'] : 0;
 			$up['bo_use_signature'] = $in['bo_use_signature']?$in['bo_use_signature'] : 0;
-			$up['bo_use_ip_view'] = $in['bo_use_ip_view']?$in['bo_use_ip_view'] : 0;	
+			$up['bo_use_ip_view'] = $in['bo_use_ip_view']?$in['bo_use_ip_view'] : 0;
+
+			if ( $in['bo_category_list'] ) {
+				for ( $i=1; $i <= 10; $i++ ) {
+					if ( $extra['menu_'.$i] == $in['bo_table'] ) {
+						$op['submenu_'.$i] = $in['bo_category_list'];
+						ms::update($op);
+					};
+				}
+			}
 		
 		if ( db::update( $g5['board_table'], $up, array('bo_table' => $in['bo_table']) ) ) $message = 'Successfully updated';
 		else $message = 'Update failed';
