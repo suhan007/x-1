@@ -1,5 +1,4 @@
 <?php
-
 	if ( ! ms::admin() ) {
 		echo "You are not admin";
 		return;

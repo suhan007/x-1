@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?=x::url_theme()?>/css/theme.css">
 <!-- 상단 시작 { -->
 <div id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
@@ -7,7 +8,13 @@
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>">BASiC THEME</a>
+            <a href="<?php echo G5_URL ?>">
+			<? if( $extra['header_logo'] ) { ?>
+				<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>" width=240 height=119>
+			<?} else {?>
+				<img src='<?=x::url_theme()?>/img/logo.png'>
+			<?}?>
+			</a>
         </div>
 
         <fieldset id="hd_sch">

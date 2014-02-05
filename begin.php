@@ -22,7 +22,6 @@ include_once 'etc/language/default.php';
 ms::site_title();
 
 $site = ms::get(etc::domain());					// This is multisite configuration
-
 $extra = &$site['extra'];
 
 if ( x::installed() && ! etc::cli() ) {
