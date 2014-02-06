@@ -179,3 +179,34 @@ more
 your domain
 go to top
 view mobile version
+개별 페//이지 접근 불가
+<!-- 페//이지 -->
+게시판 검//색 시작
+게시판 검//색 끝
+게시판 페//이지 정보 및 버튼 시작
+게시판 페//이지 정보 및 버튼 끝
+게시판 목//록 시작
+게시판 목//록 끝
+all posts in the currency page
+list
+category
+page
+admin
+write
+search post
+subject + content
+subject
+content
+member id(kr)
+member id
+writer(kr)
+writer
+search keyword
+required
+search
+no
+date
+search
+no good
+good
+comment

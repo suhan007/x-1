@@ -290,6 +290,41 @@
 		)
 	);
 	
+	patch_language( g::dir() . '/skin/board/basic/list.skin.php',
+		array(
+				"개별 페이지 접근 불가" => "개별 페//이지 접근 불가",
+				"<!-- 페이지 -->" => "<!-- 페//이지 -->",
+				"게시판 검색 시작" => "게시판 검//색 시작",
+				"게시판 검색 끝" => "게시판 검//색 끝",
+				"게시판 페이지 정보 및 버튼 시작" => "게시판 페//이지 정보 및 버튼 시작",
+				"게시판 페이지 정보 및 버튼 끝" => "게시판 페//이지 정보 및 버튼 끝",
+				"게시판 목록 시작" => "게시판 목//록 시작",
+				"게시판 목록 끝" => "게시판 목//록 끝",
+				"현재 페이지 게시물 전체" => "<?php echo _l('All posts in the currency page');?>",
+				"목록<"	=> "<?php echo _l('List');?><",
+				"카테고리<"  => "<?php echo _l('Category');?><",
+				"페이지" => "<?php echo _l('Page');?>",
+				"관리자" => "<?php echo _l('Admin');?>",
+				"글쓰기" => "<?php echo _l('Write');?>",
+				"게시물 검색" => "<?php echo _l('Search Post');?>",
+				"제목+내용" => "<?php echo _l('Subject + Content');?>",
+				"제목" => "<?php echo _l('Subject');?>",
+				"내용" => "<?php echo _l('Content');?>",
+				"회원아이디(코)" => "<?php echo _l('Member ID(KR)');?>",
+				"회원아이디" => "<?php echo _l('Member ID');?>",
+				"글쓴이(코)" => "<?php echo _l('Writer(KR)');?>",
+				"글쓴이" => "<?php echo _l('Writer');?>",
+				"검색어" => "<?php echo _l('Search Keyword');?>",
+				"필수" =>  "<?php echo _l('Required');?>",
+				"검색" => "<?php echo _l('Search');?>",
+				"번호" => "<?php echo _l('No');?>",
+				"날짜" => "<?php echo _l('Date');?>",
+				"조회" => "<?php echo _l('Search');?>",
+				"비추천" => "<?php echo _l('No Good');?>",
+				"추천" => "<?php echo _l('Good');?>",
+				"댓글"  => "<?php echo _l('Comment');?>",
+		)
+	);
 	$path = x::dir() . '/etc/language/code-list.txt';
 	$re = file::write( $path, $language_code );
 	
