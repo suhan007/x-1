@@ -4,10 +4,7 @@
 		return;
 	}
 	
-	
 	if ( $in['done'] ) {
-		unset( $in['done'] );
-		ms::update( $in );
 		echo "<div class='message'>Updated</div>";
 	}
 
@@ -20,8 +17,7 @@
 ?>
 <form action='?' class='config_menu'>
 		<input type='hidden' name='module' value='multisite' />
-		<input type='hidden' name='action' value='config_menu' />
-		<input type='hidden' name='done' value=1 />
+		<input type='hidden' name='action' value='config_menu_submit' />
 <div class='config'>
 	<table width='100%' cellpadding='5px' class='config-menu-table'>
 		<tr>

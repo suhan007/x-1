@@ -17,6 +17,7 @@
 	);
 	g::board_create($option);
 	jsAlert( $board_id . "(".$in['subject'].")has been created." );
+
 	echo "
 		<script>
 			parent.window.location.reload();
