@@ -1,36 +1,41 @@
+<?php
+if ( $in['page'] ) {
+	$page_file_path = x::url().'/theme/withcenter/'.$in['page'].".php";
+}
+
+?>
+
 <link rel='stylesheet' type='text/css' href='<?=x::url()?>/theme/withcenter/theme.css' />
 <script src='<?=x::url()?>/theme/withcenter/theme.js' /></script>
 <?php
-	include_once x::url().'/theme/withcenter/top.php';
-	include_once x::url().'/theme/withcenter/logo_search.php';
+	$path = x::dir().'/theme/withcenter/top.php';
+	include $path;
+	$image_dir = x::url().'/theme/withcenter/img';
 ?>
-
-<? /*
-<!-- 상단 시작 { -->
-<div id="hd">
-    <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
-
-    <div id="skip_to_container"><a href="#container">본문 바로가기</a></div>
-
-    <div id="hd_wrapper">
-
-        <div id="logo">
-            <a href="<?php echo G5_URL ?>">BASiC THEME</a>
-        </div>
-
-
-
-        <fieldset id="hd_sch">
-            <legend>사이트 내 전체검색</legend>
-            <form name="fsearchbox" method="get" action="<?php echo G5_BBS_URL ?>/search.php" onsubmit="return fsearchbox_submit(this);">
-            <input type="hidden" name="sfl" value="wr_subject||wr_content">
-            <input type="hidden" name="sop" value="and">
-            <label for="sch_stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-            <input type="text" name="stx" id="sch_stx" maxlength="20">
-            <input type="submit" id="sch_submit" value="검색">
+<div class='logo_search'>
+	<div class='inner'>
+		<a href='<?=g::url()?>'><img src='<?=$image_dir?>/logo.png' /></a>
+		
+		<div class='search-bar'>
+			<form name="fsearchbox" method="get" action="<?php echo G5_BBS_URL ?>/search.php" onsubmit="return fsearchbox_submit(this);" autocomplete='off'>
+				<input type="hidden" name="sfl" value="wr_subject||wr_content">
+				<input type="hidden" name="sop" value="and">
+				<div class='wrapper'><div class='s_inner'><div class='s_inner_inner'>
+					<input type="text" name="stx" id="sch_stx" maxlength="20" placeholder='Search' value='<?=$in['stx']?>' />
+					<input type="image" src='<?=$image_dir?>/submit_button.png'>  
+				</div></div></div>
             </form>
-
-            <script>
+		</div>
+		
+		<div class='right-top-menu'>
+			<a href='#'>솔류션</a>
+			<a href='#'>강사아웃소싱</a>
+			<a href='#'>가맹사모집</a>
+		</div>
+		<div style='clear:right;'></div>
+	</div>
+</div>
+	<script>
             function fsearchbox_submit(f)
             {
                 if (f.stx.value.length < 2) {
@@ -56,48 +61,15 @@
 
                 return true;
             }
-            </script>
-        </fieldset>
-<? /*
-        <ul id="tnb">
-            <?php if ($is_member) {  ?>
-            <?php if ($is_admin) {  ?>
-            <li><a href="<?php echo G5_ADMIN_URL ?>"><b>관리자</b></a></li>
-            <?php }  ?>
-            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
-            <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
-            <?php } else {  ?>
-            <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
-            <li><a href="<?php echo G5_BBS_URL ?>/login.php"><b>로그인</b></a></li>
-            <?php }  ?>
-            <li><a href="<?php echo G5_BBS_URL ?>/qalist.php">1:1문의</a></li>
-            <li><a href="<?php echo G5_BBS_URL ?>/current_connect.php">접속자 <?php echo connect(); // 현재 접속자수  ?></a></li>
-            <li><a href="<?php echo G5_BBS_URL ?>/new.php">새글</a></li>
-        </ul>
+	</script>
+<div class='main-menu'><div class='inner'>
+	<a href='?page=intro'>회사소개</a>
+	<a href='?page=application'>가맹사모집</a>
+	<a href='?page=outsouring'>강사아웃소싱</a>
+	<a href='?page=opensource'>오픈소스</a>
+	<a href='<?=g::url()?>/bbs/board.php?bo_table='>게시판</a>
+</div></div>
 
-        <div id="text_size">
-            <!-- font_resize('엘리먼트id', '제거할 class', '추가할 class'); -->
-            <button id="size_down" onclick="font_resize('container', 'ts_up ts_up2', '');"><img src="<?php echo G5_URL; ?>/img/ts01.gif" alt="기본"></button>
-            <button id="size_def" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up');"><img src="<?php echo G5_URL; ?>/img/ts02.gif" alt="크게"></button>
-            <button id="size_up" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up2');"><img src="<?php echo G5_URL; ?>/img/ts03.gif" alt="더크게"></button>
-        </div>
-    </div>
 
-    <hr>
+        <?php// echo outlogin('basic'); // 외부 로그인  ?>   
 
-    <?include G5_PATH . '/x/html/patch.head-main-menu.php'?>
-</div>
-<!-- } 상단 끝 -->
-
-<hr>
-*/ ?>
-
-<!-- 콘텐츠 시작 { -->
-<div id="wrapper">
-    <div id="aside">
-        <?php echo outlogin('basic'); // 외부 로그인  ?>
-        <?php echo poll('basic'); // 설문조사  ?>
-    </div>
-    <div id="container">
-		<?if ( (preg_match('/^config/', $action)) || (preg_match('/^config_/', $action)) ) include ms::site_menu();?>
-        <?php if ((!$bo_table || $w == 's' ) && !defined("_INDEX_")) { ?><div id="container_title"><?php echo $g5['title'] ?></div><?php } ?>
