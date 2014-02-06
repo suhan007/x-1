@@ -3,12 +3,13 @@
 		echo "You are not admin";
 		return;
 	}
-	unset( $in['module'] );
-	unset( $in['action'] );
-	
-	ms::update( $in );
-	
-	$up = array();
+	$up = array();	
+	$up = $in;
+	for ( $i = 1; $i <= 10; $i++ ) {
+		$extra['menu_'.$i] = null;
+	}
+
+
 	foreach ( $in as $key=>$value ) {
 		$q = " SELECT bo_subject FROM $g5[board_table] WHERE bo_table = '$value'";
 		$row = db::row( $q );

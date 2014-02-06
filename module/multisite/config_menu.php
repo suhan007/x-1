@@ -36,6 +36,7 @@
 				
 				<select name="menu_<?=$i?>">
 					<option value=''>Select Forum</option>
+					<option value=''></option>
 					<? foreach ( $rows as $row ) { 
 						if ( $extra['menu_'.$i] == $row['bo_table'] ) $selected = 'selected';
 						else $selected = null;

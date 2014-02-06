@@ -52,7 +52,7 @@
 		if ( $extra['submenu_'.$i] ) $menu_id = "menu=$i";
 		else $menu_id = null;
 	?>
-		<li class="gnb_1dli" <?=$menu_id?>><a href='/bbs/board.php?bo_table=<?=$extra['menu_'.$i]?>' class="gnb_1da" <?// if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$extra['menu_'.$i]?></a></li>
+		<li class="gnb_1dli" <?=$menu_id?>><a href='/bbs/board.php?bo_table=<?=$extra['menu_'.$i]?>' class="gnb_1da" <?// if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$extra['menu_'.$i.'_subject']?></a></li>
 	<?}}?>
 	
 	<li class="gnb_1dli">
