@@ -18,6 +18,18 @@
 			"확인"	=> "<?php echo _L('SUBMIT');?>",
 		)
 	);
+	
+	patch_language( g::dir() . '/skin/member/basic/login.skin.php',
+		array(
+			"회원로그인 안내"		=> "<?php echo _L('User Login Information');?>",
+		)
+	);
+	
+	
+	
+	
+	
+	
 
 	$path = x::dir() . '/etc/language/code-list.txt';
 	$re = file::write( $path, $language_code );
@@ -25,6 +37,7 @@
 function patch_language( $file, $kvs )
 {
 	global $language_code;
+	
 	$data = file::read($file);
 	foreach ( $kvs as $p => $r ) {
 		
