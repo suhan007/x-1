@@ -13,6 +13,7 @@
 	foreach ( $in as $key=>$value ) {
 		$q = " SELECT bo_subject FROM $g5[board_table] WHERE bo_table = '$value'";
 		$row = db::row( $q );
+		$extra[$key."_subject"] = null;
 		$up[$key."_subject"] = $row['bo_subject'];
 	}
 	
