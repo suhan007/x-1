@@ -2,7 +2,9 @@
 <div id="hd">
     <div id="hd_wrapper">
         <div id="logo">
-			<a href="<?php echo G5_URL ?>"><?=$extra['title']?></a>
+			<a href="<?php echo G5_URL ?>">
+				<?if( $extra['header_logo'] ) {?><img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>" width=50px height=50px><?} echo $extra['title'];?>
+			</a>
         </div>
         <ul id="tnb">
 			<li><a href='<?=ms::url_site(etc::domain())?>'>Home</a></li>
@@ -15,7 +17,8 @@
 </div>
 <div id="wrapper">
     <div id="aside">
-        <?php echo outlogin('basic'); // 외부 로그인  ?>
+        <?php echo outlogin('english'); // 외부 로그인  ?>
+		<?php include('left.php');?>
         <?php echo poll('basic'); // 설문조사  ?>
 	</div>
     <div id="container">

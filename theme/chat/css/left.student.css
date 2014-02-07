@@ -1,0 +1,56 @@
+/* 메뉴 */
+.box_design, .student-class-info, .left-student-class-info {
+	border: 1px solid #aeaeae; 
+	border-radius: 3px;
+	background-color: #f9f9f9;
+	font-size: 9pt;
+	margin-top: 10px;
+	color: #808080;
+}
+.box_design .inner, .student-class-info  .inner {
+	margin: 1px;
+	border: 1px solid #ffffff;
+	padding: 10px;
+}
+.box_design .inner  a {
+	color: #808080;
+	text-decoration: none;
+}
+.box_design .inner .header {
+	font-family: '맑은 고딕', AppleGothic;
+	border-bottom: 1px solid #dfdfdf;
+	padding-bottom: 3px;
+	margin-bottom: 3px;
+	position: relative;
+	top: -3px;
+}
+
+.student-class-info  .inner  a {
+	display: inline-block;
+	min-height: 17px;
+	line-height: 17px;
+	padding: 0 10px;
+	border: 1px solid #d5d5d5;
+	border-radius: 2px;
+	color: #666666;
+}
+.student-class-info  .inner  a:hover {
+	border: 1px solid #636363;
+	background-color: #636363;
+	color: #ffffff;
+}
+
+.left-student-class-info {
+	width: 218px;
+	height: 150px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.left-student-class-info .inner {
+	margin: 1px;
+	border: 1px solid #ffffff;
+}
+
+x:-o-prefocus, .iframe-student-info {
+		display: none;
+}

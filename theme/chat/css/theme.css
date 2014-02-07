@@ -1,36 +1,36 @@
 #logo {
-	padding: 1.5em 0 0 2em;
+	padding: 0.5em;
+	padding-left: 1.5em;
+}
+
+#logo img {
+	margin-right: 0.2em;
 }
 
 #logo a {
-	font-size: 30px;
+	font-size: 24.5px;
 	color: #ffffff;
 	text-decoration: none;
-	font-family: Arial;
+	font-family: Lucida Sans Unicode;
 }
 
 #tnb a {
 	padding: 0 1em 0 0;
 	font-size: 12pt;
 	color: #ffffff;
-	font-family: Arial;
+	font-family: Gulim;
 }
 
 #hd {
-	background: #5e8d6e;
-	height: 70px;
+	background: #0c95ce;
+	height: 60px;
+	border-bottom: solid 2px #076489;
 }
 
 #hd_wrapper {
-	background: #71a583;
-	height: 70px;
-}
+	background: #0c95ce;
+	height: 60px;
 
-#hd_sch {
-	left:270px!important;
-}
-#hd_sch #sch_stx {
-	width: 240px!important;
 }
 
 
@@ -39,9 +39,61 @@ body {
 	background: #f3f3f3;
 }
 
+#container {
+	border: 0 !important;
+	width: 699px;
+}
+
 #aside {
 	border: 0 !important;
-	
+	padding: 15px 16px 15px 15px
+}
+
+/*application form*/
+#aside .application-form-container {
+	margin-top: 1em;
+	border: solid 1px #95cfb7;
+	width: 100%;
+	background: #f5f5f5;
+}
+
+#aside .application-form {
+	padding: 1em;
+}
+
+#aside .application-form input:first-child {
+	margin-top: 0.5em;
+}
+
+#aside .application-form input {
+	border: solid 1px #e5e5e5;
+	padding: 0.5em;
+	margin: 0.4em 0 0.4em 0;
+	width: 100%;
+
+}
+
+#aside .application-form input[type='text'], #aside .application-form input[type='email'] {
+	width: 92%;
+	font-style: italic;
+}
+
+#aside .application-form {
+	font-family: Arial;
+}
+
+#aside .application-form h2 {
+	font-family: Arial;
+	text-transform: uppercase;
+	color: #585858;
+	font-size: 11.45pt;
+}
+#aside .application-form table p {
+	font-style: italic;
+}
+
+#aside .application-form table h2 {
+	font-size: 13pt;
 }
 
 #wrapper {
@@ -49,97 +101,11 @@ body {
 	background: #ffffff;
 }
 
-#container > div {
-	margin: 0 auto;
-	width: 49.75%;
-	display: inline-block;
-	margin: 0;
-	padding: 0;
- 	vertical-align: top;
-	font-family: Arial;
-}
-
-
-#container > div > div, #container .secondary, #container .primary {
-	box-shadow: inset 0 0 0 1px #e4e6e4;
-	border: solid 1px #98a199;
-	padding: 1em;
-	margin: 0.33em;
-	background: #f8f8f8;
-} 
-
-#container .primary, #container .secondary {
-	height: 150px;
-}
-
-#container .primary h2 , #container .secondary h2 {
-	margin-bottom: 0.75em;
-}
-
-#container ul li {
-	list-style: none;
-}
-
-#container .important-post ul li {
-	margin-bottom: 1em;
-}
-
-#container .important-post ul li:last-child {
-	margin: 0;
-}
-
-#container ul li span {
-	padding-right: 1.5em;
-}
-
-#container ul li a {
-	color: #787878;
-}
-
-#container ul {
-	margin: 0;
-	padding: 0;
-}
-
-#container h2 {
-	text-transform: uppercase;
-	font-family: Arial;
-	color: #585858;
-	font-size: 11.45pt;
-}
-
-#container .main-banner {
-	margin-bottom: 0.75em;
-}
-
-#container .main-banner > img {
-	margin: 0.5em 0 0.5em 0;
-	width: 100%;
-}
-
-#container .main-banner > p {
-	text-align: center;
-	font-style: italic;
-	color: #838383;
-}
-
-
-.banner {
+.footer-text {
 	margin-top: 1em;
-	position: relative;
-	overflow: hidden;
+	font-family: Gulim;
+	color: #acacac;
+	text-transform: uppercase;
+	float: right;
 }
 
-.banner img {
-	width: 100%;
-}
-
-.banner p {
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	background: #333333;
-	color: #ffffff;
-	opacity: 0.8;
-	padding: 0.75em;
-}
