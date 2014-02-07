@@ -1,7 +1,6 @@
-
 <div class='site_top'>
 	<div class='inner'>
-		<a href='/'>HOME</a>
+		<a href='<?=g::url()?>'>HOME</a>
 		<a href='#'>FORUM</a>
 		<a href='#'>MESSAGE</a>
 		<a href='#'>REGISTER</a>

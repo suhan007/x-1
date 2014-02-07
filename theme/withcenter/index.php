@@ -1,5 +1,5 @@
 <div class='layout'>
-	<table class='main-content' cellpadding=0 cellspacing=0 width='100%' border=1>
+	<table class='main-content' cellpadding=0 cellspacing=0 width='100%' border=0>
 		<tr valign='top'>
 			<td class='left' width='210'><?=outlogin('withcenter')?></td>
 			<td width='10'></td>

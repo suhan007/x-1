@@ -250,7 +250,7 @@
 	
 	patch_language( g::dir() . '/skin/outlogin/basic/outlogin.skin.2.php',
 		array(
-			"나의 회원정보" => "><?php echo _l('My Profile');?>",
+			"나의 회원정보" => "<?php echo _l('My Profile');?>",
 			"관리자 모드" => "<?php echo _l('Admin mode');?>",
 			"안 읽은" => "<?php echo _l('Unreaded');?>",
 			"쪽지" => "<?php echo _l('Message');?>",
