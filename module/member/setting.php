@@ -3,8 +3,6 @@
 
 
 
-
-
 ?>
 <div><?php echo _L('Member Setting');?></div>
 <div><?php echo _L('Choose Your Language');?></div>
@@ -32,5 +30,8 @@ $(function(){
 	$("[name='setting'] [name='user_language']").change(function(){
 		$("[name='setting']").submit();
 	});
+	<? if ( etc::user_language() ) { ?>
+	$("[name='setting'] [name='user_language']").val( '<?=etc::user_language()?>' );
+	<? } ?>
 });
 </script>

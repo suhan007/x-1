@@ -8,7 +8,7 @@ if ( ! empty( $module ) ) {
 	include module( $action );
 }
 else {
-	echo "module is empty";
+	echo "module is empty. GO TO Admin Page <a href='?module=admin&action=index'>ADMIN Page</a>";
 }
 include_once(G5_PATH.'/tail.php');
 

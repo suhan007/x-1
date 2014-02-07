@@ -4,11 +4,8 @@
 			<td class='left' width='210'><?=outlogin('withcenter')?></td>
 			<td width='10'></td>
 			<td class='content'>
-				<? 
-					if ( $page_file_path ) include_once $page_file_path; 
-					else {
-						echo "test";
-					}
+				<?php
+					if ( $in['page'] ) include x::theme( $in['page'] );
 				?>
 			</td>
 		</tr>

@@ -257,8 +257,8 @@ class multisite {
 	/**
 	 *  @brief sets the site title in browser title bar.
 	 *  
-	 *  @param [in] $site_title Parameter_Description
-	 *  @return Return_Description
+	 *  @param [in] $site_title empty
+	 *  @return empty
 	 *  
 	 *  @details changes the site title by setting g5 variable.
 	 */
@@ -302,15 +302,10 @@ class multisite {
 	 *  @details Details
 	 */
 	static function update( $option ) {
-	/* Added this array_merge to combine $_POST value from the different menu of multisite config,
-	   also added an if condition that if it is empty, just push the current $in array, that would serve as the initial
-	   value of 'extra' field.*/
-		global $extra;
-		if ($extra) $opt = array_merge( $extra , $option );
-		else $opt = $option;
-		$remove_keys = array('module', 'action');
-		foreach($remove_keys as $key) { unset($opt[$key]); }
-		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $opt ) ) , array( 'domain' => etc::domain() ) );
+		$site = ms::get(etc::domain());
+		$extra = &$site['extra'];
+		$option = array_merge( $extra, $option );
+		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $option ) ) , array( 'domain' => etc::domain() ) );
 	}
 
 }

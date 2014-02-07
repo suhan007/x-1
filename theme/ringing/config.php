@@ -1,2 +1,2 @@
 <?php
-	$theme_config['name'] = "Ringing";
+	$theme_config['name'] = "";

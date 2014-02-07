@@ -1,7 +1,6 @@
 <?php
-if ( $in['page'] ) {
-	$page_file_path = x::url().'/theme/withcenter/'.$in['page'].".php";
-}
+
+
 
 ?>
 

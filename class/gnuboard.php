@@ -257,6 +257,84 @@ class gnuboard {
 		db::query($sql, FALSE);
 	}
 	
+	
+	/**
+	 *  @brief Uploads ( write or record ) a new post into a forum programtically.
+	 *  
+	 *  @param [in] $o options to post
+	 *  $o['bo_table']				is the board table name ( board_id )
+	 *  $o['wr_subject']			is the subject of the post.
+	 *  $o['ca_name']
+	 *  $o['wr_option']
+	 *  $o['wr_content']
+	 *  $o['wr_link1']
+	 *  $o['wr_link2']
+	 *  $o['mb_id']					user id
+	 *  $o['wr_name']
+	 *  $o['wr_email']
+	 *  $o['wr_homepage']
+	 *  $o['wr_datetime']			the date of update. if empty, then set to the current time.
+	 *  $o['wr_file']				is the file information
+	 *  $o['wr_1'] ~ 2,3,4,5,6,7,8,9	is the extra fields.
+	 *  $o['file_1'] ~ 2, 3, 4, 5	is the path of files to be uploaded.
+	 *  
+	 *  
+	 *  
+	 *  @return wr_id of the post
+	 *  
+	 *  
+	 *  @details Normally posts are posted through web browsers.
+	 *  With this function you can post articles programatically.
+	 *  
+	 *  @note you can upload files along with the text.
+	 *  
+	 *  @code uploading a post with image
+	 *  	g::write(
+	 *  		array(
+	 *  			'bo_table'		=> "qna",
+	 *  			'wr_subject'	=> "This is a sample post upload ... 1",
+	 *  			'wr_content'	=> "This is the content",
+	 *  			'file_1'		=> "C:\\tmp\\abc.jpg"
+	 *  		)
+	 *  	)
+	 *  @endcode
+	 *  
+	 */
+	static function write( $o )
+	{
+		//
+		return $wr_id;
+	}
+	
+	/**
+	 *  @brief attach or update a file for a post.
+	 *  
+	 *  @param [in] $o Parameter_Description
+	 *  @return Return_Description
+	 *  
+	 *  @details Details
+	 */
+	static function write_file( $o )
+	{
+	}
+	
+	
+	/**
+	 *  @brief Brief
+	 *  
+	 *  @param [in] $id Parameter_Description
+	 *  @return Return_Description
+	 *  
+	 *  @details Details
+	 */
+	static function config($id)
+	{
+		global $g5;
+		return db::row("SELECT * FROM $g5[board_table] WHERE bo_table = '$id'");
+	}
+	
+	
+	
 		
 } // eo class
 

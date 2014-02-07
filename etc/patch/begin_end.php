@@ -14,7 +14,13 @@
 	$path = $dir_root . '/head.php';
 	$data = file::read($path);
 	$find = "<!-- 상단 시작 { -->";
-	$patch = "<? x::hook( 'head_begin' ); if ( file_exists( x::hook(__FILE__) ) ) { include x::hook(__FILE__); return; } ?>";
+	$patch = "<?php
+	x::hook( 'head_begin' );
+	if ( file_exists( x::hook(__FILE__) ) ) {
+		include x::hook(__FILE__);
+		return;
+	}
+?>";
 	
 	if ( pattern_exist( $data, $patch ) ) {
 		message(" already patched : OK");
