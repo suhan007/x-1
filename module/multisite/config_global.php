@@ -35,15 +35,15 @@
 
 		<div class='config-img'>
 			<label>Header Logo</label><br>
-			<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>" width=280px height=160px><br>
+			<?if( $extra['header_logo'] ) {?><img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>" width=280px height=160px><br><?}?>
 			<input type='file' name='header_logo'><br>
 			<label>Logo Text</label><br>
 			<input type='text' name='logo_text' value='<?=$extra['logo_text']?>'>
 		</div>
 		
 		<div class='config-img'>	
-		<label>Banner 1</label><br>
-			<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_1']?>" width=280px height=160px><br>
+			<label>Banner 1</label><br>
+			<?if( $extra['banner_1'] ) {?><img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_1']?>" width=280px height=160px><br><?}?>
 			<input type='file' name='banner_1'><br>
 			<label>Banner 1 Text 1</label><br>
 			<input type='text' name='banner1_text1' value='<?=$extra['banner1_text1']?>'><br>
@@ -52,8 +52,8 @@
 		</div>
 		
 		<div class='config-img'>			
-		<label>Banner 2</label><br>
-			<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_2']?>" width=280px height=160px><br>
+			<label>Banner 2</label><br>
+			<?if( $extra['banner_1'] ) {?><img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_2']?>" width=280px height=160px><br><?}?>
 			<input type='file' name='banner_2'><br>
 			<label>Banner 2 Text 1</label><br>
 			<input type='text' name='banner2_text1' value='<?=$extra['banner2_text1']?>'><br>
