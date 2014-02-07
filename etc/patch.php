@@ -31,10 +31,15 @@ if ( $argv[1] == 'language' ) {
  */
 
 
+	include x::dir() . "/etc/patch/index.php";
 	include x::dir() . "/etc/patch/database.php";
 	include x::dir() . "/etc/patch/jquery.php";
 	include x::dir() . "/etc/patch/begin_end.php";
 	include x::dir() . "/etc/patch/menu.php";
+	
+	
+	// include x::dir() . "/etc/patch/hook.php";
+	
 	
 	
 	// include x::dir() . "/etc/patch/translate_installation_page_to_english.php";
@@ -87,4 +92,43 @@ function patch_data( $data, $patch, $replace )
 		}
 	}
 	return $data;
+}
+
+
+
+/**
+ *  @brief patches a file
+ *  
+ *  @param [in] $file file path
+ *  @param [in] $kvs patch list
+ *  @return empty
+ *  
+ *  @details patches a file with assoc array
+ */
+function patch_file( $file, $kvs )
+{
+	if ( empty($file) ) patch_failed();
+	
+	$data = file::read($file);
+	
+	if ( empty($data)  ) {
+		message("file empty");
+		patch_failed();
+	}
+	foreach ( $kvs as $patch => $replace ) {
+		
+		if ( pattern_exist( $data, $patch ) ) $data = str_replace($patch, $replace, $data);
+		else {
+			if ( pattern_exist( $data, $replace ) ) {
+				// alredy patched
+			}
+			else {
+				echo "patch string $patch and code $replace does not eixst in $file";
+				patch_failed();
+			}
+		}
+		
+	}
+	file::write( $file, $data );
+	echo "$file patched\n";
 }

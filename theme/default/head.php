@@ -1,4 +1,6 @@
+<link rel="stylesheet" href="<?=x::url_theme()?>/css/theme.css">
 <!-- 상단 시작 { -->
+
 <div id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
 
@@ -7,7 +9,13 @@
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>">DEFAULT THEME</a>
+            <a href="<?php echo G5_URL ?>">
+			<? if( $extra['header_logo'] ) { ?>
+				<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>">
+			<?} else {?>
+				<img src='<?=x::url_theme()?>/img/logo.png'>
+			<?}?>
+			</a>
         </div>
 
         <fieldset id="hd_sch">
@@ -65,17 +73,12 @@
             <li><a href="<?php echo G5_BBS_URL ?>/new.php">새글</a></li>
         </ul>
 
-        <div id="text_size">
-            <!-- font_resize('엘리먼트id', '제거할 class', '추가할 class'); -->
-            <button id="size_down" onclick="font_resize('container', 'ts_up ts_up2', '');"><img src="<?php echo G5_URL; ?>/img/ts01.gif" alt="기본"></button>
-            <button id="size_def" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up');"><img src="<?php echo G5_URL; ?>/img/ts02.gif" alt="크게"></button>
-            <button id="size_up" onclick="font_resize('container', 'ts_up ts_up2', 'ts_up2');"><img src="<?php echo G5_URL; ?>/img/ts03.gif" alt="더크게"></button>
-        </div>
+		
     </div>
 
     <hr>
-
     <?include G5_PATH . '/x/html/patch.head-main-menu.php'?>
+	
 </div>
 <!-- } 상단 끝 -->
 
@@ -85,7 +88,14 @@
 <div id="wrapper">
     <div id="aside">
         <?php echo outlogin('basic'); // 외부 로그인  ?>
+		<a href='<?=x::url_setting()?>'><?php echo _L('Member Setting');?></a>
         <?php echo poll('basic'); // 설문조사  ?>
     </div>
     <div id="container">
-        <?php if ((!$bo_table || $w == 's' ) && !defined("_INDEX_")) { ?><div id="container_title"><?php echo $g5['title'] ?></div><?php } ?>
+		<?if ( preg_match('/^config/', $action) ) include ms::site_menu();?>
+		<?php if ((!$bo_table || $w == 's' ) && !defined("_INDEX_")) { ?><div id="container_title"><?php echo $g5['title'] ?></div><?php } ?>
+
+		
+		
+		
+		

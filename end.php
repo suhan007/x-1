@@ -8,9 +8,16 @@ $html = ob_get_clean();
 /** @note 실제 사이트 작업을 할 때에는 아래와 같이 하지 않는다. HTML 페이지에 바로 언어 코딩을 한다.
  *  여기서 하면, 원하지 않는 단어가 변환되는 결과가 나타나며 메모리 복사를 많이 하게 된다.
  */
+ /*
 $html = etc::patch_language(
 	$html,
 	array(
+		'게시판관리<'		=> ln('Forum<'),
+		'게시판그룹관리<'		=> ln('Forum Group<'),
+		'게시판그룹 추가<'		=> ln('Add Forum Group<'),
+		'게시판 추가<'		=> ln('Add Forum<'),
+		'메뉴<br>보임'		=> ln('Show<br>Menu'),
+		//'선택수정'		=> ln('Update Selected'),
 		'회원가입<'		=> ln('Register<'),
 		'자동로그인<'		=> ln('Remember<'),
 		'로그인<'		=> ln('Sign-in<'),
@@ -81,6 +88,7 @@ $html = etc::patch_language(
 		
 	)
 );
+*/
 
 
 

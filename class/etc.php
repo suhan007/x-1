@@ -3,6 +3,13 @@
 define('DS', DIRECTORY_SEPARATOR, true);
 
 
+
+
+$in = array_merge( $_GET, $_POST );
+
+
+
+
 class etc {
 	
 	static function dir()
@@ -15,17 +22,24 @@ class etc {
 	}
 	
 	/**
-	 *  @brief 모듈의 스크립트를 로드한다.
+	 *  @brief return the path of module script.
 	 *  
-	 *  @param [in] $file 모듈 폴더 내의 파일 이름. 확장자 ".php" 는 제외하고 입력을 한다.
-	 *  @return string 파일 경로
+	 *  @param [in] $file script file name under a module folder. it should not include '.php' extension.
+	 *  @return string file path
 	 *  
-	 *  @details 리턴되는 값은 스크립트의 경로를 지정하는 문자열이다. 이 함수 밖에서 따로 인클루드를 해야한다.
+	 *  @details global variable $module which is from HTTP INPUT will be used to determin which module folder to use.
+	 *  @note to include module/init.php just use "include module( 'init' );"
+	 *  especially for init.php script, it will return 'null.php' if the init.php does not exists under the module.
 	 */
 	static function module($file)
 	{
 		global $module;
-		return "module/$module/$file.php";
+		$path = x::dir() . "/module/$module/$file.php";
+		if ( $file == 'init' ) {
+			if ( file_exists( $path ) ) return $path;
+			else return x::path_null();
+		}
+		else return $path;
 	}
 	/**
 	 *  @brief html 폴더에 있는 스크립트 파일을 리턴하낟.
@@ -61,6 +75,16 @@ class etc {
 	}
 	
 
+	
+	
+	/**
+	 *  @brief returns the domain of the accessed site.
+	 *  
+	 *  @return string domain.
+	 *  i.e) abc.def.your-domain.com
+	 *  
+	 *  @details it returns the whole domain including all the levels. ( 2nd, 3rd, 4th ... level domains... )
+	 */
 	static function domain()
 	{
 		return $_SERVER['HTTP_HOST'];
@@ -161,18 +185,40 @@ class etc {
 	 *  
 	 *  @details language code can be case sensitive and case insensitive.
 	 */
-	static function lang( $code )
+	static function lang( $code, $arg1=null, $arg2=null, $arg3=null )
 	{
-		global $language;
-		if ( isset($language[$code]) ) return $language[$code];
+		global $language_code;
 		
 		$code_back = $code;
 		$code = strtolower($code);
-		if ( isset($language[$code]) ) return $language[$code];
-		else return $code_back;
+
+		if ( ! isset($language_code[$code]) ) {
+			return $code_back;
+		}
+		else $string = $language_code[$code];
+		
+		
+		if ( strpos($string, '#1') !== false ) $string = str_replace("#1", $arg1, $string);
+		if ( strpos($string, '#2') !== false ) $string = str_replace("#2", $arg2, $string);
+		if ( strpos($string, '#3') !== false ) $string = str_replace("#3", $arg3, $string);
+			
+		return $string;
 	}
 	
 	
+	
+	
+	/**
+	 *  @brief return true if the script is running on CLI
+	 *  
+	 *  @return Return_Description
+	 *  
+	 *  @details Details
+	 */
+	static function cli()
+	{
+		return php_sapi_name() == 'cli';
+	}
 	
 	
 	/**
@@ -210,6 +256,27 @@ class etc {
 	static function browser_language()
 	{
 		return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	}
+	
+	
+	
+
+	/**
+	 *  @brief returns user language
+	 *  
+	 *  @return language code like "en" or "ko"
+	 *  
+	 *  @details This function returns user language code.
+	 *  If a user visits the site for the first time, then
+	 *  x will check browser language and use the language pack if supported.
+	 *  If the language pack for the browser is not available, then it uses 'en.php' as default language pack.
+	 *  User can change the language on setting page.
+	 */
+	static function user_language()
+	{
+		$code = get_session( 'user_language' );
+		if ( $code ) return $code;
+		else return self::browser_language();
 	}
 	
 	
@@ -380,13 +447,13 @@ function patch( $file )
 
 
 
-function ln($code)
+function ln($code, $a=null, $b=null, $c=null)
 {
-	return etc::lang($code);
+	return etc::lang($code, $a, $b, $c);
 }
-function _L($code)
+function _L($code, $a=null, $b=null, $c=null)
 {
-	return etc::lang($code);
+	return etc::lang($code, $a, $b, $c);
 }
 
 

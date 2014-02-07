@@ -1,3 +1,3 @@
 <?php
-	$theme_config['name'] = "LMS";
+	$theme_config['name'] = "";
 	

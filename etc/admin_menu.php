@@ -5,6 +5,7 @@ if ( ! admin() ) {
 }
 ?>
 <link rel="stylesheet" href="module/admin/menu.css">
+<script type='text/javascript' src="module/admin/admin_menu.js"></script>
 <div class='admin-menu'>
 <?
 $files = file::getFiles( x::dir() . '/module', true, "/admin_menu\.php/");
@@ -17,7 +18,7 @@ ksort($admin_menu);
 admin_menu_display();
 function admin_menu_display()
 {
-	global $admin_menu, $in;
+	global $admin_menu, $in, $current_page;
 	echo "<ul class='admin-menu'>";
 	foreach( $admin_menu as $menu ) {
 		$name = $menu['name'];
@@ -28,16 +29,25 @@ function admin_menu_display()
 		foreach ( $menu as $name => $url ) {
 			$tmp = str_replace('?', '', $url);
 			parse_str($tmp, $str);
-			if ( $str['module'] == $in['module'] && $str['action'] == $in['action'] ) $sel = "selected";
+			$current_page = 'module='.$_GET['module'].'&action='.$_GET['action'];
+			if ($current_page == $tmp) $sel = "active-page";
 			else $sel = '';
 			echo "<li class='$sel'><a href='$url'>$name</a></li>";
 		}
 		echo "</ul></li>";
 	}
-	echo "</ul>";
+	echo "</ul>			";
+
+	if($current_page!='module=admin&action=index') {
+	?>	<style>
+			.admin-menu {
+				margin-bottom: 4em;
+			}
+		</style>
+	<?
+	}
 }
 ?>
 <div style='clear:left;'></div>
 </div>
-
 	

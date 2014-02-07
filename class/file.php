@@ -13,16 +13,20 @@ class file {
 	 *  FILE_NOT_FOUND if there is not file by $filename
 	 *  
 	 *  @details The code of this function is from PHP doc.
-	 *  
+	 *  @warning the return value has changed since jan 23, 2014
 	 *  @code
 	 *  	$data = file::read($dir_root . '/head.sub2.php');
-	 *  	if ( $data == file::FILE_NOT_FOUND ) return $data;
+	 *  	if ( empty($data) &&  $global_file_error_code == file::FILE_NOT_FOUND ) return $data;
 	 *  @endcode
 	 */
 	static function read($filename)
 	{
+		global $global_file_error_code;
 		@$handle = fopen($filename, "r");
-		if ( ! $handle ) return self::FILE_NOT_FOUND;
+		if ( ! $handle ) {
+			$global_file_error_code = self::FILE_NOT_FOUND;
+			return null;
+		}
 		$contents = fread($handle, filesize($filename));
 		fclose($handle);
 		return $contents;
