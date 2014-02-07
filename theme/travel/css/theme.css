@@ -1,5 +1,5 @@
 #logo {
-	padding: 0.5em;
+	padding: 1em;
 	padding-left: 1.5em;
 }
 
@@ -8,6 +8,7 @@
 }
 
 #logo a {
+
 	font-size: 24.5px;
 	color: #ffffff;
 	text-decoration: none;
@@ -26,15 +27,13 @@
 }
 
 #hd {
-	background: #0c95ce;
-	height: 60px;
-	border-bottom: solid 2px #076489;
+	background: #f3f3f3;
 }
 
 #hd_wrapper {
-	background: #0c95ce;
+	background: #a0527a;
 	height: 60px;
-
+	border-bottom: solid 1px #e34663;
 }
 
 
@@ -105,6 +104,11 @@ body {
 	background: #ffffff;
 }
 
+.index-banner img {
+	width: 99%;
+	margin-bottom: 1em;
+}
+
 .footer-text {
 	margin-top: 1em;
 	clear:both;
@@ -119,14 +123,6 @@ body {
 }
 
 .selected:hover:after, .selected:after{
-	width: 0;
-    height: 0;
-    position: absolute;
-    content:"";
-	display: block;
-	border-left: 18px solid transparent;
-	border-right: 18px solid transparent;
-	border-bottom: 12px solid #076489;
 
 }
 
