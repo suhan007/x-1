@@ -95,7 +95,7 @@ class x {
 	
 	static function admin_menu()
 	{
-		return X_DIR_ETC . './admin_menu.php';
+		return X_DIR_ETC . '/admin_menu.php';
 	}
 	
 	static function url_setting()
