@@ -1,5 +1,3 @@
-<link rel='stylesheet' type='text/css' href='<?=x::url()?>/html/head-sub-site-menu.css' />
-<script src='<?=x::url()?>/html/head-sub-site-menu.js'></script>
 <?php
 
 	$main = array();
@@ -53,11 +51,11 @@
 	
 	
 	<? for ( $i = 1; $i <= 10; $i++ ) { ?>
-	<? if ( $extra['menu_'.$i] != '' ) {
-		if ( $extra['submenu_'.$i] ) $menu_id = "menu=$i";
-		else $menu_id = null;
+	<? if ( $extra['menu_'.$i] ) { 
+		$row = db::row( "SELECT bo_subject FROM $g5[board_table] WHERE bo_table='".$extra['menu_'.$i]."'");
+		if ( !$subject = $row['bo_subject'] ) $subject = null;
 	?>
-		<li class="gnb_1dli" <?=$menu_id?>><a href='<?=g::url()?>/bbs/board.php?bo_table=<?=$extra['menu_'.$i]?>' class="gnb_1da" <?// if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$extra['menu_'.$i]?></a></li>
+		<li class="gnb_1dli"><a href='<?=g::url()?>/bbs/board.php?bo_table=<?=$extra['menu_'.$i]?>' class="gnb_1da" <?// if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$subject?></a></li>
 	<?}}?>
 	
 	
@@ -69,19 +67,5 @@
 	
 	
 </ul>
-<?php
-	// sub menu
-	for ( $i = 1; $i <=10; $i++ ) {
-		if ( $extra['submenu_'.$i] ) {
-			echo "<div class='gnb_submenu' submenu=$i>";
-				$submenus = explode('|', $extra['submenu_'.$i]);
-				foreach ( $submenus as $sm ) {
-					$url = g::url() . "/bbs/board.php?bo_table=".$extra['menu_'.$i]."&sca=".urlencode($sm);
-					echo "<div><a href='$url'>$sm</a></div>";
-				}
-			echo "</div>";
-		}
-	}
-?>		
-    </nav>
+</nav>
 	
