@@ -1,6 +1,6 @@
 <?php
-define('X_DIR_ETC', x::dir() . '/etc');
-define('X_DIR_THEME', x::dir() . '/theme');
+define('X_DIR_ETC', g::dir() . '/x/etc');
+define('X_DIR_THEME', g::dir() . '/x/theme');
 /**
  *  @file class/x.php
  *  
@@ -37,8 +37,7 @@ class x {
 	 */
 	static function dir()
 	{
-		global $x_dir;
-		return $x_dir;
+		return g::dir() . '/x';
 	}
 	
 	/**
@@ -50,8 +49,7 @@ class x {
 	 */
 	static function url()
 	{
-		global $x_url;
-		return $x_url;
+		return g::url() . '/x';
 	}
 	
 	/**
