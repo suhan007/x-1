@@ -1,4 +1,4 @@
-<link rel='stylesheet' type='text/css' href='<?=x::url()?>/html/head-sub-site-menu.css' />
+ <link rel='stylesheet' type='text/css' href='<?=x::url()?>/html/head-sub-site-menu.css' />
 <script src='<?=x::url()?>/html/head-sub-site-menu.js'></script>
 <?php
 
@@ -52,7 +52,7 @@
 		if ( $extra['submenu_'.$i] ) $menu_id = "menu=$i";
 		else $menu_id = null;
 	?>
-		<li class="gnb_1dli" <?=$menu_id?>><a href='/bbs/board.php?bo_table=<?=$extra['menu_'.$i]?>' class="gnb_1da" <?// if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$extra['menu_'.$i.'_subject']?></a></li>
+		<li class="gnb_1dli" <?=$menu_id?>><a href='<?=g::url()?>/bbs/board.php?bo_table=<?=$extra['menu_'.$i]?>' class="gnb_1da" <?// if ($extra['menu'.$i.'_target'] == 'Y') echo "target='_blank'"?>><?=$extra['menu_'.$i.'_subject']?></a></li>
 	<?}}?>
 	
 	<li class="gnb_1dli">
@@ -66,7 +66,7 @@
 			echo "<div class='gnb_submenu' submenu=$i>";
 				$submenus = explode('|', $extra['submenu_'.$i]);
 				foreach ( $submenus as $sm ) {
-					$url = "/bbs/board.php?bo_table=".$extra['menu_'.$i]."&sca=".urlencode($sm);
+					$url = g::url()."/bbs/board.php?bo_table=".$extra['menu_'.$i]."&sca=".urlencode($sm);
 					echo "<div><a href='$url'>$sm</a></div>";
 				}
 			echo "</div>";

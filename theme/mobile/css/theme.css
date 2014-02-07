@@ -13,11 +13,23 @@
 #hd_sch #sch_stx {
 	width: 240px!important;
 }
-#aside {
-	float:left;
+
+.banner {
+	margin-top: 1em;
+	position: relative;
+	overflow: hidden;
 }
 
-#container {
-	border-right: 0;
-	border-left: 1px solid #dde4e9;
+.banner img {
+	width: 100%;
+}
+
+.banner p {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	background: #333333;
+	color: #ffffff;
+	opacity: 0.8;
+	padding: 0.75em;
 }

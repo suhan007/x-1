@@ -117,8 +117,11 @@
 .multisite-menu li {
 	list-style-type: none;
 	display: inline-block;
-	padding: 1em;
+}
 
+.multisite-menu li a {
+	display: inline-block;
+	padding: 1em;
 }
 
 fieldset {
@@ -273,4 +276,29 @@ table .header td:first-child {
 
 .config-theme button[name='theme']:hover {
 	outline: none;
+}
+
+.site-global select {
+	padding: 0.25em 0 0.25em 0;
+}
+.site-global textarea {
+	width: 25em;
+	height: 10em;
+}
+
+.site-global > label {
+	width: 100px;
+	display: inline-block;
+	margin-bottom: 2em;
+	vertical-align: top;
+}
+
+.site-global .config-img {
+	display: inline-block;
+	margin: 0 2em 2em 0;
+	vertical-align: top;
+}
+
+.site-global .config-img img {
+	margin: 0.5em 0 0.5em 0
 }

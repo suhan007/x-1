@@ -1,10 +1,13 @@
 <?php
+	echo "all_lines:$all_lines\n";
 	patch_begin(__FILE__);
 	$path = $dir_root . '/x/etc/database/schema.sql';
 	$all_lines = file($path, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
 	
 	foreach ($all_lines as $line) {
-		if (substr($line, 0, 2) == '--' || $line == '') continue;
+		if (substr($line, 0, 2) == '--' || $line == '') {
+			continue;
+		}
 		$templine .= $line;
 		if (substr(trim($line), -1, 1) == ';') {
 		db::query($templine);

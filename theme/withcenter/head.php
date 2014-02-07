@@ -1,9 +1,7 @@
 <?php
 
 
-
 ?>
-
 <link rel='stylesheet' type='text/css' href='<?=x::url()?>/theme/withcenter/theme.css' />
 <script src='<?=x::url()?>/theme/withcenter/theme.js' /></script>
 <?php
@@ -67,8 +65,4 @@
 	<a href='?page=outsouring'>강사아웃소싱</a>
 	<a href='?page=opensource'>오픈소스</a>
 	<a href='<?=g::url()?>/bbs/board.php?bo_table='>게시판</a>
-</div></div>
-
-
-        <?php// echo outlogin('basic'); // 외부 로그인  ?>   
-
+</div></div> 
