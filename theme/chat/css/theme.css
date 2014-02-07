@@ -14,8 +14,12 @@
 	font-family: Lucida Sans Unicode;
 }
 
+#tnb li {
+	margin: 0 !important;
+}
+
 #tnb a {
-	padding: 0 1em 0 0;
+	padding: 0 1.5em 0 0;
 	font-size: 12pt;
 	color: #ffffff;
 	font-family: Gulim;
@@ -114,3 +118,14 @@ body {
 	padding: 1em;
 }
 
+.selected:hover:after, .selected:after{
+	width: 0;
+    height: 0;
+    position: absolute;
+    content:"";
+	display: block;
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	border-bottom: 12px solid #076489;
+
+}

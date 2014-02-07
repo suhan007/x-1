@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?=x::url_theme()?>/css/theme.css">
+<script type='text/javascript' src='<?=x::url_theme()?>/js/theme.js'></script>
 <div id="hd">
     <div id="hd_wrapper">
         <div id="logo">
