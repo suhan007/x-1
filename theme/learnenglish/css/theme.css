@@ -80,6 +80,18 @@ body {
 	list-style: none;
 }
 
+#container .important-post ul li {
+	margin-bottom: 1em;
+}
+
+#container .important-post ul li:last-child {
+	margin: 0;
+}
+
+#container ul li span {
+	padding-right: 1.5em;
+}
+
 #container ul li a {
 	color: #787878;
 }

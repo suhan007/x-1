@@ -14,12 +14,13 @@
 		<p><?=$extra['banner1_text2']?></p>
 	</div>
 	<div class='important-post'>
+		<h2> Note: Will Finalize this theme layout once Mr. Benjamin's Widget is finished. </h2> <br>
 	<?	$i=0;
 		echo "<ul>";
 		for( $ctr=0 ; $ctr < 5 ; $ctr++ ) {
 			$id = $posts[$i][$ctr]['wr_id'];
 			$date = explode(" ", $posts[$i][$ctr]['wr_datetime']);
-			if( $id ) echo "<li><a href=".g::url()."/bbs/board.php?bo_table=".$posts[$i]['bo_table']."&wr_id=$id>".$date[0].' '.$posts[$i][$ctr]['wr_subject']."</a></li>";
+			if( $id ) echo "<li><a href=".g::url()."/bbs/board.php?bo_table=".$posts[$i]['bo_table']."&wr_id=$id><span>".$date[0].'</span>'.mb_substr($posts[$i][$ctr]['wr_subject'],0,50)."</a></li>";
 		}
 		echo "</ul>";
 	?>
@@ -34,7 +35,7 @@
 			echo "<td valign='top'><div class='primary'><h2>".$posts[$i]['forum_name']."</h2><ul>";
 			for( $ctr=0 ; $ctr < 5 ; $ctr++ ) {
 				$id = $posts[$i][$ctr]['wr_id'];
-				if( $id ) echo "<li><a href=".g::url()."/bbs/board.php?bo_table=".$posts[$i]['bo_table']."&wr_id=$id>".$posts[$i][$ctr]['wr_subject']."</a></li>";
+				if( $id ) echo "<li><a href=".g::url()."/bbs/board.php?bo_table=".$posts[$i]['bo_table']."&wr_id=$id>".mb_substr($posts[$i][$ctr]['wr_subject'],0,25)."</a></li>";
 			}
 			echo "</ul></div></td>";
 			if($tr==2	) {echo "</tr>"; $tr=0;}
