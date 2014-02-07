@@ -15,82 +15,63 @@
 <form action='?' class='config_general' method='POST' enctype='multipart/form-data'>
 		<input type='hidden' name='module' value='multisite'>
 		<input type='hidden' name='action' value='config_global_submit'>
-<div class='config'>
-	<table width='100%' cellpadding='5px'>
-		<tr>
-			<td colspan=2><h2>Site Settings</h2></td>
-		</tr>
-		
-		<tr>
-			<td><label>Main Title</label></td>
-			<td>
-				<input type='text' name='title' value='<?=$extra['title']?>'>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Secondary Title</label></td>
-			<td>
-				<input type='text' name='secondary_title' value='<?=$extra['secondary_title']?>'>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Logo Text</label></td>
-			<td>
-				<input type='text' name='logo_text' value='<?=$extra['logo_text']?>'>
-			</td>
-		</tr>
-		<tr>
-			<td><label>Footer Text</label></td>
-			<td>
-				<input type='text' name='footer_text' value='<?=$extra['footer_text']?>'>
-			</td>	
-		</tr>
-		<tr>
-
-			<td valign='top'><label>Forums on Frontpage ( Six )</label></td>
-			<td colspan=3 class='category-front'>
-			<? for ( $i = 1; $i <= 6; $i++ ) { ?>
+<div class='config site-global'>
+	<h2>Site Info</h2>
+		<label>Main Title</label><input type='text' name='title' value='<?=$extra['title']?>'>
+		<label>Secondary Title</label><input type='text' name='secondary_title' value='<?=$extra['secondary_title']?>'>
+		<label>Header Text</label><input type='text' name='header_text' value='<?=$extra['header_text']?>'>
+		<label>Footer Text</label><input type='text' name='footer_text' value='<?=$extra['footer_text']?>'>
+		<br>Forums on First Page, Forum 1, is the Main Forum<br>
+			<? for ( $i = 1; $i <= 10; $i++ ) { ?>
 			<select name="forum_no_<?=$i?>">
 					<option value=''>Forum No. <?=$i?></option>
 					<? foreach ( $rows as $row ) { ?>
-						<option value="<?=$row['bo_table']?>"><?=$row['bo_subject']?></option>
+						<option value="<?=$row['bo_table']?>" <?if($extra['forum_no_'.$i] == $row['bo_table']) echo "selected"?>><?=$row['bo_subject']?></option>
 					<? } ?>
 			</select>
 			<? } ?>
-			</td>
-		</tr>
-		<tr>
+
+		<br><br>
+
+		<div class='config-img'>
+			<label>Header Logo</label><br>
+			<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>" width=280px height=160px><br>
+			<input type='file' name='header_logo'><br>
+			<label>Logo Text</label><br>
+			<input type='text' name='logo_text' value='<?=$extra['logo_text']?>'>
+		</div>
 		
-		<tr>
-			<td valign='top'>		
-				<label>Header Logo</label><br>
-				<input type='file' name='header_logo'>
-			</td>
-			<td>
-				<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['header_logo']?>" width=280px height=160px>
-			</td>
-		</tr>
-		<tr>
-			<td valign='top'>		
-				<label>Banner 1</label><br>
-				<input type='file' name='banner_1'>
-			</td>
-			<td>
-				<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_1']?>" width=280px height=160px>
-			</td>
-		</tr>
-		<tr>
-			<td valign='top'>		
-				<label>Banner 2</label><br>
-				<input type='file' name='banner_2'>
-			</td>
-			<td>
-				<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_2']?>" width=280px height=160px>
-			</td>
-		</tr>
-		<tr>
-			<td colspan=4><input type='submit' value='submit'></td>
-		</tr>
-	</table>
+		<div class='config-img'>	
+		<label>Banner 1</label><br>
+			<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_1']?>" width=280px height=160px><br>
+			<input type='file' name='banner_1'><br>
+			<label>Banner 1 Text 1</label><br>
+			<input type='text' name='banner1_text1' value='<?=$extra['banner1_text1']?>'><br>
+			<label>Banner 1 Text 2</label><br>
+			<input type='text' name='banner1_text2' value='<?=$extra['banner1_text2']?>'>
+		</div>
+		
+		<div class='config-img'>			
+		<label>Banner 2</label><br>
+			<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_2']?>" width=280px height=160px><br>
+			<input type='file' name='banner_2'><br>
+			<label>Banner 2 Text 1</label><br>
+			<input type='text' name='banner2_text1' value='<?=$extra['banner2_text1']?>'><br>
+			<label>Banner 2 Text 2</label><br>
+			<input type='text' name='banner2_text2' value='<?=$extra['banner2_text2']?>'>
+		</div><br>
+		
+
+		<br>
+		<h2>Additional Settings</h2>
+		<label>Display Sidebar on</label>
+			<input type="radio" name="theme_sidebar" value="left" <?if($extra['theme_sidebar'] == 'left') echo "checked"?>><span>Left</span>
+			<input type="radio" name="theme_sidebar" value="right" <?if(!$extra['theme_sidebar'] || $extra['theme_sidebar'] == 'right') echo "checked"?>><span>Right</span><br>
+		<label>Custom CSS</label>
+		<textarea name='css_config'><?=$extra['css_config']?></textarea><br>
+
+		
+		<input type='submit' value='submit'>
+
 </div>
 </form>
