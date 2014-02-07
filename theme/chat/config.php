@@ -1,2 +1,2 @@
 <?php
-	$theme_config['name'] = "Learn-English";
+	$theme_config['name'] = "Chat";
