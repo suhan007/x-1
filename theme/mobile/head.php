@@ -88,7 +88,13 @@
     <div id="aside">
         <?php echo outlogin('basic'); // 외부 로그인  ?>
         <?php echo poll('basic'); // 설문조사  ?>
-    </div>
+		<?php for( $i=1 ; $i<=2; $i++) { ?>
+				<div class='banner'>
+					<img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_'.$i]?>">
+					<p><?=$extra['banner_'.$i.'_text']?></p>
+				</div>
+			<?}?>
+		</div>
     <div id="container">
 		<?if ( (preg_match('/^config/', $action)) || (preg_match('/^config_/', $action)) ) include ms::site_menu();?>
         <?php if ((!$bo_table || $w == 's' ) && !defined("_INDEX_")) { ?><div id="container_title"><?php echo $g5['title'] ?></div><?php } ?>

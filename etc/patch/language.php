@@ -31,14 +31,24 @@
 	
 	patch_language( g::dir() . '/skin/member/basic/login.skin.php',
 		array(
+<<<<<<< HEAD
+			"회원로그인 안내"		=> "<?php echo _L('User Login Information');?>",
+=======
 			"회원로그인 안내"		=> "<?php echo _l('User Login Information');?>",
 			"회원아이디 및 비밀번호가 기억 안나실 때는 아이디/비밀번호 찾기를 이용하십시오." => "<?php echo _l('Use Password Lost Menu If You Lost ID Or Password');?>",
 			"아직 회원이 아니시라면 회원으로 가입 후 이용해 주십시오." => "<?php echo _l('Register First To Use This Page');?>",
 			"메인으로 돌아가기"	=> "<?php echo _l('GO BACK TO FIRST PAGE');?>",
+>>>>>>> d83fa46a06be631d81bc7bf051b77113bc635f09
 		)
 	);
 	
 	
+<<<<<<< HEAD
+	
+	
+	
+	
+=======
 	patch_language( g::dir() . '/bbs/current_connect.php',
 		array(
 			"'현재접속자'"		=> "_l('Connected User')",
@@ -204,6 +214,7 @@
 			"자신보다 권한이 높거나 같은 회원은 삭제할 수 없습니다." => '"._l("You cannot delete the member who have the same or higher level than yours.")."',
 		)
 	);
+>>>>>>> d83fa46a06be631d81bc7bf051b77113bc635f09
 
 	patch_language( g::dir() . '/adm/admin.head.php',
 		array(
@@ -345,7 +356,11 @@
 
 function patch_language( $file, $kvs )
 {
+<<<<<<< HEAD
+	global $language_code;
+=======
 	global $language_code, $language_code_ko;
+>>>>>>> d83fa46a06be631d81bc7bf051b77113bc635f09
 	
 	$data = file::read($file);
 	foreach ( $kvs as $p => $r ) {
