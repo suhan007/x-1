@@ -89,8 +89,7 @@ class x {
 	 */
 	static function url_admin()
 	{
-		global $x_url;
-		return "$x_url/?module=admin&action=index";
+		return self::url() . "/?module=admin&action=index";
 	}
 	
 	static function admin_menu()
