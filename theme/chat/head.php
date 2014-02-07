@@ -11,7 +11,7 @@
 			<li><a href=''>About</a></li>
 			<li><a href=''>Support</a></li>
 			<li><a href=''>Contact</a></li>
-			<li><a href='<?=ms::url_config()?>'>Admin</a></li>
+			<?if( ms::admin() ) { ?><li><a href='<?=ms::url_config()?>'>Admin</a></li><?}?>
         </ul>	
     </div>
 </div>
