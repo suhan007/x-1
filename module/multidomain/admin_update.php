@@ -54,6 +54,7 @@ if ( empty($cfg['priority']) ) $cfg['priority'] = 9;
 					if ( file_exists($path) ) {
 						$theme_config = array();
 						include $path;
+						if ( empty($theme_config['name']) ) continue;
 						
 						echo "<option value='$dir'";
 						if ( $cfg['theme'] == $dir ) echo " selected='1'";

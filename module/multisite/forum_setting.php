@@ -28,7 +28,7 @@
 					if ( $extra['menu_'.$i] == $in['bo_table'] ) {
 						$op['submenu_'.$i] = $in['bo_category_list'];
 						ms::update($op);
-					};
+					}
 				}
 			}
 		

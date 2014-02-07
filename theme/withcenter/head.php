@@ -1,7 +1,5 @@
 <?php
-if ( $in['page'] ) {
-	$page_file_path = x::dir().'/theme/withcenter/'.$in['page'].".php";
-}
+
 
 ?>
 <link rel='stylesheet' type='text/css' href='<?=x::url()?>/theme/withcenter/theme.css' />
@@ -68,3 +66,10 @@ if ( $in['page'] ) {
 	<a href='?page=opensource'>오픈소스</a>
 	<a href='<?=g::url()?>/bbs/board.php?bo_table='>게시판</a>
 </div></div> 
+
+<div class='layout'>
+	<table class='main-content' cellpadding=0 cellspacing=0 width='100%' border=0>
+		<tr valign='top'>
+			<td class='left' width='210'><?=outlogin('withcenter')?></td>
+			<td width='10'></td>
+			<td class='content'>

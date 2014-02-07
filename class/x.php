@@ -1,10 +1,11 @@
 <?php
-define('X_DIR_ETC', x::dir() . '/etc');
-define('X_DIR_THEME', x::dir() . '/theme');
+define('X_DIR_ETC', g::dir() . '/x/etc');
+define('X_DIR_THEME', g::dir() . '/x/theme');
 /**
  *  @file class/x.php
  *  
- *  @brief 그누보드 확장 팩 라이브러리
+ *  @brief GNUBoard Extended Library
+ *  그누보드 확장 팩 라이브러리
  *  
  */
 class x {
@@ -36,8 +37,7 @@ class x {
 	 */
 	static function dir()
 	{
-		global $x_dir;
-		return $x_dir;
+		return g::dir() . '/x';
 	}
 	
 	/**
@@ -49,8 +49,7 @@ class x {
 	 */
 	static function url()
 	{
-		global $x_url;
-		return $x_url;
+		return g::url() . '/x';
 	}
 	
 	/**
@@ -59,9 +58,25 @@ class x {
 			<a href="<?php echo G5_URL ?>"><img src='<?=x::url_theme()?>/img/logo.png'></a>
 	 *	@endcode
 	 */
-	static function url_theme()
+	static function url_theme( $file = null )
 	{
-		return self::url() . '/theme/' . self::$config['site']['theme'];
+		$dir = self::url() . '/theme/' . self::$config['site']['theme'];
+		if ( empty( $file ) ) return $dir;
+		else return $dir . DIRECTORY_SEPARATOR . $file;
+	}
+	
+
+	/**
+	 *  @brief alias of url_theme()
+	 *  
+	 *  @param [in] $file same as url_theme()
+	 *  @return same as url_theme()
+	 *  
+	 *  @details return url_theme()
+	 */	
+	static function theme_url($file)
+	{
+		return self::url_theme($file);
 	}
 	
 	
@@ -74,13 +89,12 @@ class x {
 	 */
 	static function url_admin()
 	{
-		global $x_url;
-		return "$x_url/?module=admin&action=index";
+		return self::url() . "/?module=admin&action=index";
 	}
 	
 	static function admin_menu()
 	{
-		return X_DIR_ETC . './admin_menu.php';
+		return X_DIR_ETC . '/admin_menu.php';
 	}
 	
 	static function url_setting()
@@ -174,7 +188,17 @@ class x {
 	 * 	
 	 * 	@code
 			<?include x::theme('menu')?>
-	 * 	@endcod
+	 * 	@endcode
+	 *
+	 *
+	 *	@code how to create a page.
+
+		http://work.org/g5-5.0b18-4/?page=opensource
+		<?php
+			if ( $in['page'] ) include x::theme( $in['page'] );
+		?>
+		@endcode
+	 *
 	 */
 	static function theme( $file )
 	{
@@ -201,6 +225,7 @@ class x {
 	{
 		return self::dir() . '/etc/null.php';
 	}
+	
 	
 	
 }

@@ -79,6 +79,7 @@
     <hr>
     <?include G5_PATH . '/x/html/patch.head-main-menu.php'?>
 	
+	
 </div>
 <!-- } 상단 끝 -->
 
