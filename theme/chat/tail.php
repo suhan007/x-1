@@ -1,6 +1,8 @@
-<div class='footer-text'><? if( $extra['footer_text'] == '' ) {?>
+</div>
+<div class='footer-text'><p><? if( $extra['footer_text'] == '' ) {?>
 COPYRIGHT @ 2014 &nbsp&nbsp ALL RIGHTS RESERVED &nbsp&nbsp WITHCENTER.COM
 <?} else echo $extra['footer_text'];?>
+</p>
 </div>
 
 <!--  하단 끝 -->

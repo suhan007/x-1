@@ -103,9 +103,14 @@ body {
 
 .footer-text {
 	margin-top: 1em;
+	clear:both;
+	float: right;
+}
+
+.footer-text p {
 	font-family: Gulim;
 	color: #acacac;
 	text-transform: uppercase;
-	float: right;
+	padding: 1em;
 }
 
