@@ -52,25 +52,48 @@ class multisite {
 	}
 	
 	/**
-	 *  @brief returns the record of the sub-site.
+	 *  @brief returns the record of the site(subsite).
 	 *  
 	 *  @param [in] $domain domain of the sub-site. i.e) abc.your-domain.com
 	 *  
 	 *  @return assoc-array a record.
 	 *  
-	 *  @details returns the whole record of the input sub-domain.
+	 *  @details
+	 *		returns the whole record of the input sub-site.
+	 *		use this function to get the configuration of the site.
+	 * @note this function does memory cache.
+	 * @code
+			ms::get();
+			$site = ms::get(etc::domain());
+		@endcode
 	 */
-	static function get( $domain )
+	static function get( $domain = null )
 	{
-		if ( is_numeric( $domain ) ) $qf = "idx";
-		else $qf = "domain";
-		$sql = "SELECT * FROM x_multisite_config WHERE $qf='$domain'";
-		$opt =  db::row( $sql );
-		if ( empty($opt) ) return array();
-		$opt['extra'] = string::unscalar( $opt['extra'] );
-		return $opt;
+		global $multisite_get;
+		if ( empty($domain) ) $domain = etc::domain();
+		if ( ! isset( $multisite_get[ $domain ] ) ) {		
+			if ( is_numeric( $domain ) ) $qf = "idx";
+			else $qf = "domain";
+			$sql = "SELECT * FROM x_multisite_config WHERE $qf='$domain'";
+			$opt =  db::row( $sql );
+			if ( empty($opt) ) return array();
+			$opt['extra'] = string::unscalar( $opt['extra'] );
+			$multisite_get[ $domain ] = $opt;
+		}
+		return $multisite_get[ $domain ]
 	}
 	
+	
+	
+	/**
+	 * @short returns 'extra' field of the configuration.
+	 * @note use this function if you want to get 'extra' field only.
+	 */
+	static function get_extra( $domain = null )
+	{
+		$site = ms::get( $domain );
+		return $site['extra'];
+	}
 	
 	
 	
@@ -257,12 +280,11 @@ class multisite {
 	/**
 	 *  @brief sets the site title in browser title bar.
 	 *  
-	 *  @param [in] $site_title empty
 	 *  @return empty
 	 *  
 	 *  @details changes the site title by setting g5 variable.
 	 */
-	static function site_title( ) {
+	static function set_title( ) {
 		global $g5, $config;
 		$opt = ms::get( etc::domain() );
 		if ( $opt['extra']['title'] == '' ) $title = 'Welcome';
@@ -301,8 +323,7 @@ class multisite {
 	 *  @details Details
 	 */
 	static function update( $option ) {
-		$site = ms::get(etc::domain());
-		$extra = &$site['extra'];
+		$extra = ms::get_extra();
 		$option = array_merge( $extra, $option );
 		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $option ) ) , array( 'domain' => etc::domain() ) );
 	}
