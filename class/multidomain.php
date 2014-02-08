@@ -116,6 +116,7 @@ class multidomain {
 	 *  @return array a record.
 	 *  
 	 *  @details use this function to check if a domain configuraiton is already exist or not.
+	 * Do not use this function to get the configuration
 	 */
 	static function get( $domain )
 	{

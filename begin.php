@@ -2,12 +2,29 @@
 include_once 'etc/class.php';
 include_once 'etc/language/default.php';
 
+
+
+
+
+return;
+
+
+
+
 /* eo */
 //multisite config/options
 ms::site_title();
 $site = ms::get(etc::domain());	
 $extra = &$site['extra'];
 
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+//
 /** first if: display sidebar to left or right based on the multisite admin settings
 	second if: attach custom css based on the multisit admin settings
  */
