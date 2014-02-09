@@ -639,6 +639,36 @@ class gnuboard {
 		return db::row("SELECT * FROM $bo_table WHERE wr_id=$wr_id");
 	}
 	
+	static function post_url( $bo_table, $wr_id )
+	{
+		return g::url() . "/bbs/board.php?bo_table=$bo_table&wr_id=$wr_id";
+	}
+	
+	static function posts( $o )
+	{
+		$bo_table = self::board_table( $o['bo_table'] );
+		
+		$cond = array();
+		if ( $o['mb_id'] ) $cond['mb_id'] = $o['mb_id'];
+		
+		$q_where = null;
+		if ( $cond ) {
+			$q_where = implode(" AND ", $cond );
+		}
+		
+		if ( $o['limit'] ) $limit = "LIMIT $o[limit]";
+		else $limit = "LIMIT 10";
+		
+		
+		if ( $o['order by'] ) $order_by = "ORDER BY " . $o['order by'];
+		else $order_by = "ORDER BY wr_id DESC";
+		
+		$rows = db::rows("SELECT * FROM $bo_table $q_where $order_by $limit");
+		
+		return $rows;
+	}
+	
+	
 	
 } // eo class
 

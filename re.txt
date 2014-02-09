@@ -1,0 +1,2 @@
+
+Parse error: syntax error, unexpected ';' in C:\work\g5-5.0b17\x\etc\service\metaweblog.php on line 484

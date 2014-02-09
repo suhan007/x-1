@@ -32,6 +32,7 @@ else if( $input['method'] == "metaWeblog.newPost" ) response_newPost();
 else if ( $input['method'] == "metaWeblog.editPost" ) response_editPost();
 else if ( $input['method'] == "metaWeblog.newMediaObject" ) response_newMediaObject();
 else if ( $input['method'] == "metaWeblog.getPost" ) response_getPost();
+
 else if ( $input['method'] == "metaWeblog.getCategories" ) response_getCategories();
 else {
 	response_faultCode(-99, "You have sent a method that I don't understand - $input[method]");
@@ -56,7 +57,7 @@ function mw_parse_xml_input($xml)
 	}
 	/** @short 새글 쓰기와 Media */
 	else if ( $method == "metaWeblog.newPost" || $method == "metaWeblog.newMediaObject" || $method == "metaWeblog.getCategories" ) {
-		$input['blogid'] = (string) $xml->params->param[0]->value->string;
+		$input['blog_id'] = (string) $xml->params->param[0]->value->string;
 		$input['id'] = (string) $xml->params->param[1]->value->string;
 		$input['password'] = (string) $xml->params->param[2]->value->string;
 	}
@@ -74,7 +75,7 @@ function mw_parse_xml_input($xml)
 	}
 	/** @short 최근 글 목록 */
 	else if ( $method == "metaWeblog.getRecentPosts" ) {
-		$input['blogid'] = (string)  $xml->params->param[0]->value->string;
+		$input['blog_id'] = (string)  $xml->params->param[0]->value->string;
 		$input['id'] = (string) $xml->params->param[1]->value->string;
 		$input['password'] = (string)  $xml->params->param[2]->value->string;
 		$input['numrows'] = (int) $xml->params->param[3]->value->int;
@@ -259,79 +260,7 @@ EOH;
 
 
 
-function response_getRecentPosts()
-{
-	return;
-	global $sys, $user, $input;
-	
-  
-	echo <<<EOH
-<?xml version="1.0" encoding="utf-8"?>
-<methodResponse> 
-<params>
-<param>
-<value>
-<array>
-EOH;
 
-
-
-	$option = array('idx_member'=>$user['idx']);
-	$option['post_id'] = $input['blogid'];
-	$option['fields'] = 'idx,post_id,subject,content';
-	$option['limit'] = $input['numrows'];
-	debug($option);
-	$rows = $sys->post->select($option);
-	
-	foreach ( $rows as $row ) {
-		$dt = date("Ymd", $row['stamp_regdate']) . "T" . date("H:i:s", $row['stamp_regdate']);
-		$subject = $row['subject'];
-		$content = $row['content'];
-		echo "
-			<data>
-				<value>
-					<struct>
-						<member>
-							<name>dateCreated</name>
-							<value>
-								<dateTime.iso8601>$dt</dateTime.iso8601>
-							</value>
-						</member>
-						<member>
-							<name>description</name>
-							<value>$subject
-							</value>
-						</member>
-						<member>
-							<name>link</name>
-							<value>http://$domain/?$row[idx]</value>
-						</member>
-						<member>
-							<name>postid</name>
-							<value>
-							<i4>$row[idx]</i4>
-							</value>
-						</member>
-						<member>
-							<name>title</name>
-							<value>$subject</value>
-						</member>
-					</struct>
-				</value>
-			</data>
-		";
-	}
-	
-	
-echo <<<EOH
-</array>
-</value>
-</param>
-</params>
-</methodResponse>
-EOH;
-
-}
 
 
 
@@ -349,18 +278,16 @@ function response_newPost()
 {
 	global $user, $input, $xml;
 	
-	// if ( $msg = lowLevel($blogid) ) return response_faultCode(-3, "metaWeblog.newPost:: $blogid is not postable for you! The level of forum is higher than yours. $msg");
-  
+	
   
 	$title = $xml->params->param[3]->value->struct->member[0]->value->string;
 	$description = $xml->params->param[3]->value->struct->member[1]->value->string;
 	$publish = $xml->params->param[4]->value->boolean;
 	
 	
-	// $cfg = $sys->post->config($input['blogid']);
 	
 	$p = array();
-	$p['bo_table']		= $input['blogid'];
+	$p['bo_table']		= $input['blog_id'];
 	$p['mb_id']			= $user['mb_id'];
 	$p['mb_name']	= $user['mb_name'];
 	$p['mb_email']	= $user['mb_email'];
@@ -374,7 +301,7 @@ function response_newPost()
 	
 	
 	/** update file information */
-	metaweblog_update_file_information( $input['blogid'], $wr_id );
+	metaweblog_update_file_information( $input['blog_id'], $wr_id );
 	
 	
   $ret = <<<EOH
@@ -494,7 +421,7 @@ function response_newMediaObject()
 	 * 참고 : MetaWeblog API 에서 첨부 파일 관리가 쉽지 않다. 이미 등록된 파일 수정/삭제를 하는 api 가 따로 없으므로 정히 원한다면, editPost() 에서 기존 첨부 파일을 모두 삭제 할 수 있다.
 	 */
 	$o = array();
-	$o['bo_table']			= $input['blogid'];
+	$o['bo_table']			= $input['blog_id'];
 	$o['wr_id']				= 0;
 	$o['path']				= $path;
 	$o['bf_content']		= $input['id'];
@@ -522,3 +449,167 @@ echo<<<EOH
 </methodResponse>
 EOH;
 }
+
+
+
+
+
+
+function response_getRecentPosts()
+{
+	global $user, $input;
+	
+  
+	echo <<<EOH
+<?xml version="1.0" encoding="utf-8"?>
+<methodResponse> 
+<params>
+<param>
+<value>
+<array>
+EOH;
+
+
+
+	$rows = g::posts( array('bo_table'=>$input['blog_id'], 'mb_id'=>$user['mb_id']) );
+	
+	
+	
+	
+	foreach ( $rows as $row ) {
+		$dt = $row['wr_datetime'];
+		$dt = str_replace('-', '', $dt);
+		$dt = str_replace(' ', 'T', $dt);
+		$subject = htmlspecialchars( $row['wr_subject'] );
+		$content = htmlspecialchars( substr( strip_tags($row['wr_content']) , 0, 255) );
+		$url = urlencode(g::post_url( $input['blog_id'], $row['wr_id'] ) );
+		echo "
+			<data>
+				<value>
+					<struct>
+						<member>
+							<name>dateCreated</name>
+							<value>
+								<dateTime.iso8601>$dt</dateTime.iso8601>
+							</value>
+						</member>
+						<member>
+							<name>description</name>
+							<value>$content</value>
+						</member>
+						<member>
+							<name>link</name>
+							<value>$url</value>
+						</member>
+						<member>
+							<name>postid</name>
+							<value>
+							<i4>$input[blog_id]:$row[wr_id]</i4>
+							</value>
+						</member>
+						<member>
+							<name>title</name>
+							<value>$subject</value>
+						</member>
+					</struct>
+				</value>
+			</data>
+		";
+	}
+	
+	
+echo <<<EOH
+</array>
+</value>
+</param>
+</params>
+</methodResponse>
+EOH;
+
+}
+
+
+
+
+
+function response_getPost()
+{
+	global $user,  $input;
+	
+	
+	list ( $blog_id, $wr_id ) = explode(':', $input['blogno']);
+	
+	$p = g::post( $blog_id, $wr_id );
+	if ( $p['mb_id'] != $user['mb_id'] ) response_faultCode(-102, "Post No.: $blog_id : $wr_id - is not your post.");
+	
+	$dt = $p['wr_datetime'];
+	$dt = str_replace('-', '', $dt);
+	$dt = str_replace(' ', 'T', $dt);
+	
+	$category = 'none';
+	
+	
+	$title = htmlspecialchars($p["wr_subject"]);
+	$content = htmlspecialchars($p["wr_content"]);
+	$link = urlencode(g::post_url( $blog_id, $wr_id ));
+	$postid = "$blog_id:$wr_id";
+  
+echo <<<EOH
+<?xml version="1.0" encoding="utf-8"?>
+<methodResponse> 
+<params>
+<param>
+<value>
+<struct>
+<member>
+<name>categories</name>
+<value>
+<array>
+<data>
+<value>$category</value>
+</data>
+</array>
+</value>
+</member>
+<member>
+<name>dateCreated</name>
+<value>
+<dateTime.iso8601>$dt</dateTime.iso8601>
+</value>
+</member>
+<member>
+<name>description</name>
+<value>$content</value>
+</member>
+<member>
+<name>link</name>
+<value>$link</value>
+</member>
+<member>
+<name>postid</name>
+<value>
+<string>$postid</string>
+</value>
+</member>
+<member>
+<name>title</name>
+<value>$title</value>
+</member>
+<member>
+<name>publish</name>
+<value>
+<boolean>1</boolean>
+</value>
+</member>
+</struct>
+</value>
+</param>
+</params>
+</methodResponse>
+
+EOH;
+
+	
+}
+
+
