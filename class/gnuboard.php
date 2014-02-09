@@ -392,13 +392,15 @@ class gnuboard {
 		
 		db::update( $g5['board_table'], array('bo_count_write' => $count), array('bo_table'=>$o['bo_table']) );
 		
-		self::write_file( $o['bo_table'], $wr_id, $o['file_1'] );
-		self::write_file( $o['bo_table'], $wr_id, $o['file_2'] );
-		self::write_file( $o['bo_table'], $wr_id, $o['file_3'] );
 		
 		
-		$cnt = db::result(" select count(*) as cnt from {$g5['board_file_table']} where bo_table = '$o[bo_table]' and wr_id = '$wr_id' ");
-		db::query(" update {$write_table} set wr_file = '{$cnt}' where wr_id = '{$wr_id}' ");
+		self::write_file( array( 'bo_table'=>$o['bo_table'], 'wr_id'=>$wr_id, 'path'=>$o['file_1'] ) );
+		self::write_file( array( 'bo_table'=>$o['bo_table'], 'wr_id'=>$wr_id, 'path'=>$o['file_2'] ) );
+		self::write_file( array( 'bo_table'=>$o['bo_table'], 'wr_id'=>$wr_id, 'path'=>$o['file_3'] ) );
+		
+		
+		
+		
 	
 		
 		//
@@ -416,32 +418,61 @@ class gnuboard {
 	/**
 	 *  @brief attach(upload) or update a file to/for a post.
 	 *  
-	 *  @param [in] $path file path
+	 *  @param [in] 
+	 
+	$o = array();
+	$o['bo_table']			= $input['blogid'];
+	$o['wr_id']				= 0;
+	$o['path']				= $path;
+	$o['bf_content']		= $input['id'];
+	$o['filename']			= $filename;
+	$url = g::write_file( $o );
+	
 	 *  @return 0 if successful. otherwise non-zero.
 	 *  
 	 *  @details 
 	 *  upload( or attach ) a file programatically.
 	 *  @warning
 	 *  	bf_no will be increase by 1 every time a file is attached.
+	 *	@code
+		
+		self::write_file( array( 'bo_table'=>$o['bo_table'], 'wr_id'=>$wr_id, 'path'=>$o['file_1'] ) );
+		self::write_file( array( 'bo_table'=>$o['bo_table'], 'wr_id'=>$wr_id, 'path'=>$o['file_2'] ) );
+		self::write_file( array( 'bo_table'=>$o['bo_table'], 'wr_id'=>$wr_id, 'path'=>$o['file_3'] ) );
+		
+	@endcode
 	 */
-	static function write_file( $bo_table, $wr_id, $path )
+	static function write_file( $o )
 	{
 		global $g5;
+		
+		
+		$bo_table			= $o['bo_table'];
+		$wr_id				= $o['wr_id'];
+		$path				= $o['path'];
+		$bf_content		= $o['bf_content'];
+		$filename			= $o['filename'];
+		
+		
 		if ( empty($path) ) return 0;
 		if ( !file_exists($path) ) return -1;
 		$size = filesize($path);
-		$pi = pathinfo($path);
-		$filename  = preg_replace('/(<|>|=)/', '', $pi['basename']);
+		if ( empty($filename) ) {
+			$pi = pathinfo($path);
+			$filename = $pi['basename'];
+		}
+		$filename  = preg_replace('/(<|>|=)/', '', $filename);
 		
 		$chars_array = array_merge(range(0,9), range('a','z'), range('A','Z'));
 		shuffle($chars_array);
         $shuffle = implode('', $chars_array);
-		$file = time().'_' . substr($shuffle,0,8) . '_' . str_replace('%', '', urlencode(str_replace(' ', '_', $filename)) );
+		$file = date('ymdHi').'_' . substr($shuffle,0,8) . '_' . str_replace('%', '', urlencode(str_replace(' ', '_', $filename)) );
 		
 		
 		$dest_file = G5_DATA_PATH.'/file/'.$bo_table.'/'.$file;
-		
+		dlog("Copy: $path to $dest_file");
 		copy( $path, $dest_file );
+		
 		chmod($dest_file, G5_FILE_PERMISSION);
 		
 		
@@ -463,7 +494,7 @@ class gnuboard {
                          bf_no = '{$bf_no}',
                          bf_source = '{$pi['basename']}',
                          bf_file = '$file',
-                         bf_content = '',
+                         bf_content = '$bf_content',
                          bf_download = 0,
                          bf_filesize = '$size',
                          bf_width = '{$timg['0']}',
@@ -473,8 +504,56 @@ class gnuboard {
         db::query($sql);
 		
 		
+		self::board_file_update_count( $bo_table, $wr_id );
+		return self::url_file( $bo_table, $file );
 	}
 	
+	/** @short updates the number of file for that post
+	 *
+	 */
+	static function board_file_update_count( $bo_table, $wr_id )
+	{
+		// update the number of file for the post.
+		$board_file_table = self::board_file_table();
+		$write_table	= g::write_table( $bo_table );
+		dlog("write_table: $write_table");
+		$cnt = db::result(" select count(*) as cnt from $board_file_table where bo_table = '$bo_table' and wr_id = '$wr_id' ");
+		db::query(" update {$write_table} set wr_file = '{$cnt}' where wr_id = '{$wr_id}' ");
+	}
+	static function board_config_table()
+	{
+		global $g5;
+		return $g5['board_table'];
+	}
+	static function board_file_table()
+	{
+		global $g5;
+		return $g5['board_file_table'];
+	}
+	
+	/** @short returns the URL of the uploaded file.
+	 *
+	 *
+	 */
+	static function url_file($bo_table, $file )
+	{
+		return G5_DATA_URL.'/file/'.$bo_table.'/'.urlencode($file);
+	}
+	
+	
+	static function update( $o )
+	{
+		$write_table = self::board_table($o['bo_table']);
+		$sql = " update $write_table
+					set 
+					wr_subject = '$o[wr_subject]',
+                     wr_content = '$o[wr_content]',
+                     wr_last = '".G5_TIME_YMDHIS."',
+                     wr_ip = '{$_SERVER['REMOTE_ADDR']}'
+				where wr_id=$o[wr_id]
+		";
+		db::query($sql);
+	}
 	
 	
 	/**
@@ -492,12 +571,74 @@ class gnuboard {
 	}
 	
 
+	/** @short returns forum table name
+	 *
+	 *
+	 */
 	static function write_table($bo_table)
 	{
 		global $g5;
 		return $g5['write_prefix'] . $bo_table;
 	}
+	static function board_table($bo_table)
+	{
+		return self::write_table($bo_table);
+	}
 	
+	
+	
+	
+	
+	/** @short returns member information
+	 *
+	 */
+	static function member($mb_id)
+	{
+		return get_member($mb_id);
+	}
+	
+	
+	
+	/** @short returns gnuboard password from plain text input
+	 *
+	 * @code
+			if ( g::password($input['password']) != $user["mb_password"] ) response_faultCode(-1, "Password does not match. UserID :$user[mb_id]");
+		@endcode
 		
+	 */
+	static function password( $word )
+	{
+		return db::result(" select password('$word')");
+	}
+	
+	
+	
+
+	/** @short returns forum information
+	 *
+	 * @code
+		di ( g::board_config() );
+		di ( g::board_config( array('order by' => 'bo_subject ASC') ) );
+		@endcode
+	 */
+	static function board_config( $o = array() )
+	{
+		global $g5;
+		$order_by = null;
+		if ( $o['order by'] ) $order_by = "ORDER BY " . $o['order by'];
+		return db::rows("SELECT bo_table,bo_subject FROM $g5[board_table] $order_by");
+	}
+	
+	
+	/** @short returns a post
+	 *
+	 */
+	static function post( $bo_table, $wr_id )
+	{
+		$bo_table = self::board_table( $bo_table );
+		return db::row("SELECT * FROM $bo_table WHERE wr_id=$wr_id");
+	}
+	
+	
 } // eo class
 

@@ -80,7 +80,7 @@ class multisite {
 			$opt['extra'] = string::unscalar( $opt['extra'] );
 			$multisite_get[ $domain ] = $opt;
 		}
-		return $multisite_get[ $domain ]
+		return $multisite_get[ $domain ];
 	}
 	
 	
