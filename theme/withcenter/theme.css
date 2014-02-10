@@ -127,3 +127,35 @@ body{
 	margin: 20px auto 0 auto;
 }
 
+.layout .main-content .main-top{
+	margin-bottom: 27px;
+}
+
+.layout .main-content .withcenter_latest {
+	margin-bottom: 29px;
+}
+
+.layout .main-content .bottom-banner {
+	margin-bottom: 27px;
+}
+
+.layout .main-content .bottom-banner img{
+	width: 100%;
+}
+.layout .main-content .bottom_latest {
+	margin-bottom: 96px;
+}
+
+.footer {
+	text-align: center;
+	width: 100%;
+	border-top: 1px solid #dddddd;
+	height: 39px;
+	line-height: 39px;
+}
+
+.footer .inner {
+	max-width: 960px;
+	color: #959595;
+	font-size: 0.875em;
+}

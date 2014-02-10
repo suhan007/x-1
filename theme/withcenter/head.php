@@ -64,12 +64,15 @@
 	<a href='?page=application'>가맹사모집</a>
 	<a href='?page=outsouring'>강사아웃소싱</a>
 	<a href='?page=opensource'>오픈소스</a>
-	<a href='<?=g::url()?>/bbs/board.php?bo_table='>게시판</a>
+	<a href='<?=g::url()?>/bbs/board.php?bo_table=withcenter1'>게시판</a>
 </div></div> 
 
 <div class='layout'>
 	<table class='main-content' cellpadding=0 cellspacing=0 width='100%' border=0>
 		<tr valign='top'>
-			<td class='left' width='210'><?=outlogin('withcenter')?></td>
+			<td class='left' width='200'>	
+				<? include x::dir().'/theme/withcenter/left.php'; ?>
+				
+			</td>
 			<td width='10'></td>
 			<td class='content'>
