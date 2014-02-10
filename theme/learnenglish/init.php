@@ -2,17 +2,15 @@
 
 x::hook_register('head_begin', function() {
 } );
-x::hook_register('tail_begin', function() {
-	if($_SERVER['PHP_SELF'] == '/index.php') {
-		?>
-		<style>
-			#aside {
-				display: none;
-			}
-			#container {
-				border: 0 !important;
-				width: 939px;
-			}
-		</style><?
-	}
-} );
+
+x::hook_register('tail_begin', 'hook_multisite_tail_begin');
+
+function hook_multisite_tail_begin() {
+	global $extra;
+	if($extra['theme_sidebar'] == 'left') {
+	?><style>
+		#aside {float:left;}
+		#container {border-right: 0; border-left: 1px solid #dde4e9;}
+	</style><?}
+}
+	
