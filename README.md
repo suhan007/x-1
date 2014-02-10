@@ -1,6 +1,11 @@
-# GnuBoard Extended #
+# REMINDER #
+This repository has moved to https://github.com/withcenter/x
 
-----------
+본 저장소는 https://github.com/withcenter/x 로 이동 되었습니다.
+
+
+## GnuBoard Extended ##
+
 
 
 Powered By JaeHo Song
