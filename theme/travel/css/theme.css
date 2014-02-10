@@ -44,60 +44,22 @@ body {
 
 #container {
 	border: 0 !important;
-	width: 699px;
+	width: 710px;
+	padding: 10px 9px 10px 8px;
+}
+
+
+#container .lt{
+	margin-left: 10px !important;
 }
 
 #aside {
-	border: 0 !important;
-	padding: 15px 16px 15px 15px
+	border: 1px solid #e34663;
+	padding: 10px 9px 10px 8px;
+	margin: 1em 0 0 1em;
+	background: #f4f4f4;
 }
 
-/*application form*/
-#aside .application-form-container {
-	margin-top: 1em;
-	border: solid 1px #95cfb7;
-	width: 100%;
-	background: #f5f5f5;
-}
-
-#aside .application-form {
-	padding: 1em;
-}
-
-#aside .application-form input:first-child {
-	margin-top: 0.5em;
-}
-
-#aside .application-form input {
-	border: solid 1px #e5e5e5;
-	padding: 0.5em;
-	margin: 0.4em 0 0.4em 0;
-	width: 100%;
-
-}
-
-#aside .application-form input[type='text'], #aside .application-form input[type='email'] {
-	width: 92%;
-	font-style: italic;
-}
-
-#aside .application-form {
-	font-family: Arial;
-}
-
-#aside .application-form h2 {
-	font-family: Arial;
-	text-transform: uppercase;
-	color: #585858;
-	font-size: 11.45pt;
-}
-#aside .application-form table p {
-	font-style: italic;
-}
-
-#aside .application-form table h2 {
-	font-size: 13pt;
-}
 
 #wrapper {
 	border: 0 !important;
@@ -125,18 +87,42 @@ body {
 .selected:hover:after, .selected:after{
 
 }
+.popular-posts img, .new-posts img {
+	margin: 0.5em;
+}
+.popular-posts, .new-posts, .popular-posts a, .new-posts a {
+	color: #777777;
+	font-family: Arial;
+	text-decoration: none;
+}
 
-#aside input[type='submit'] {
-	border: 1px solid #blue;
-	background-color: #f9f9f9;
-	color: #585858;
-	border-radius: 4px;
-	height: 30px;
-	padding: 0 15px;
-	cursor: pointer;
+.popular-posts > span, .new-posts > span {
+	margin-left: 1em;
 }
-#aside input[type='submit']:hover {
-	border: 1px solid orange;
-	background-color: orange;
-	color: #ffffff;
+.popular-posts > table , .new-posts > table {
+	border-top: solid 2px #c4c4c4;
+	text-align: center;
+	margin: 0 auto;
 }
+
+.popular-posts > p , .new-posts > p {
+	text-align: center;
+	padding: 1em;
+	border-bottom: solid 2px #25828f;
+	margin-bottom: 1em;
+}
+
+.popular-posts > table td , .new-posts > table td{
+	border-bottom: solid 1px #c4c4c4;
+}
+
+.popular-posts > table td:last-child , .new-posts > table td:last-child{
+	border-bottom: solid 1px #c4c4c4;
+}
+.popular-posts .label, .new-posts .label {
+	font-size: 11pt;
+	font-weight: bold;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+

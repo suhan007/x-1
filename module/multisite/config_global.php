@@ -42,6 +42,16 @@
 		</div>
 		
 		<div class='config-img'>	
+			<label>Profile Photo</label><br>
+			<?if( $extra['profile_img'] ) {?><img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['profile_img']?>" width=280px height=160px><br><?}?>
+			<input type='file' name='profile_img'><br>
+			<label>Banner 1 Text 1</label><br>
+			<input type='text' name='profile_text1' value='<?=$extra['profile_text1']?>'><br>
+			<label>Banner 1 Text 2</label><br>
+			<input type='text' name='profile_text2' value='<?=$extra['profile_text2']?>'>
+		</div>
+		
+		<div class='config-img'>	
 			<label>Banner 1</label><br>
 			<?if( $extra['banner_1'] ) {?><img src="<?=ms::url_site(etc::domain()).$extra['img_url'].$extra['banner_1']?>" width=280px height=160px><br><?}?>
 			<input type='file' name='banner_1'><br>
@@ -67,8 +77,6 @@
 		<label>Display Sidebar on</label>
 			<input type="radio" name="theme_sidebar" value="left" <?if($extra['theme_sidebar'] == 'left') echo "checked"?>><span>Left</span>
 			<input type="radio" name="theme_sidebar" value="right" <?if(!$extra['theme_sidebar'] || $extra['theme_sidebar'] == 'right') echo "checked"?>><span>Right</span><br>
-		<label>Custom CSS</label>
-		<textarea name='css_config'><?=$extra['css_config']?></textarea><br>
 
 		
 		<input type='submit' value='submit'>

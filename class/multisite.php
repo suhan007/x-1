@@ -324,7 +324,7 @@ class multisite {
 	 */
 	static function update( $option ) {
 		$extra = ms::get_extra();
-		$option = array_merge( $extra, $option );
+		if ($extra) $option = array_merge( $extra, $option );
 		db::update( 'x_multisite_config', array( 'title' => $option['title'], 'extra' => string::scalar( $option ) ) , array( 'domain' => etc::domain() ) );
 	}
 

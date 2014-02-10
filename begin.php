@@ -14,5 +14,4 @@ if ( x::installed() && ! etc::cli() ) {
 	ob_start();
 }
 
-
 include 'etc/begin.php';
